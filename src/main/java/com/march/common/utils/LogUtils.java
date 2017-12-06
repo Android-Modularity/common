@@ -9,8 +9,10 @@ import com.march.common.BuildConfig;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * CreateAt : 16/8/15
@@ -20,9 +22,13 @@ import java.util.Map;
  */
 public class LogUtils {
 
-    private static boolean DEBUG = BuildConfig.DEBUG;
+    private static boolean DEBUG = true;
     private static String TAG = "LogUtils";
     private static OnLogListener sOnLogListener;
+
+    public static void setDEBUG(boolean DEBUG) {
+        LogUtils.DEBUG = DEBUG;
+    }
 
     public static void setTAG(String TAG) {
         LogUtils.TAG = TAG;
@@ -46,21 +52,25 @@ public class LogUtils {
         if (object == null) {
             sb.append("object is null");
         } else {
-            sb.append("[").append(object.getClass().getSimpleName()).append("] => ");
+            sb.append("[").append(object.getClass().getSimpleName()).append("]@").append(object.hashCode()).append(getEnding());
             if (object instanceof Map) {
                 Map map = (Map) object;
                 sb.append("{").append(getEnding());
                 for (Object key : map.keySet()) {
-                    sb.append("\t").append(key).append("=>").append(map.get(key));
+                    sb.append("\t").append(key).append("  =>  ").append(map.get(key)).append(getEnding());
                 }
                 sb.append("}").append(getEnding());
             } else if (object instanceof Intent) {
                 Intent intent = (Intent) object;
                 Bundle extras = intent.getExtras();
-                sb.append(intent.toString());
+                sb.append("{").append(getEnding());
+                sb.append("\t").append(intent.toString()).append(getEnding());
                 if (extras != null) {
-                    sb.append(extras.toString());
+                    for (String key : extras.keySet()) {
+                        sb.append("\t").append(key).append("  =>  ").append(extras.get(key)).append(getEnding());
+                    }
                 }
+                sb.append("}").append(getEnding());
             } else if (object instanceof List) {
                 List list = (List) object;
                 sb.append("{").append(getEnding());
@@ -69,11 +79,15 @@ public class LogUtils {
                 }
                 sb.append("}").append(getEnding());
             } else {
-                sb.append(object.toString());
+                sb.append("{").append(getEnding());
+                sb.append("\t").append(object.toString());
+                sb.append("}").append(getEnding());
+
             }
         }
         e(tag, sb.toString());
     }
+
 
     // 带格式打印 json，默认使用 error 打印
     public static void json(String json) {
@@ -117,7 +131,7 @@ public class LogUtils {
         } else if (stackTrace.length == 1) {
             sb.append("\t─ ").append(stackTrace[0].toString());
         } else {
-            sb.append("\t「").append("异常堆栈");
+            sb.append("\t❌").append("异常堆栈").append(getEnding());
             for (int i = 0, N = stackTrace.length; i < N; i++) {
                 if (i != N - 1) {
                     sb.append("\t├ ").append(stackTrace[i].toString()).append(getEnding());
