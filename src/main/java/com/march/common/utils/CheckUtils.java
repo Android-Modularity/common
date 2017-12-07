@@ -25,6 +25,15 @@ public class CheckUtils {
         return TextUtils.isEmpty(charSequence);
     }
 
+    public static boolean isAnyEmpty(CharSequence... charSequences) {
+        for (CharSequence charSequence : charSequences) {
+            if (isEmpty(charSequence)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isEmpty(File file) {
         return FileUtils.isNotExist(file);
     }
