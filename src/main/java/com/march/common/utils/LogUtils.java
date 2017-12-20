@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.march.common.BuildConfig;
+import com.march.common.funcs.Consumer;
+import com.march.common.funcs.Predicate;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,6 +19,16 @@ import java.util.Set;
 /**
  * CreateAt : 16/8/15
  * Describe : 日志打印操作
+ * <p> basic
+ * LogUtils.v(msg);
+ * LogUtils.d(msg);
+ * LogUtils.i(msg);
+ * LogUtils.w(msg);
+ * LogUtils.e(msg);
+ * <p> advance
+ * LogUtils.object(); // 按照格式打印 object，support list/map/intent...
+ * LogUtils.json(); // 将 json 格式化打印
+ * LogUtils.e(error); // 打印异常堆栈
  *
  * @author chendong
  */
@@ -200,27 +212,74 @@ public class LogUtils {
         return "   ";
     }
 
-    private static void dispatch(int level, String tag, String msg) {
+    private static void dispatch(int level, final String tag, final String msg) {
         if (!DEBUG)
             return;
         if (sOnLogListener != null && sOnLogListener.beforeLog(level, tag, msg))
             return;
         switch (level) {
             case Log.VERBOSE:
-                Log.v(tag, msg);
+                breakLog4K(msg, new Consumer<String>() {
+                    @Override
+                    public void accept(String s) {
+                        Log.v(tag, s);
+                    }
+                });
                 break;
             case Log.DEBUG:
-                Log.d(tag, msg);
+                breakLog4K(msg, new Consumer<String>() {
+                    @Override
+                    public void accept(String s) {
+                        Log.d(tag, s);
+                    }
+                });
                 break;
             case Log.INFO:
-                Log.i(tag, msg);
+                breakLog4K(msg, new Consumer<String>() {
+                    @Override
+                    public void accept(String s) {
+                        Log.i(tag, s);
+                    }
+                });
                 break;
             case Log.WARN:
-                Log.w(tag, msg);
+                breakLog4K(msg, new Consumer<String>() {
+                    @Override
+                    public void accept(String s) {
+                        Log.w(tag, s);
+                    }
+                });
                 break;
             case Log.ERROR:
-                Log.e(tag, msg);
+                breakLog4K(msg, new Consumer<String>() {
+                    @Override
+                    public void accept(String s) {
+                        Log.e(tag, s);
+                    }
+                });
                 break;
+        }
+    }
+
+
+    private static void breakLog4K(String msg, Consumer<String> consumer) {
+        if (msg.length() < 3800) {
+            consumer.accept(msg);
+            return;
+        }
+        int index = 0; // 当前位置
+        int max = 3800;// 需要截取的最大长度,别用4000
+        String sub;    // 进行截取操作的string
+        while (index < msg.length()) {
+            if (msg.length() < max) { // 如果长度比最大长度小
+                max = msg.length();   // 最大长度设为length,全部截取完成.
+                sub = msg.substring(index, max);
+            } else {
+                sub = msg.substring(index, max);
+            }
+            consumer.accept(sub);      // 进行输出
+            index = max;
+            max += 3800;
         }
     }
 }
