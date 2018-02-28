@@ -54,6 +54,10 @@ public class LogUtils {
         boolean beforeLog(int level, String tag, String msg);
     }
 
+    public static void myThread() {
+        dispatch(Log.ERROR, findTag(), Thread.currentThread().getName());
+    }
+
     // 打印其他类型的 object
     public static void object(Object object) {
         object(findTag(), object);
@@ -136,8 +140,10 @@ public class LogUtils {
     }
 
     public static void e(String tag, Throwable throwable) {
-        StackTraceElement[] stackTrace = throwable.getStackTrace();
         StringBuilder sb = newStringBuilder();
+        sb.append(throwable.toString()).append("\n");
+
+        StackTraceElement[] stackTrace = throwable.getStackTrace();
         if (stackTrace == null || stackTrace.length == 0) {
             sb.append("throwable stackTrace is empty");
         } else if (stackTrace.length == 1) {
@@ -154,6 +160,7 @@ public class LogUtils {
         }
         e(tag, sb.toString());
     }
+
 
 
     public static void v(String msg) {

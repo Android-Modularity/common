@@ -114,4 +114,9 @@ public class FileUtils {
     public static boolean isNotExist(File file) {
         return file == null || !file.exists() || file.length() == 0;
     }
+
+    public static boolean isImageFile(String filePath){
+        return !FileUtils.isNotExist(filePath) && (filePath.toLowerCase().endsWith("jpg") || filePath.toLowerCase().endsWith("png") || filePath.toLowerCase().endsWith("gif"));
+
+    }
 }

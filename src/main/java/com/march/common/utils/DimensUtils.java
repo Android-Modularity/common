@@ -3,7 +3,7 @@ package com.march.common.utils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
-import com.march.common.CommonKit;
+import com.march.common.Common;
 
 /**
  * CreateAt : 16/8/13
@@ -27,7 +27,7 @@ public class DimensUtils {
     }
 
     private static DisplayMetrics getDisplayMetrics() {
-        return CommonKit.getContext().getResources().getDisplayMetrics();
+        return Common.getContext().getResources().getDisplayMetrics();
     }
 
     /**

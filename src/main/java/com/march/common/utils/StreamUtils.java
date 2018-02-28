@@ -60,7 +60,7 @@ public class StreamUtils {
      * @param is   流
      * @return
      */
-    public static File saveStreamToFile(File file, InputStream is) {
+    public static boolean saveStreamToFile(File file, InputStream is) {
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
         byte[] bs;
@@ -77,12 +77,12 @@ public class StreamUtils {
             bos.close();
         } catch (Exception e) {
             LogUtils.e(e);
-            return null;
+            return false;
         } finally {
             closeStream(bis, bos);
             bs = null;
         }
-        return file;
+        return true;
     }
 
 

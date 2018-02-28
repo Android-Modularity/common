@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * CreateAt : 2017/1/13
@@ -45,4 +46,12 @@ public class CheckUtils {
     public static boolean isEmpty(Long l) {
         return l == null || l == 0;
     }
+
+    public static boolean isEmpty(Map map) {
+        if (map == null) {
+            return true;
+        }
+        return isEmpty(map.keySet());
+    }
+
 }

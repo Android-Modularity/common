@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.march.common.CommonKit;
+import com.march.common.Common;
 import com.march.common.R;
 
 
@@ -38,7 +38,7 @@ public class ToastUtils {
     }
 
     private static Context getContext() {
-        return CommonKit.getContext();
+        return Common.getContext();
     }
 
     /**
