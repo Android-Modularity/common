@@ -22,6 +22,10 @@ public class CheckUtils {
         return list == null || list.length == 0;
     }
 
+    public static boolean isEmpty(byte[] bytes) {
+        return bytes == null || bytes.length == 0;
+    }
+
     public static boolean isEmpty(CharSequence charSequence) {
         return TextUtils.isEmpty(charSequence);
     }

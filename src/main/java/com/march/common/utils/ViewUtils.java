@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * CreateAt : 2017/4/24
@@ -12,6 +14,18 @@ import android.view.ViewGroup;
  * @author chendong
  */
 public class ViewUtils {
+
+    public static void setTextIfNotEmpty(TextView tv, String text) {
+        if (CheckUtils.isEmpty(text)) {
+            setVisibility(tv, View.GONE);
+        } else {
+            setVisibility(tv, View.VISIBLE);
+            tv.setText(text);
+            if (tv instanceof EditText) {
+                ((EditText) tv).setSelection(tv.getText().length());
+            }
+        }
+    }
 
     public static void setVisibility(View view, int visible) {
         if (view.getVisibility() != visible) {
@@ -25,7 +39,7 @@ public class ViewUtils {
      * @param view     view
      * @param drawable 背景 drawable
      */
-    public static void setBackground( View view, Drawable drawable) {
+    public static void setBackground(View view, Drawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             view.setBackground(drawable);
         else
@@ -34,11 +48,12 @@ public class ViewUtils {
 
     /**
      * 设置 margin
-     * @param top top
-     * @param right right
+     *
+     * @param top    top
+     * @param right  right
      * @param bottom bottom
-     * @param left left
-     * @param views 控件列表
+     * @param left   left
+     * @param views  控件列表
      */
     public static void setMargin(int top, int right, int bottom, int left, View... views) {
         ViewGroup.MarginLayoutParams layoutParams;

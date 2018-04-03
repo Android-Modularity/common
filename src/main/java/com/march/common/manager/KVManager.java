@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import com.march.common.Common;
 import com.march.common.utils.CheckUtils;
-import com.march.common.utils.JsonUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +39,7 @@ public class KVManager {
         if (CheckUtils.isEmpty(json)) {
             mCacheMap = new HashMap<>();
         } else {
-            mCacheMap = JsonUtils.toMap(json);
+            mCacheMap = Common.getJsonParseAdapter().toMap(json);
         }
     }
 
@@ -49,7 +48,7 @@ public class KVManager {
 
     public void put(String key, Object value) {
         mCacheMap.put(key, value);
-        String json = JsonUtils.toJson(mCacheMap);
+        String json = Common.getJsonParseAdapter().toJson(mCacheMap);
         getEditor().putString(STORAGE_KEY, json).apply();
     }
 

@@ -24,7 +24,6 @@ public class JsonUtils {
         return sGson.fromJson(json, cls);
     }
 
-
     public static <T> List<T> toList(String json) {
         return sGson.fromJson(json, new TypeToken<List<T>>() {
         }.getType());

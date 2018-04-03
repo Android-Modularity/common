@@ -1,8 +1,11 @@
 package com.march.common.utils;
 
+import android.graphics.Bitmap;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -60,34 +63,56 @@ public class StreamUtils {
      * @param is   流
      * @return
      */
-    public static boolean saveStreamToFile(File file, InputStream is) {
+    public static File saveStreamToFile(File file, InputStream is) {
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
-        byte[] bs;
+
         try {
             bis = new BufferedInputStream(is);
             bos = new BufferedOutputStream(new FileOutputStream(file));
-            bs = new byte[1024 * 10];
+            byte[] bs = new byte[1024 * 10];
             int len;
             while ((len = bis.read(bs)) != -1) {
                 bos.write(bs, 0, len);
                 bos.flush();
             }
-            bis.close();
-            bos.close();
+            bs = null;
         } catch (Exception e) {
             LogUtils.e(e);
-            return false;
+            return null;
         } finally {
             closeStream(bis, bos);
-            bs = null;
         }
-        return true;
+        return file;
     }
 
+    public static byte[] saveStreamToBytes(InputStream is) {
+        BufferedInputStream bis = null;
+        ByteArrayOutputStream bos = null;
+        byte[] result;
+        try {
+            bis = new BufferedInputStream(is);
+            bos = new ByteArrayOutputStream();
+            byte[] bs = new byte[1024 * 10];
+            int len;
+            while ((len = bis.read(bs)) != -1) {
+                bos.write(bs, 0, len);
+                bos.flush();
+            }
+            bs = null;
+            result = bos.toByteArray();
+        } catch (Exception e) {
+            LogUtils.e(e);
+            return null;
+        } finally {
+            closeStream(bis, bos);
+        }
+        return result;
+    }
 
     /**
      * 从流中读取为字符串
+     *
      * @param is 流
      * @return json
      */

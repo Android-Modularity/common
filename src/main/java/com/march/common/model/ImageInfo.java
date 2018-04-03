@@ -25,6 +25,7 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
     private int width;
     private int height;
     private int fileId;
+    private boolean select;
 
     public String getPath() {
         return path;
@@ -90,6 +91,14 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
         this.status = status;
     }
 
+    public boolean isSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
+    }
+
     @Override
     public int hashCode() {
         return 1;
@@ -123,6 +132,16 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
     }
 
     @Override
+    public String toString() {
+        return "ImageInfo{" +
+                "path='" + path + '\'' +
+                ", date='" + date + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -137,6 +156,7 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
         dest.writeInt(this.width);
         dest.writeInt(this.height);
         dest.writeInt(this.fileId);
+        dest.writeByte(this.select ? (byte) 1 : (byte) 0);
     }
 
     protected ImageInfo(Parcel in) {
@@ -148,6 +168,7 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
         this.width = in.readInt();
         this.height = in.readInt();
         this.fileId = in.readInt();
+        this.select = in.readByte() != 0;
     }
 
     public static final Creator<ImageInfo> CREATOR = new Creator<ImageInfo>() {
@@ -161,14 +182,4 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
             return new ImageInfo[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "ImageInfo{" +
-                "path='" + path + '\'' +
-                ", date='" + date + '\'' +
-                ", width=" + width +
-                ", height=" + height +
-                '}';
-    }
 }

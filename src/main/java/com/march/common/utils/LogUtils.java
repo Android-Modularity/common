@@ -134,6 +134,21 @@ public class LogUtils {
         e(tag, sb.toString());
     }
 
+    // 拼接打印所有 obj
+    public static void all(String tag,Object... objs) {
+        StringBuilder sb = newStringBuilder();
+        for (Object obj : objs) {
+            sb.append(obj == null ? " [null] " : obj.toString()).append(" ");
+        }
+        e(tag,sb.toString());
+    }
+
+
+    // 拼接打印所有 obj
+    public static void all(Object... objs) {
+        all(findTag(),objs);
+    }
+
     // 带格式打印异常
     public static void e(Throwable throwable) {
         e(findTag(), throwable);
@@ -160,8 +175,6 @@ public class LogUtils {
         }
         e(tag, sb.toString());
     }
-
-
 
     public static void v(String msg) {
         dispatch(Log.VERBOSE, findTag(), msg);

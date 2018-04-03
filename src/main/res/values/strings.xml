@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">common</string>
+
+    <string name="small_text">测试内容</string>
+    <string name="long_text">测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容</string>
+    <string name="middle_text">测试内容测试内容测试内容测试内容测试内容测试内容</string>
 </resources>
