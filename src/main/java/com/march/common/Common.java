@@ -21,11 +21,12 @@ public class Common {
     private static WeakContext sWeakContext;
     private static JsonParseAdapter sJsonParseAdapter;
 
-    public static void init(Application application, JsonParseAdapter sJsonParseAdapter) {
+    public static void init(Application application, JsonParseAdapter jsonParseAdapter) {
         sWeakContext = new WeakContext(application);
-        sJsonParseAdapter = sJsonParseAdapter;
+        sJsonParseAdapter = jsonParseAdapter;
         DimensUtils.init();
         ToastUtils.init(new ToastUtils.Config());
+
     }
 
     public static Context getContext() {

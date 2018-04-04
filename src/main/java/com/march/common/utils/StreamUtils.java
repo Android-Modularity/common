@@ -1,12 +1,12 @@
 package com.march.common.utils;
 
-import android.graphics.Bitmap;
+
+import com.march.common.manager.BytesPool;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,18 +22,6 @@ import java.net.HttpURLConnection;
  */
 public class StreamUtils {
 
-    // 关闭流
-    public static void closeStream(Closeable... closeables) {
-        for (Closeable closeable : closeables) {
-            if (closeable != null) {
-                try {
-                    closeable.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     /**
      * 打开一个网络流
@@ -70,18 +58,18 @@ public class StreamUtils {
         try {
             bis = new BufferedInputStream(is);
             bos = new BufferedOutputStream(new FileOutputStream(file));
-            byte[] bs = new byte[1024 * 10];
+            byte[] bs = BytesPool.get().getBytes();
             int len;
             while ((len = bis.read(bs)) != -1) {
                 bos.write(bs, 0, len);
                 bos.flush();
             }
-            bs = null;
+            BytesPool.get().releaseBytes(bs);
         } catch (Exception e) {
             LogUtils.e(e);
             return null;
         } finally {
-            closeStream(bis, bos);
+            RecycleUtils.recycle(bis, bos);
         }
         return file;
     }
@@ -93,19 +81,20 @@ public class StreamUtils {
         try {
             bis = new BufferedInputStream(is);
             bos = new ByteArrayOutputStream();
-            byte[] bs = new byte[1024 * 10];
+            byte[] bs = BytesPool.get().getBytes();
+
             int len;
             while ((len = bis.read(bs)) != -1) {
                 bos.write(bs, 0, len);
                 bos.flush();
             }
-            bs = null;
             result = bos.toByteArray();
+            BytesPool.get().releaseBytes(bs);
         } catch (Exception e) {
             LogUtils.e(e);
             return null;
         } finally {
-            closeStream(bis, bos);
+            RecycleUtils.recycle(bis, bos);
         }
         return result;
     }
@@ -130,7 +119,7 @@ public class StreamUtils {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            closeStream(br);
+            RecycleUtils.recycle(br);
         }
         return json;
     }
