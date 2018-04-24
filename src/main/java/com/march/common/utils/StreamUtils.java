@@ -52,6 +52,9 @@ public class StreamUtils {
      * @return
      */
     public static File saveStreamToFile(File file, InputStream is) {
+        if (file == null || is == null) {
+            return file;
+        }
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
 
@@ -73,6 +76,7 @@ public class StreamUtils {
         }
         return file;
     }
+
 
     public static byte[] saveStreamToBytes(InputStream is) {
         BufferedInputStream bis = null;
