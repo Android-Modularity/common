@@ -1,8 +1,11 @@
 apply plugin: 'com.android.library'
 
-android {
-    compileSdkVersion 26
+// project/build.gradle
+// apply from: 'https://coding.net/u/devlab/p/Resource/git/raw/master/android/project.gradle'
+def version = rootProject.ext.version
 
+android {
+    compileSdkVersion version.compileSdkVersion
 }
 
 dependencies {
