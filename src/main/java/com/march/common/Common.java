@@ -8,8 +8,6 @@ import com.march.common.model.WeakContext;
 import com.march.common.utils.DimensUtils;
 import com.march.common.utils.ToastUtils;
 
-import java.lang.ref.WeakReference;
-
 /**
  * CreateAt : 2017/12/6
  * Describe :
@@ -17,6 +15,9 @@ import java.lang.ref.WeakReference;
  * @author chendong
  */
 public class Common {
+
+    public static final int[] EMPTY_ARRAY = new int[]{};
+
 
     private static WeakContext sWeakContext;
     private static JsonParseAdapter sJsonParseAdapter;

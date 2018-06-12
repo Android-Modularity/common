@@ -1,6 +1,9 @@
 package com.march.common.utils;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.march.common.manager.BytesPool;
 
 import java.io.BufferedInputStream;
@@ -34,7 +37,7 @@ public class StreamUtils {
         conn.setRequestMethod("GET");
         conn.setReadTimeout(3_000);
         conn.setConnectTimeout(3_000);
-        conn.setDoOutput(true);
+        conn.setDoOutput(false);
         conn.setDoInput(true);
         // 设置通用的请求属性
         conn.setRequestProperty("accept", "*/*");
@@ -76,6 +79,7 @@ public class StreamUtils {
         }
         return file;
     }
+
 
 
     public static byte[] saveStreamToBytes(InputStream is) {
