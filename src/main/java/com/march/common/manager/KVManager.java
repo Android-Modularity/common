@@ -39,7 +39,7 @@ public class KVManager {
         if (CheckUtils.isEmpty(json)) {
             mCacheMap = new HashMap<>();
         } else {
-            mCacheMap = Common.getJsonParseAdapter().toMap(json);
+            mCacheMap = Common.Injector.getJsonParser().toMap(json);
         }
     }
 
@@ -48,7 +48,7 @@ public class KVManager {
 
     public void put(String key, Object value) {
         mCacheMap.put(key, value);
-        String json = Common.getJsonParseAdapter().toJson(mCacheMap);
+        String json = Common.Injector.getJsonParser().toJson(mCacheMap);
         getEditor().putString(STORAGE_KEY, json).apply();
     }
 

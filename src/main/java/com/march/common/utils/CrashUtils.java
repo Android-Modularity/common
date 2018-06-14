@@ -16,7 +16,7 @@ public class CrashUtils {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
-                LogUtils.e(e);
+                LgUtils.e(e);
                 if (listener != null) {
                     listener.onCrash(t, e);
                 }

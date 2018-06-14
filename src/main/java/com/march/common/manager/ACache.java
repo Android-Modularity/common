@@ -32,7 +32,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-/**
+/*
  * @author Michael Yang（www.yangfuhai.com） update at 2013.08.07
  */
 public class ACache {
@@ -116,7 +116,7 @@ public class ACache {
 		}
 	}
 
-	/**
+	/*
 	 * 保存 String数据 到 缓存中
 	 * 
 	 * @param key
@@ -130,7 +130,7 @@ public class ACache {
 		put(key, Utils.newStringWithDateInfo(saveTime, value));
 	}
 
-	/**
+	/*
 	 * 读取 String数据
 	 * 
 	 * @param key
@@ -174,7 +174,7 @@ public class ACache {
 	// =======================================
 	// ============= JSONObject 数据 读写 ==============
 	// =======================================
-	/**
+	/*
 	 * 保存 JSONObject数据 到 缓存中
 	 * 
 	 * @param key
@@ -186,7 +186,7 @@ public class ACache {
 		put(key, value.toString());
 	}
 
-	/**
+	/*
 	 * 保存 JSONObject数据 到 缓存中
 	 * 
 	 * @param key
@@ -200,7 +200,7 @@ public class ACache {
 		put(key, value.toString(), saveTime);
 	}
 
-	/**
+	/*
 	 * 读取JSONObject数据
 	 * 
 	 * @param key
@@ -220,7 +220,7 @@ public class ACache {
 	// =======================================
 	// ============ JSONArray 数据 读写 =============
 	// =======================================
-	/**
+	/*
 	 * 保存 JSONArray数据 到 缓存中
 	 * 
 	 * @param key
@@ -232,7 +232,7 @@ public class ACache {
 		put(key, value.toString());
 	}
 
-	/**
+	/*
 	 * 保存 JSONArray数据 到 缓存中
 	 * 
 	 * @param key
@@ -246,7 +246,7 @@ public class ACache {
 		put(key, value.toString(), saveTime);
 	}
 
-	/**
+	/*
 	 * 读取JSONArray数据
 	 * 
 	 * @param key
@@ -266,7 +266,7 @@ public class ACache {
 	// =======================================
 	// ============== byte 数据 读写 =============
 	// =======================================
-	/**
+	/*
 	 * 保存 byte数据 到 缓存中
 	 * 
 	 * @param key
@@ -295,7 +295,7 @@ public class ACache {
 		}
 	}
 
-	/**
+	/*
 	 * 保存 byte数据 到 缓存中
 	 * 
 	 * @param key
@@ -309,7 +309,7 @@ public class ACache {
 		put(key, Utils.newByteArrayWithDateInfo(saveTime, value));
 	}
 
-	/**
+	/*
 	 * 获取 byte 数据
 	 * 
 	 * @param key
@@ -350,7 +350,7 @@ public class ACache {
 	// =======================================
 	// ============= 序列化 数据 读写 ===============
 	// =======================================
-	/**
+	/*
 	 * 保存 Serializable数据 到 缓存中
 	 * 
 	 * @param key
@@ -362,7 +362,7 @@ public class ACache {
 		put(key, value, -1);
 	}
 
-	/**
+	/*
 	 * 保存 Serializable数据到 缓存中
 	 * 
 	 * @param key
@@ -395,7 +395,7 @@ public class ACache {
 		}
 	}
 
-	/**
+	/*
 	 * 读取 Serializable数据
 	 * 
 	 * @param key
@@ -436,7 +436,7 @@ public class ACache {
 	// =======================================
 	// ============== bitmap 数据 读写 =============
 	// =======================================
-	/**
+	/*
 	 * 保存 bitmap 到 缓存中
 	 * 
 	 * @param key
@@ -448,7 +448,7 @@ public class ACache {
 		put(key, Utils.Bitmap2Bytes(value));
 	}
 
-	/**
+	/*
 	 * 保存 bitmap 到 缓存中
 	 * 
 	 * @param key
@@ -462,7 +462,7 @@ public class ACache {
 		put(key, Utils.Bitmap2Bytes(value), saveTime);
 	}
 
-	/**
+	/*
 	 * 读取 bitmap 数据
 	 * 
 	 * @param key
@@ -478,7 +478,7 @@ public class ACache {
 	// =======================================
 	// ============= drawable 数据 读写 =============
 	// =======================================
-	/**
+	/*
 	 * 保存 drawable 到 缓存中
 	 * 
 	 * @param key
@@ -490,7 +490,7 @@ public class ACache {
 		put(key, Utils.drawable2Bitmap(value));
 	}
 
-	/**
+	/*
 	 * 保存 drawable 到 缓存中
 	 * 
 	 * @param key
@@ -504,7 +504,7 @@ public class ACache {
 		put(key, Utils.drawable2Bitmap(value), saveTime);
 	}
 
-	/**
+	/*
 	 * 读取 Drawable 数据
 	 * 
 	 * @param key
@@ -517,7 +517,7 @@ public class ACache {
 		return Utils.bitmap2Drawable(Utils.Bytes2Bitmap(getAsBinary(key)));
 	}
 
-	/**
+	/*
 	 * 获取缓存文件
 	 * 
 	 * @param key
@@ -530,7 +530,7 @@ public class ACache {
 		return null;
 	}
 
-	/**
+	/*
 	 * 移除某个key
 	 * 
 	 * @param key
@@ -540,14 +540,14 @@ public class ACache {
 		return mCache.remove(key);
 	}
 
-	/**
+	/*
 	 * 清除所有数据
 	 */
 	public void clear() {
 		mCache.clear();
 	}
 
-	/**
+	/*
 	 * @title 缓存管理器
 	 * @author 杨福海（michael） www.yangfuhai.com
 	 * @version 1.0
@@ -570,7 +570,7 @@ public class ACache {
 			calculateCacheSizeAndCacheCount();
 		}
 
-		/**
+		/*
 		 * 计算 cacheSize和cacheCount
 		 */
 		private void calculateCacheSizeAndCacheCount() {
@@ -646,7 +646,7 @@ public class ACache {
 			}
 		}
 
-		/**
+		/*
 		 * 移除旧的文件
 		 * 
 		 * @return
@@ -686,14 +686,14 @@ public class ACache {
 		}
 	}
 
-	/**
+	/*
 	 * @title 时间计算工具类
 	 * @author 杨福海（michael） www.yangfuhai.com
 	 * @version 1.0
 	 */
 	private static class Utils {
 
-		/**
+		/*
 		 * 判断缓存的String数据是否到期
 		 * 
 		 * @param str
@@ -703,7 +703,7 @@ public class ACache {
 			return isDue(str.getBytes());
 		}
 
-		/**
+		/*
 		 * 判断缓存的byte数据是否到期
 		 * 
 		 * @param data

@@ -77,7 +77,7 @@ public class StatusBarUtils {
                 int x = Integer.parseInt(field.get(obj).toString());
                 return context.getResources().getDimensionPixelSize(x);
             } catch (Exception ignore) {
-                LogUtils.e(ignore);
+                LgUtils.e(ignore);
             }
         }
 
@@ -102,7 +102,7 @@ public class StatusBarUtils {
             }
             return true;
         } catch (Exception e) {
-            LogUtils.e(e.getMessage());
+            LgUtils.e(e.getMessage());
             return false;
         }
     }
@@ -185,6 +185,4 @@ public class StatusBarUtils {
         ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
         mContentView.setPadding(0, padding, 0, 0);
     }
-
-
 }

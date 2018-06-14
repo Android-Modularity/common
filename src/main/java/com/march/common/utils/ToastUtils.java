@@ -128,7 +128,7 @@ public class ToastUtils {
                     sToast.show();
 
                 } catch (Exception e) {
-                    LogUtils.e(e);
+                    LgUtils.e(e);
                 }
             }
         };

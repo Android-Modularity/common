@@ -10,7 +10,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.march.common.utils.LogUtils;
+import com.march.common.utils.LgUtils;
 import com.march.common.utils.RecycleUtils;
 
 import java.io.File;
@@ -20,7 +20,7 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
+/*
  * https://github.com/QMUI/QMUI_Android/blob/7c9b706b651f1ce487aaf5e0dd9dc7b66d02b480/qmui/src/main/java/com/qmuiteam/qmui/util/QMUIDeviceHelper.java
  * 沉浸式状态栏，设备
  */
@@ -51,7 +51,7 @@ public class ImmersionDeviceUtils {
             //flyme
             sFlymeVersionName = getLowerCaseName(properties, getMethod, KEY_FLYME_VERSION_NAME);
         } catch (Exception e) {
-            LogUtils.e(TAG, e);
+            LgUtils.e(TAG, e);
         } finally {
             RecycleUtils.recycle(fileInputStream);
         }
@@ -62,7 +62,7 @@ public class ImmersionDeviceUtils {
                 Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
-    /**
+    /*
      * 判断是否为平板设备
      */
     public static boolean isTablet(Context context) {
@@ -74,14 +74,14 @@ public class ImmersionDeviceUtils {
         return sIsTabletValue;
     }
 
-    /**
+    /*
      * 判断是否是flyme系统
      */
     public static boolean isFlyme() {
         return !TextUtils.isEmpty(sFlymeVersionName) && sFlymeVersionName.contains(FLYME);
     }
 
-    /**
+    /*
      * 判断是否是MIUI系统
      */
     public static boolean isMIUI() {
@@ -144,14 +144,14 @@ public class ImmersionDeviceUtils {
         return isMeizu() && isHigher;
     }
 
-    /**
+    /*
      * 判断是否为魅族
      */
     public static boolean isMeizu() {
         return isPhone(MEIZUBOARD) || isFlyme();
     }
 
-    /**
+    /*
      * 判断是否为小米
      */
     public static boolean isXiaomi() {
@@ -159,7 +159,7 @@ public class ImmersionDeviceUtils {
     }
 
 
-    /**
+    /*
      * 判断是否为 ZUK Z1 和 ZTK C2016。
      * 两台设备的系统虽然为 android 6.0，但不支持状态栏icon颜色改变，因此经常需要对它们进行额外判断。
      */
@@ -186,7 +186,7 @@ public class ImmersionDeviceUtils {
         return false;
     }
 
-    /**
+    /*
      * 判断悬浮窗权限（目前主要用户魅族与小米的检测）。
      */
     public static boolean isFloatWindowOpAllowed(Context context) {
@@ -214,7 +214,7 @@ public class ImmersionDeviceUtils {
                         Binder.getCallingUid(), context.getPackageName());
                 return AppOpsManager.MODE_ALLOWED == property;
             } catch (Exception e) {
-                LogUtils.e(e);
+                LgUtils.e(e);
             }
         }
         return false;

@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  * CreateAt : 2017/12/6
- * Describe :
+ * Describe : 回收资源的工具类
  *
  * @author chendong
  */

@@ -6,7 +6,23 @@ def version = rootProject.ext.version
 
 android {
     compileSdkVersion version.compileSdkVersion
+    defaultConfig {
+        minSdkVersion 15
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
+}
+
+apply plugin: 'bintray-release'
+publish {
+    userOrg = 'zfy'
+    groupId = 'com.zfy'
+    artifactId = 'common'
+    publishVersion = '0.0.1'
+    desc = 'common'
+    website = 'https://github.com/Android-Modularity/common'
 }

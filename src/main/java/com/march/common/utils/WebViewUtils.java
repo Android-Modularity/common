@@ -19,7 +19,7 @@ import java.io.File;
  *
  * @author chendong
  */
-public class WebViewUtil {
+public class WebViewUtils {
 
     private static void initWebViewCache(WebView mWebView) {
 

@@ -9,7 +9,7 @@ import java.util.Map;
  *
  * @author chendong
  */
-public interface JsonParseAdapter {
+public interface JsonParser {
 
     String toJson(Object object);
 

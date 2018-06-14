@@ -1,10 +1,7 @@
 package com.march.common.utils;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-import com.march.common.manager.BytesPool;
+import com.march.common.pool.BytesPool;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -52,7 +49,7 @@ public class StreamUtils {
      *
      * @param file 文件
      * @param is   流
-     * @return
+     * @return file
      */
     public static File saveStreamToFile(File file, InputStream is) {
         if (file == null || is == null) {
@@ -72,7 +69,7 @@ public class StreamUtils {
             }
             BytesPool.get().releaseBytes(bs);
         } catch (Exception e) {
-            LogUtils.e(e);
+            LgUtils.e(e);
             return null;
         } finally {
             RecycleUtils.recycle(bis, bos);
@@ -99,7 +96,7 @@ public class StreamUtils {
             result = bos.toByteArray();
             BytesPool.get().releaseBytes(bs);
         } catch (Exception e) {
-            LogUtils.e(e);
+            LgUtils.e(e);
             return null;
         } finally {
             RecycleUtils.recycle(bis, bos);

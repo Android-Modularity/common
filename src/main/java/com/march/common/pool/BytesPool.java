@@ -1,4 +1,4 @@
-package com.march.common.manager;
+package com.march.common.pool;
 
 import android.util.Log;
 
@@ -23,9 +23,6 @@ public class BytesPool {
     private final Queue<byte[]> tempQueue = new ArrayDeque<>(0);
     private static final BytesPool BYTE_ARRAY_POOL = new BytesPool();
 
-    /**
-     * Returns a constant singleton byte array pool.
-     */
     public static BytesPool get() {
         return BYTE_ARRAY_POOL;
     }
@@ -33,19 +30,12 @@ public class BytesPool {
     private BytesPool() {
     }
 
-    /**
-     * Removes all byte arrays from the pool.
-     */
     public void clear() {
         synchronized (tempQueue) {
             tempQueue.clear();
         }
     }
 
-    /**
-     * Returns a byte array by retrieving one from the pool if the pool is non empty or otherwise by creating a new
-     * byte array.
-     */
     public byte[] getBytes() {
         byte[] result;
         synchronized (tempQueue) {
@@ -60,12 +50,6 @@ public class BytesPool {
         return result;
     }
 
-    /**
-     * Adds the given byte array to the pool if it is the correct size and the pool is not full and returns true if
-     * the byte array was added and false otherwise.
-     *
-     * @param bytes The bytes to try to add to the pool.
-     */
     public boolean releaseBytes(byte[] bytes) {
         if (bytes.length != TEMP_BYTES_SIZE) {
             return false;
@@ -80,5 +64,4 @@ public class BytesPool {
         }
         return accepted;
     }
-
 }

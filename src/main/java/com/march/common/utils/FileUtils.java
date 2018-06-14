@@ -47,7 +47,7 @@ public class FileUtils {
             if (isDeleteSrcFile) delete(srcFile);
             return true;
         } catch (IOException e) {
-            LogUtils.e(e);
+            LgUtils.e(e);
         } finally {
             RecycleUtils.recycle(bis, bos);
         }
@@ -117,6 +117,7 @@ public class FileUtils {
 
     public static boolean isImageFile(String filePath){
         return !FileUtils.isNotExist(filePath) && (filePath.toLowerCase().endsWith("jpg") || filePath.toLowerCase().endsWith("png") || filePath.toLowerCase().endsWith("gif"));
-
     }
+
+
 }
