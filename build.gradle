@@ -22,7 +22,7 @@ publish {
     userOrg = 'zfy'
     groupId = 'com.zfy'
     artifactId = 'common'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.2'
     desc = 'common'
     website = 'https://github.com/Android-Modularity/common'
 }
