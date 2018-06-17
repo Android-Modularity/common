@@ -13,9 +13,9 @@ public interface JsonParser {
 
     String toJson(Object object);
 
-    <T> T toObj(String json, Class<T> cls);
+    <T> T toObj(String json, Class<T> clazz);
 
-    <T> List<T> toList(String json);
+    <T> List<T> toList(String json,Class<T> clazz);
 
-    <K, V> Map<K, V> toMap(String json);
+    <K, V> Map<K, V> toMap(String json,Class<K> kClazz,Class<V> vClazz);
 }

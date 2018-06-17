@@ -187,8 +187,7 @@ public final class DiskLruCache implements Closeable {
                 cache.processJournal();
                 return cache;
             } catch (IOException journalIsCorrupt) {
-                System.out
-                        .println("DiskLruCache "
+                System.out.println("DiskLruCache "
                                 + directory
                                 + " is corrupt: "
                                 + journalIsCorrupt.getMessage()

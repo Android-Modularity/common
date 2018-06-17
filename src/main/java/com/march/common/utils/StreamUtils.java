@@ -44,6 +44,7 @@ public class StreamUtils {
         return conn.getInputStream();
     }
 
+
     /**
      * 保存文件到
      *
@@ -76,7 +77,6 @@ public class StreamUtils {
         }
         return file;
     }
-
 
 
     public static byte[] saveStreamToBytes(InputStream is) {

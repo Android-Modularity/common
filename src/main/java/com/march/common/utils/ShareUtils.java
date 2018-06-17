@@ -21,6 +21,25 @@ import java.util.List;
  */
 public class ShareUtils {
 
+
+    /**
+     * 分享文字
+     *
+     * @param context 上下文
+     * @param title   文字标题
+     * @param content 文字内容
+     */
+    public static void viewText(Context context, String title, String content) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_VIEW);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, content);
+        shareIntent.putExtra(Intent.EXTRA_TITLE, title);
+        shareIntent.setType("text/plain");
+        //设置分享列表的标题，并且每次都显示分享列表
+        context.startActivity(Intent.createChooser(shareIntent, "分享到"));
+    }
+
+
     /**
      * 分享文字
      *
