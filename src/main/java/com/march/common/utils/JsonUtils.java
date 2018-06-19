@@ -5,6 +5,10 @@ import android.text.TextUtils;
 import com.march.common.Common;
 import com.march.common.adapter.JsonParser;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -56,5 +60,19 @@ public class JsonUtils {
             return null;
         }
         return jsonParser.toMap(json, kClazz, vClazz);
+    }
+
+    public static String toJsonString(String json,String def){
+        try {
+            if(json.startsWith("[")) {
+                return new JSONArray(json).toString(2).replace("\\/", "/");
+            } else if(json.startsWith("{")){
+                return new JSONObject(json).toString(2).replace("\\/", "/");
+            }
+        } catch (JSONException e) {
+            // e.printStackTrace();
+            return def;
+        }
+        return def;
     }
 }

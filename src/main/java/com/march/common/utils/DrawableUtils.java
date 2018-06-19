@@ -1,6 +1,9 @@
 package com.march.common.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -16,6 +19,28 @@ public class DrawableUtils {
 
     public static Drawable getDrawable(Context context, int drawableRes) {
         return context.getResources().getDrawable(drawableRes);
+    }
+
+    /**
+     * 生成横纵平铺的图片
+     * @param context ctx
+     * @param bitmap 位图
+     * @param width 容器宽度
+     * @param widthScale 平铺图片占据容器的宽度
+     * @param aspectRatio 平铺图片的宽高比
+     * @return drawable
+     */
+    public static Drawable newRepeatXYDrawable(Context context, Bitmap bitmap, int width, float widthScale, float aspectRatio) {
+        int realWidth = (int) (width * widthScale);
+        int realHeight = (int) (realWidth * aspectRatio);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, realWidth, realHeight, true);
+        // 设置内容区域平铺的小圆角背景
+        BitmapDrawable drawable = new BitmapDrawable(context.getResources(), scaledBitmap);
+        drawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+        if(!bitmap.equals(scaledBitmap)){
+            RecycleUtils.recycle(bitmap);
+        }
+        return drawable;
     }
 
     /**
