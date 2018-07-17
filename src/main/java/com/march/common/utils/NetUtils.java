@@ -15,7 +15,9 @@ import android.os.Build;
 public class NetUtils {
 
     public static boolean isNetworkConnected(Context context) {
-
+        if(context == null){
+            return false;
+        }
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager == null) {
             return false;

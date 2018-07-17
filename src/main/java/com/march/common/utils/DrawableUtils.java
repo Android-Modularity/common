@@ -37,9 +37,6 @@ public class DrawableUtils {
         // 设置内容区域平铺的小圆角背景
         BitmapDrawable drawable = new BitmapDrawable(context.getResources(), scaledBitmap);
         drawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
-        if(!bitmap.equals(scaledBitmap)){
-            RecycleUtils.recycle(bitmap);
-        }
         return drawable;
     }
 

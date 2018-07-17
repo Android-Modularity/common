@@ -142,8 +142,8 @@ public class ToastUtils {
 
     private static void initToastView(View toastLayout, String msg) {
 
-        TextView toastTv = (TextView) toastLayout.findViewById(R.id.toast_text);
-        ImageView toastIv = (ImageView) toastLayout.findViewById(R.id.toast_icon);
+        TextView toastTv = toastLayout.findViewById(R.id.toast_text);
+        ImageView toastIv = toastLayout.findViewById(R.id.toast_icon);
 
         // initView background
         if (sConfig.bgDrawable != null) {
@@ -151,7 +151,7 @@ public class ToastUtils {
         } else if (sConfig.bgRes != 0) {
             toastLayout.setBackgroundResource(sConfig.bgRes);
         } else {
-            Drawable drawable = DrawableUtils.newRoundRectDrawable(sConfig.bgColor, 20);
+            Drawable drawable = DrawableUtils.newRoundRectDrawable(sConfig.bgColor, sConfig.bgRadiusInDp);
             sConfig.setBgDrawable(drawable);
             ViewUtils.setBackground(toastLayout, drawable);
         }
@@ -193,6 +193,7 @@ public class ToastUtils {
         Drawable bgDrawable;
         int bgRes;
         int bgColor = Color.BLACK;
+        int bgRadiusInDp = 5;
 
         // 图片资源
         int iconRes;
@@ -242,6 +243,11 @@ public class ToastUtils {
             this.bgColor = bgColor;
             return this;
 
+        }
+
+        public Config setBgRadiusInDp(int bgRadiusInDp) {
+            this.bgRadiusInDp = bgRadiusInDp;
+            return this;
         }
 
         public void setBgRes(int bgRes) {

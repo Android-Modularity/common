@@ -16,15 +16,14 @@ import com.march.common.R;
 public class ActivityAnimUtils {
 
     public static void translateStart(Activity activity) {
-        activity.overridePendingTransition(R.anim.translate_in, R.anim.no_anim);
+        activity.overridePendingTransition(R.anim.act_translate_in, R.anim.act_no_anim);
     }
 
     public static void translateFinish(Activity activity) {
-        activity.overridePendingTransition(R.anim.no_anim, R.anim.translate_out);
+        activity.overridePendingTransition(R.anim.act_no_anim, R.anim.act_translate_out);
     }
 
     public static void fadeStart(Activity activity) {
-//        activity.overridePendingTransition(R.anim.fade_in, R.anim.no_anim);
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
