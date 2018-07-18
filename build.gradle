@@ -9,9 +9,6 @@ android {
     defaultConfig {
         minSdkVersion 15
     }
-    lintOptions {
-        abortOnError false
-    }
 }
 
 dependencies {
@@ -22,7 +19,7 @@ publish {
     userOrg = 'zfy'
     groupId = 'com.zfy'
     artifactId = 'common'
-    publishVersion = '0.0.3'
+    publishVersion = '0.0.4'
     desc = 'common'
     website = 'https://github.com/Android-Modularity/common'
 }
