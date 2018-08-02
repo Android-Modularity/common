@@ -9,9 +9,14 @@ android {
     defaultConfig {
         minSdkVersion 15
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+    compileOnly libs.appcompat_v7
 }
 
 apply plugin: 'bintray-release'
