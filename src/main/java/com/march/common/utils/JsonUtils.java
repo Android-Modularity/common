@@ -3,6 +3,7 @@ package com.march.common.utils;
 import android.text.TextUtils;
 
 import com.march.common.Common;
+import com.march.common.adapter.JsonAdapter;
 import com.march.common.adapter.JsonParser;
 
 import org.json.JSONArray;
@@ -22,44 +23,44 @@ public class JsonUtils {
 
     public static String toJson(Object object) {
         if (object == null) return "";
-        JsonParser jsonParser = Common.Injector.getJsonParser();
-        if (jsonParser == null) {
+        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        if (jsonAdapter == null) {
             return "";
         }
-        return jsonParser.toJson(object);
+        return jsonAdapter.toJson(object);
     }
 
     public static <T> T toObj(String json, Class<T> clazz) {
         if (TextUtils.isEmpty(json) || clazz == null) {
             return null;
         }
-        JsonParser jsonParser = Common.Injector.getJsonParser();
-        if (jsonParser == null) {
+        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        if (jsonAdapter == null) {
             return null;
         }
-        return jsonParser.toObj(json, clazz);
+        return jsonAdapter.toObj(json, clazz);
     }
 
     public static <T> List<T> toList(String json, Class<T> clazz) {
         if (TextUtils.isEmpty(json) || clazz == null) {
             return null;
         }
-        JsonParser jsonParser = Common.Injector.getJsonParser();
-        if (jsonParser == null) {
+        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        if (jsonAdapter == null) {
             return null;
         }
-        return jsonParser.toList(json, clazz);
+        return jsonAdapter.toList(json, clazz);
     }
 
     public static <K, V> Map<K, V> toMap(String json, Class<K> kClazz, Class<V> vClazz) {
         if (TextUtils.isEmpty(json) || kClazz == null || vClazz == null) {
             return null;
         }
-        JsonParser jsonParser = Common.Injector.getJsonParser();
-        if (jsonParser == null) {
+        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        if (jsonAdapter == null) {
             return null;
         }
-        return jsonParser.toMap(json, kClazz, vClazz);
+        return jsonAdapter.toMap(json, kClazz, vClazz);
     }
 
     public static String toJsonString(String json,String def){

@@ -34,7 +34,7 @@ public class DiskKVManager {
     }
 
     private DiskKVManager() {
-        mPreferences = Common.getContext().getSharedPreferences(getClass().getSimpleName(), Context.MODE_PRIVATE);
+        mPreferences = Common.getInst().getContext().getSharedPreferences(getClass().getSimpleName(), Context.MODE_PRIVATE);
     }
 
     public void put(final String key, final Object value) {

@@ -3,7 +3,10 @@ package com.march.common;
 import android.app.Application;
 import android.content.Context;
 
-import com.march.common.model.BuildConfig;
+import com.march.common.adapter.ImgLoadAdapter;
+import com.march.common.adapter.JsonAdapter;
+import com.march.common.extensions.SizeX;
+import com.march.common.model.CommBuildCfg;
 import com.march.common.model.WeakContext;
 import com.march.common.utils.DimensUtils;
 import com.march.common.utils.PathUtils;
@@ -17,22 +20,58 @@ import com.march.common.utils.ToastUtils;
  */
 public class Common {
 
-    private static WeakContext sWeakContext;
+    private static Common sInst;
 
-    public static BuildConfig    BuildConfig;
-    public static CommonInjector Injector;
-
-    public static void init(Application application, CommonInjector injector) {
-        sWeakContext = new WeakContext(application);
-        Injector = injector;
-        BuildConfig = new BuildConfig(Injector.getConfigClass());
-        DimensUtils.init();
-        ToastUtils.init(new ToastUtils.Config());
-        PathUtils.init(application, BuildConfig.APPLICATION_ID);
+    public static Common getInst() {
+        if (sInst == null) {
+            synchronized (Common.class) {
+                if (sInst == null) {
+                    sInst = new Common();
+                }
+            }
+        }
+        return sInst;
     }
 
-    public static Context getContext() {
+    private Common() {
+
+    }
+
+    private WeakContext    sWeakContext;
+    private ImgLoadAdapter mImgLoadAdapter;
+    private JsonAdapter    mJsonAdapter;
+    private CommBuildCfg   mCommBuildCfg;
+
+    public static void init(Application app, Class buildCls) {
+        getInst().sWeakContext = new WeakContext(app);
+        getInst().mCommBuildCfg = new CommBuildCfg(buildCls);
+        DimensUtils.init();
+        SizeX.init();
+        ToastUtils.init(new ToastUtils.Config());
+        PathUtils.init(app, getInst().mCommBuildCfg.APPLICATION_ID);
+    }
+
+    public Context getContext() {
         return sWeakContext.get();
     }
 
+    public CommBuildCfg getBuildConfig() {
+        return mCommBuildCfg;
+    }
+
+    public ImgLoadAdapter getImgLoadAdapter() {
+        return mImgLoadAdapter;
+    }
+
+    public void setImgLoadAdapter(ImgLoadAdapter imgLoadAdapter) {
+        mImgLoadAdapter = imgLoadAdapter;
+    }
+
+    public JsonAdapter getJsonAdapter() {
+        return mJsonAdapter;
+    }
+
+    public void setJsonAdapter(JsonAdapter jsonAdapter) {
+        mJsonAdapter = jsonAdapter;
+    }
 }

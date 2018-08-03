@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * CreateAt : 2018/8/2
@@ -14,26 +15,26 @@ import android.support.v7.app.AppCompatActivity;
  *
  * @author chendong
  */
-public class ActFragmentMixin {
+public class AppUIMixin {
 
     private Activity                        appActivity;
-    private  AppCompatActivity               supportActivity;
-    private  Fragment                        appFragment;
-    private  android.support.v4.app.Fragment supportFragment;
+    private AppCompatActivity               supportActivity;
+    private Fragment                        appFragment;
+    private android.support.v4.app.Fragment supportFragment;
 
-    public ActFragmentMixin(AppCompatActivity supportActivity) {
+    public AppUIMixin(AppCompatActivity supportActivity) {
         this.supportActivity = supportActivity;
     }
 
-    public ActFragmentMixin(Activity appActivity) {
+    public AppUIMixin(Activity appActivity) {
         this.appActivity = appActivity;
     }
 
-    public ActFragmentMixin(Fragment appFragment) {
+    public AppUIMixin(Fragment appFragment) {
         this.appFragment = appFragment;
     }
 
-    public ActFragmentMixin(android.support.v4.app.Fragment supportFragment) {
+    public AppUIMixin(android.support.v4.app.Fragment supportFragment) {
         this.supportFragment = supportFragment;
     }
 

@@ -67,7 +67,7 @@ public class ListX {
     }
 
     // 存在删除，不存在添加
-    public static <T> void toogleItem(List<T> list, T data) {
+    public static <T> void toggleItem(List<T> list, T data) {
         if (list.contains(data)) {
             list.remove(data);
         } else {

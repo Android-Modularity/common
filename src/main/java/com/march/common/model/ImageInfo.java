@@ -27,6 +27,9 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
     private int fileId;
     private boolean select;
 
+    public boolean test;
+
+
     public String getPath() {
         return path;
     }
@@ -100,13 +103,15 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
     }
 
     @Override
-    public int hashCode() {
-        return 1;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o) && path.equals(((ImageInfo) o).getPath());
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof ImageInfo)) {
+            return false;
+        }
+        ImageInfo another = (ImageInfo) obj;
+        return path.equals(another.path);
     }
 
     @Override

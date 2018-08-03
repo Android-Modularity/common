@@ -1,4 +1,4 @@
-package com.march.common.utils;
+package com.march.common.extensions;
 
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -6,16 +6,16 @@ import android.util.TypedValue;
 import com.march.common.Common;
 
 /**
- * CreateAt : 16/8/13
- * Describe : 尺寸相关操作
+ * CreateAt : 2018/8/3
+ * Describe :
  *
  * @author chendong
  */
-public class DimensUtils {
+public class SizeX {
 
-    public static int WIDTH = 0;
-    public static int HEIGHT = 0;
-    public static float DENSITY = 0;
+    public static int   WIDTH          = 0;
+    public static int   HEIGHT         = 0;
+    public static float DENSITY        = 0;
     public static float SCALED_DENSITY = 0;
 
     public static void init() {
@@ -26,7 +26,7 @@ public class DimensUtils {
         SCALED_DENSITY = metrics.scaledDensity;
     }
 
-    private static DisplayMetrics getDisplayMetrics() {
+    public static DisplayMetrics getDisplayMetrics() {
         return Common.getInst().getContext().getResources().getDisplayMetrics();
     }
 

@@ -38,7 +38,7 @@ public class ToastUtils {
     }
 
     private static Context getContext() {
-        return Common.getContext();
+        return Common.getInst().getContext();
     }
 
     /**

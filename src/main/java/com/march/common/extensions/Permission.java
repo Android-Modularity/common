@@ -16,7 +16,7 @@ import java.util.List;
 public class Permission {
 
     public static boolean requestPermissions(
-            ActFragmentMixin mixin,
+            AppUIMixin mixin,
             int requestCode,
             String...permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
