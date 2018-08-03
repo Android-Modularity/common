@@ -1,7 +1,6 @@
 dependencies {
     compileOnly libs.appcompat_v7
 }
-
 apply plugin: 'bintray-release'
 publish {
     userOrg = 'zfy'
