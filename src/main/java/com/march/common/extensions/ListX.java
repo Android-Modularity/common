@@ -94,4 +94,16 @@ public class ListX {
         }
         return false;
     }
+
+    public static <T> String join2String(List<T> list, String sign) {
+        StringBuilder builder = new StringBuilder();
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            builder.append(list.get(i).toString());
+            if (i != size - 1) {
+                builder.append(sign);
+            }
+        }
+        return builder.toString();
+    }
 }

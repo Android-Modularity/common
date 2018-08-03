@@ -54,17 +54,21 @@ public class ActFragmentMixin {
     }
 
     public void startActivityForResult(Intent intent, int requestCode) {
-        if (appActivity != null) {
-            appActivity.startActivityForResult(intent, requestCode);
-        }
-        if (supportActivity != null) {
-            supportActivity.startActivityForResult(intent, requestCode);
-        }
-        if (appFragment != null) {
-            appFragment.startActivityForResult(intent, requestCode);
-        }
-        if (supportFragment != null) {
-            supportFragment.startActivityForResult(intent, requestCode);
+        try {
+            if (appActivity != null) {
+                appActivity.startActivityForResult(intent, requestCode);
+            }
+            if (supportActivity != null) {
+                supportActivity.startActivityForResult(intent, requestCode);
+            }
+            if (appFragment != null) {
+                appFragment.startActivityForResult(intent, requestCode);
+            }
+            if (supportFragment != null) {
+                supportFragment.startActivityForResult(intent, requestCode);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -79,7 +83,7 @@ public class ActFragmentMixin {
             return appFragment.getActivity();
         }
         if (supportFragment != null) {
-            supportFragment.getActivity();
+            return supportFragment.getActivity();
         }
         return null;
     }
@@ -95,7 +99,7 @@ public class ActFragmentMixin {
             return appFragment.getActivity().getApplicationContext();
         }
         if (supportFragment != null && supportFragment.getActivity()!=null) {
-            supportFragment.getActivity().getApplicationContext();
+            return supportFragment.getActivity().getApplicationContext();
         }
         return null;
     }
@@ -103,16 +107,16 @@ public class ActFragmentMixin {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void requestPermissions(int requestCode,String ... permissions) {
         if (appActivity != null) {
-             appActivity.requestPermissions(permissions,requestCode);
+            appActivity.requestPermissions(permissions, requestCode);
         }
         if (supportActivity != null) {
-              supportActivity.requestPermissions(permissions,requestCode);
+            supportActivity.requestPermissions(permissions, requestCode);
         }
         if (appFragment != null && appFragment.getActivity() != null) {
-             appFragment.getActivity().requestPermissions(permissions,requestCode);
+            appFragment.requestPermissions(permissions, requestCode);
         }
         if (supportFragment != null && supportFragment.getActivity()!=null) {
-            supportFragment.getActivity().requestPermissions(permissions,requestCode);
+            supportFragment.requestPermissions(permissions,requestCode);
         }
     }
 }

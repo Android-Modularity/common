@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-import com.march.common.utils.ListUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class Permission {
         if (needReqPermissions.isEmpty()) {
             return true;
         }
-        mixin.requestPermissions( requestCode,needReqPermissions.toArray(new String[needReqPermissions.size()]));
+        mixin.requestPermissions(requestCode, needReqPermissions.toArray(new String[needReqPermissions.size()]));
         return false;
     }
 
@@ -41,7 +39,7 @@ public class Permission {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
-        List<String> strings = ListUtils.listOf(permissions);
+        List<String> strings = ListX.listOf(permissions);
         return ListX.all(strings, per -> activity.checkSelfPermission(per) == PackageManager.PERMISSION_GRANTED);
     }
 
