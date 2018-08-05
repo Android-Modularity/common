@@ -1,10 +1,6 @@
-package com.march.common.utils;
+package com.march.common.extensions.barui;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Build;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -14,9 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.march.common.R;
-
-import java.lang.reflect.Field;
+import com.march.common.extensions.BarUI;
+import com.march.common.utils.LgUtils;
 
 /**
  * CreateAt : 2018/2/28
@@ -24,70 +19,7 @@ import java.lang.reflect.Field;
  *
  * @author chendong
  */
-public class StatusBarUtils {
-
-    public static void setStatusBarTransparent(Activity activity, boolean transparent) {
-        if (transparent) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Window window = activity.getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION  //该参数指布局能延伸到navigationbar，我们场景中不应加这个参数
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                int statusBarColor = window.getStatusBarColor();
-                window.setStatusBarColor(Color.TRANSPARENT);
-//              window.setNavigationBarColor(Color.TRANSPARENT); //设置navigationbar颜色为透明
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                WindowManager.LayoutParams localLayoutParams = activity.getWindow().getAttributes();
-                localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-            }
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Window window = activity.getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-                window.setStatusBarColor(activity.getResources().getColor(R.color.statusBarColor));
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            }
-        }
-    }
-
-
-    public static int getStatusBarHeight(Context context) {
-        int height = 0;
-
-        // 第一种方案，通过资源ID
-        final Resources resources = context.getResources();
-        final int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            height = resources.getDimensionPixelSize(resourceId);
-        }
-
-        // 第二种方案，反射
-        if (height <= 0) {
-            try {
-                @SuppressLint("PrivateApi")
-                Class<?> cls = Class.forName("com.android.internal.R$dimen");
-                Object obj = cls.newInstance();
-                Field field = cls.getField("status_bar_height");
-                int x = Integer.parseInt(field.get(obj).toString());
-                return context.getResources().getDimensionPixelSize(x);
-            } catch (Exception ignore) {
-                LgUtils.e(ignore);
-            }
-        }
-
-        // 通用默认值
-        if (height <= 0) {
-            height = (int) Math.ceil((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? 24 : 25) * resources.getDisplayMetrics().density);
-        }
-
-        return height;
-    }
+public class StatusBarColorHelper {
 
 
     public static boolean setStatusBarColor(Activity activity, int color) {
@@ -107,9 +39,8 @@ public class StatusBarUtils {
         }
     }
 
-
     static final String TAG_FAKE_STATUS_BAR_VIEW = "TAG_FAKE_STATUS_BAR_VIEW";
-    static final String TAG_MARGIN_ADDED = "TAG_MARGIN_ADDED";
+    static final String TAG_MARGIN_ADDED         = "TAG_MARGIN_ADDED";
 
     static void setStatusBarColorBelow21(Activity activity, int statusColor) {
         Window window = activity.getWindow();
@@ -120,7 +51,7 @@ public class StatusBarUtils {
         //获取父布局
         View mContentChild = mContentView.getChildAt(0);
         //获取状态栏高度
-        int statusBarHeight = getStatusBarHeight(activity);
+        int statusBarHeight = BarUI.getStatusbarHeight(activity);
 
         //如果已经存在假状态栏则移除，防止重复添加
         removeFakeStatusBarViewIfExist(activity);
@@ -182,7 +113,7 @@ public class StatusBarUtils {
     }
 
     static void setContentTopPadding(Activity activity, int padding) {
-        ViewGroup mContentView = (ViewGroup) activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+        ViewGroup mContentView = activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
         mContentView.setPadding(0, padding, 0, 0);
     }
 }
