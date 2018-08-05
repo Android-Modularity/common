@@ -2,6 +2,7 @@ package com.march.common.extensions;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 
 import com.march.common.extensions.barui.BottomBarHelper;
 import com.march.common.extensions.barui.QMUIStatusBarHelper;
@@ -50,5 +51,10 @@ public class BarUI {
         BottomBarHelper.hideBottomUI(activity);
     }
 
-
+    // 设置底部虚拟按键颜色
+    public static void setBottomBarColor(Activity activity, int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().setNavigationBarColor(color);
+        }
+    }
 }
