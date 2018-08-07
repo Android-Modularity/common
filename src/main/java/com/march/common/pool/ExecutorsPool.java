@@ -1,5 +1,8 @@
 package com.march.common.pool;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -31,6 +34,7 @@ public class ExecutorsPool {
 
     ExecutorService mCacheExecutor;
     ExecutorService mSingleExecutor;
+    Handler         mHandler;
 
     public ExecutorService cache() {
         if (mCacheExecutor == null) {
@@ -46,7 +50,26 @@ public class ExecutorsPool {
         return mSingleExecutor;
     }
 
+    public Handler ui() {
+        if (mHandler == null) {
+            mHandler = new Handler(Looper.getMainLooper());
+        }
+        return mHandler;
+    }
+
     public void execute(Runnable runnable) {
         cache().execute(runnable);
+    }
+
+    public void executeOnBg(Runnable runnable) {
+        cache().execute(runnable);
+    }
+
+    public void executeOnUI(Runnable runnable) {
+        ui().post(runnable);
+    }
+
+    public void executeOnUI(Runnable runnable, long delay) {
+        ui().postDelayed(runnable, delay);
     }
 }
