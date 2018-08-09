@@ -1,5 +1,6 @@
 package com.march.common.extensions;
 
+import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
@@ -39,6 +40,11 @@ public class SizeX {
     public static int dp2px(float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, getDisplayMetrics());
+    }
+
+    public static int dp2px(Context context, float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, context.getResources().getDisplayMetrics());
     }
 
     /**

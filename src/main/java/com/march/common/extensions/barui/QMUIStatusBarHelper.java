@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.march.common.extensions.SizeX;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
@@ -64,14 +66,14 @@ public class QMUIStatusBarHelper {
             return;
         }
 
-        if(QMUINotchHelper.isNotchOfficialSupport()){
-            WindowManager.LayoutParams params = window.getAttributes();
-            if (Build.VERSION.SDK_INT >= 28) {
-                params.layoutInDisplayCutoutMode = WindowManager.LayoutParams
-                        .LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            }
-            window.setAttributes(params);
-        }
+//        if(QMUINotchHelper.isNotchOfficialSupport()){
+//            WindowManager.LayoutParams params = window.getAttributes();
+//            if (Build.VERSION.SDK_INT >= 28) {
+//                params.layoutInDisplayCutoutMode = WindowManager.LayoutParams
+//                        .LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+//            }
+//            window.setAttributes(params);
+//        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -396,13 +398,13 @@ public class QMUIStatusBarHelper {
             }
         }
         if (QMUIDeviceHelper.isTablet(context)
-                && sStatusbarHeight > QMUIDisplayHelper.dp2px(context, STATUS_BAR_DEFAULT_HEIGHT_DP)) {
+                && sStatusbarHeight > SizeX.dp2px(context, STATUS_BAR_DEFAULT_HEIGHT_DP)) {
             //状态栏高度大于25dp的平板，状态栏通常在下方
             sStatusbarHeight = 0;
         } else {
             if (sStatusbarHeight <= 0) {
                 if (sVirtualDensity == -1) {
-                    sStatusbarHeight = QMUIDisplayHelper.dp2px(context, STATUS_BAR_DEFAULT_HEIGHT_DP);
+                    sStatusbarHeight = SizeX.dp2px(context, STATUS_BAR_DEFAULT_HEIGHT_DP);
                 } else {
                     sStatusbarHeight = (int) (STATUS_BAR_DEFAULT_HEIGHT_DP * sVirtualDensity + 0.5f);
                 }
