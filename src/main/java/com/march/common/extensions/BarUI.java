@@ -17,8 +17,15 @@ import com.march.common.extensions.barui.StatusBarColorHelper;
 public class BarUI {
 
     // 透明状态栏
+    public static boolean canTranslucent(Activity activity) {
+        return QMUIStatusBarHelper.canTranslucent(activity);
+    }
+
+    // 透明状态栏
     public static void translucent(Activity activity) {
-        QMUIStatusBarHelper.translucent(activity);
+        if (canTranslucent(activity)) {
+            QMUIStatusBarHelper.translucent(activity);
+        }
     }
 
     // 设置状态栏文字为黑色

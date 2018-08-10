@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.march.common.extensions.SizeX;
+import com.march.common.utils.ToastUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -47,6 +48,24 @@ public class QMUIStatusBarHelper {
     }
 
     /**
+     * 是否可以透明
+     *
+     * @return 是否可以透明
+     */
+    public static boolean canTranslucent(Activity activity) {
+        if (!supportTranslucent()) {
+            // 版本小于4.4，绝对不考虑沉浸式
+            return false;
+        }
+        if (QMUIDeviceHelper.isMeizu() || QMUIDeviceHelper.isMIUI()) {
+            return true;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return false;
+        }
+        return true;
+    }
+    /**
      * 沉浸式状态栏。
      * 支持 4.4 以上版本的 MIUI 和 Flyme，以及 5.0 以上版本的其他 Android。
      *
@@ -74,7 +93,6 @@ public class QMUIStatusBarHelper {
 //            }
 //            window.setAttributes(params);
 //        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
