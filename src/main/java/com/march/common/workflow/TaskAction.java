@@ -6,6 +6,6 @@ package com.march.common.workflow;
  *
  * @author chendong
  */
-public interface CallAction<R> {
-    R call();
+public interface TaskAction<P, R> {
+    R call(P param);
 }
