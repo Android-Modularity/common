@@ -7,11 +7,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 /**
  * CreateAt : 2018/8/2
- * Describe :
+ * Describe : Activity, AppCompatActivity, Fragment, v4.Fragment 混合
  *
  * @author chendong
  */
@@ -37,7 +36,6 @@ public class AppUIMixin {
     public AppUIMixin(android.support.v4.app.Fragment supportFragment) {
         this.supportFragment = supportFragment;
     }
-
 
     public void startActivity(Intent intent) {
         if (appActivity != null) {

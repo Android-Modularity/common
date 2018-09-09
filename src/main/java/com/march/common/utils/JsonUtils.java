@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import com.march.common.Common;
 import com.march.common.adapter.JsonAdapter;
-import com.march.common.adapter.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;

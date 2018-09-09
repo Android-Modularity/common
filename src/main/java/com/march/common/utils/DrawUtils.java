@@ -6,6 +6,9 @@ import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.view.View;
 
+import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * CreateAt : 7/13/17
  * Describe :

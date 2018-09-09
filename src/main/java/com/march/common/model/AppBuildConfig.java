@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
  *
  * @author chendong
  */
-public class CommBuildCfg {
+public class AppBuildConfig {
 
     public boolean DEBUG;
     public String  APPLICATION_ID;
@@ -20,7 +20,7 @@ public class CommBuildCfg {
     public int     VERSION_CODE;
     public String  VERSION_NAME;
 
-    public CommBuildCfg(Class clazz) {
+    public AppBuildConfig(Class clazz) {
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field declaredField : declaredFields) {
             try {

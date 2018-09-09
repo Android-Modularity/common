@@ -1,7 +1,7 @@
 package com.march.common.extensions;
 
-import com.march.common.funcs.Function;
-import com.march.common.funcs.Predicate;
+import com.march.common.function.Function;
+import com.march.common.function.Predicate;
 
 import java.util.ArrayList;
 import java.util.Arrays;

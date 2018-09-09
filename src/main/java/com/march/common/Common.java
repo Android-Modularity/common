@@ -6,7 +6,7 @@ import android.content.Context;
 import com.march.common.adapter.ImgLoadAdapter;
 import com.march.common.adapter.JsonAdapter;
 import com.march.common.extensions.SizeX;
-import com.march.common.model.CommBuildCfg;
+import com.march.common.model.AppBuildConfig;
 import com.march.common.model.WeakContext;
 import com.march.common.utils.DimensUtils;
 import com.march.common.utils.PathUtils;
@@ -37,26 +37,26 @@ public class Common {
 
     }
 
-    private WeakContext    sWeakContext;
+    private WeakContext    mWeakContext;
     private ImgLoadAdapter mImgLoadAdapter;
     private JsonAdapter    mJsonAdapter;
-    private CommBuildCfg   mCommBuildCfg;
+    private AppBuildConfig mAppBuildConfig;
 
     public static void init(Application app, Class buildCls) {
-        getInst().sWeakContext = new WeakContext(app);
-        getInst().mCommBuildCfg = new CommBuildCfg(buildCls);
+        getInst().mWeakContext = new WeakContext(app);
+        getInst().mAppBuildConfig = new AppBuildConfig(buildCls);
         DimensUtils.init();
         SizeX.init();
         ToastUtils.init(new ToastUtils.Config());
-        PathUtils.init(app, getInst().mCommBuildCfg.APPLICATION_ID);
+        PathUtils.init(app, getInst().mAppBuildConfig.APPLICATION_ID);
     }
 
     public Context getContext() {
-        return sWeakContext.get();
+        return mWeakContext.get();
     }
 
-    public CommBuildCfg getBuildConfig() {
-        return mCommBuildCfg;
+    public AppBuildConfig getBuildConfig() {
+        return mAppBuildConfig;
     }
 
     public ImgLoadAdapter getImgLoadAdapter() {

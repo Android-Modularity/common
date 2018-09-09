@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author chendong
  */
-public class Permission {
+public class PermissionX {
 
     public static boolean requestPermissions(
             AppUIMixin mixin,
