@@ -6,6 +6,8 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Build;
 
+import com.march.common.Common;
+
 /**
  * CreateAt : 2017/1/16
  * Describe : 检测网络环境
@@ -14,7 +16,8 @@ import android.os.Build;
  */
 public class NetUtils {
 
-    public static boolean isNetworkConnected(Context context) {
+    public static boolean isNetworkConnected() {
+        Context context = Common.getInst().getContext();
         if(context == null){
             return false;
         }
