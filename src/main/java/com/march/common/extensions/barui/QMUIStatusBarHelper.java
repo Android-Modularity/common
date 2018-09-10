@@ -12,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.march.common.extensions.SizeX;
-import com.march.common.utils.ToastUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

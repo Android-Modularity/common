@@ -24,7 +24,7 @@ public class UriX {
     public static Uri fromFile(Context context, File file) {
         //判断是否是AndroidN以及更高的版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return FileProvider.getUriForFile(context, Common.getInst().getBuildConfig().APPLICATION_ID + ".fileProvider", file);
+            return FileProvider.getUriForFile(context, Common.appConfig().APPLICATION_ID + ".fileProvider", file);
         } else {
             return Uri.fromFile(file);
         }

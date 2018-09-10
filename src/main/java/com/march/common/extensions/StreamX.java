@@ -1,7 +1,8 @@
-package com.march.common.utils;
+package com.march.common.extensions;
 
 
 import com.march.common.pool.BytesPool;
+import com.march.common.utils.RecycleUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,7 +21,7 @@ import java.net.HttpURLConnection;
  *
  * @author chendong
  */
-public class StreamUtils {
+public class StreamX {
 
 
     /**
@@ -70,7 +71,7 @@ public class StreamUtils {
             }
             BytesPool.get().releaseBytes(bs);
         } catch (Exception e) {
-            LgUtils.e(e);
+            LogX.e(e);
             return null;
         } finally {
             RecycleUtils.recycle(bis, bos);
@@ -96,7 +97,7 @@ public class StreamUtils {
             result = bos.toByteArray();
             BytesPool.get().releaseBytes(bs);
         } catch (Exception e) {
-            LgUtils.e(e);
+            LogX.e(e);
             return null;
         } finally {
             RecycleUtils.recycle(bis, bos);

@@ -1,5 +1,7 @@
 package com.march.common.utils;
 
+import com.march.common.extensions.LogX;
+
 /**
  * CreateAt : 7/13/17
  * Describe : 异常捕捉
@@ -16,7 +18,7 @@ public class CrashUtils {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
-                LgUtils.e(e);
+                LogX.e(e);
                 if (listener != null) {
                     listener.onCrash(t, e);
                 }

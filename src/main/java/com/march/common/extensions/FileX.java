@@ -1,6 +1,8 @@
-package com.march.common.utils;
+package com.march.common.extensions;
 
 import android.os.Environment;
+
+import com.march.common.utils.RecycleUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -15,7 +17,7 @@ import java.io.IOException;
  *
  * @author chendong
  */
-public class FileUtils {
+public class FileX {
 
     /**
      * 复制文件到
@@ -47,7 +49,7 @@ public class FileUtils {
             if (isDeleteSrcFile) delete(srcFile);
             return true;
         } catch (IOException e) {
-            LgUtils.e(e);
+            LogX.e(e);
         } finally {
             RecycleUtils.recycle(bis, bos);
         }
@@ -104,7 +106,7 @@ public class FileUtils {
      * @return 文件不存在？
      */
     public static boolean isNotExist(String filePath) {
-        return CheckUtils.isEmpty(filePath) || isNotExist(new File(filePath));
+        return EmptyX.isEmpty(filePath) || isNotExist(new File(filePath));
     }
 
     /**
@@ -116,7 +118,7 @@ public class FileUtils {
     }
 
     public static boolean isImageFile(String filePath){
-        return !FileUtils.isNotExist(filePath) && (filePath.toLowerCase().endsWith("jpg") || filePath.toLowerCase().endsWith("png") || filePath.toLowerCase().endsWith("gif"));
+        return !FileX.isNotExist(filePath) && (filePath.toLowerCase().endsWith("jpg") || filePath.toLowerCase().endsWith("png") || filePath.toLowerCase().endsWith("gif"));
     }
 
 

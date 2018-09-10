@@ -8,6 +8,9 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.march.common.extensions.FileX;
+import com.march.common.extensions.LogX;
+
 import java.io.File;
 
 
@@ -178,8 +181,6 @@ public class AlbumNotifyUtils {
 
     // 检测文件存在
     private static boolean checkFile(String filePath) {
-        boolean result = !FileUtils.isNotExist(filePath);
-        LgUtils.e("文件不存在");
-        return result;
+        return !FileX.isNotExist(filePath);
     }
 }

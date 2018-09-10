@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.march.common.extensions.BarUI;
-import com.march.common.utils.LgUtils;
+import com.march.common.extensions.LogX;
 
 /**
  * CreateAt : 2018/2/28
@@ -34,7 +34,7 @@ public class StatusBarColorHelper {
             }
             return true;
         } catch (Exception e) {
-            LgUtils.e(e.getMessage());
+            LogX.e(e.getMessage());
             return false;
         }
     }

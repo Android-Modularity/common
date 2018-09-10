@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.march.common.Common;
-import com.march.common.utils.CheckUtils;
-import com.march.common.utils.JsonUtils;
+import com.march.common.extensions.EmptyX;
+import com.march.common.extensions.JsonX;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class DiskKVManager {
     }
 
     private DiskKVManager() {
-        mPreferences = Common.getInst().getContext().getSharedPreferences(getClass().getSimpleName(), Context.MODE_PRIVATE);
+        mPreferences = Common.app().getSharedPreferences(getClass().getSimpleName(), Context.MODE_PRIVATE);
     }
 
     public void put(final String key, final Object value) {
@@ -56,8 +56,8 @@ public class DiskKVManager {
                 } else if (value instanceof Set) {
                     editor.putStringSet(key, (Set<String>) value);
                 } else {
-                    String json = JsonUtils.toJson(value);
-                    if (!CheckUtils.isEmpty(json)) {
+                    String json = JsonX.toJson(value);
+                    if (!EmptyX.isEmpty(json)) {
                         editor.putString(key, json);
                     }
                 }
@@ -95,8 +95,8 @@ public class DiskKVManager {
         }
         T result = null;
         String json = mPreferences.getString(key, "");
-        if (!CheckUtils.isEmpty(json)) {
-            result = JsonUtils.toObj(json, clazz);
+        if (!EmptyX.isEmpty(json)) {
+            result = JsonX.toObj(json, clazz);
         }
         if (result == null) {
             return def;
@@ -111,8 +111,8 @@ public class DiskKVManager {
         }
         List<T> result = null;
         String json = mPreferences.getString(key, "");
-        if (!CheckUtils.isEmpty(json)) {
-            result = JsonUtils.toList(json, clazz);
+        if (!EmptyX.isEmpty(json)) {
+            result = JsonX.toList(json, clazz);
         }
         if (result == null) {
             return def;
@@ -128,8 +128,8 @@ public class DiskKVManager {
         }
         Map<K, V> result = null;
         String json = mPreferences.getString(key, "");
-        if (!CheckUtils.isEmpty(json)) {
-            result = JsonUtils.toMap(json, kClazz, vClazz);
+        if (!EmptyX.isEmpty(json)) {
+            result = JsonX.toMap(json, kClazz, vClazz);
         }
         if (result == null) {
             return def;

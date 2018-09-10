@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.march.common.extensions.ToastX;
+
 import java.io.File;
 
 /**
@@ -110,7 +112,7 @@ public class WebViewUtils {
     /**
      * 检测到不是 http 协议时，使用 intent 跳转
      *
-     * @param context ctx
+     * @param context app
      * @param url     链接
      * @return 是否截断
      */
@@ -129,10 +131,10 @@ public class WebViewUtils {
                     // 找不到客户端
                     switch (uri.getScheme()) {
                         case ALIPAY_SCHEME:
-                            ToastUtils.show("未检测到支付宝客户端");
+                            ToastX.show("未检测到支付宝客户端");
                             break;
                         case TAOBAO_SCHEME:
-                            ToastUtils.show("未检测到淘宝客户端");
+                            ToastX.show("未检测到淘宝客户端");
                             break;
                     }
                 }

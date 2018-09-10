@@ -28,7 +28,7 @@ public class SizeX {
     }
 
     public static DisplayMetrics getDisplayMetrics() {
-        return Common.getInst().getContext().getResources().getDisplayMetrics();
+        return Common.app().getResources().getDisplayMetrics();
     }
 
     /**

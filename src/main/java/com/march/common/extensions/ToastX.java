@@ -13,10 +13,6 @@ import android.widget.Toast;
 
 import com.march.common.Common;
 import com.march.common.R;
-import com.march.common.utils.CheckUtils;
-import com.march.common.utils.DrawableUtils;
-import com.march.common.utils.LgUtils;
-import com.march.common.utils.ViewUtils;
 
 
 /**
@@ -25,7 +21,7 @@ import com.march.common.utils.ViewUtils;
  *
  * @author chendong
  */
-public class Toasty {
+public class ToastX {
 
     private static Handler sHandler;
     private static Config sConfig;
@@ -42,7 +38,7 @@ public class Toasty {
     }
 
     private static Context getContext() {
-        return Common.getInst().getContext();
+        return Common.app();
     }
 
     /**
@@ -95,7 +91,7 @@ public class Toasty {
         if (sNoToast || sConfig == null || getContext() == null)
             return;
 
-        if (CheckUtils.isEmpty(msg))
+        if (EmptyX.isEmpty(msg))
             return;
 
         if (sToast != null && !sConfig.oneToast) {
@@ -132,7 +128,7 @@ public class Toasty {
                     sToast.show();
 
                 } catch (Exception e) {
-                    LgUtils.e(e);
+                    LogX.e(e);
                 }
             }
         };
@@ -151,13 +147,13 @@ public class Toasty {
 
         // initView background
         if (sConfig.bgDrawable != null) {
-            ViewUtils.setBackground(toastLayout, sConfig.bgDrawable);
+            ViewX.setBackground(toastLayout, sConfig.bgDrawable);
         } else if (sConfig.bgRes != 0) {
             toastLayout.setBackgroundResource(sConfig.bgRes);
         } else {
-            Drawable drawable = DrawableUtils.newRoundRectDrawable(sConfig.bgColor, sConfig.bgRadiusInDp);
+            Drawable drawable = ResourceX.newRoundRectDrawable(sConfig.bgColor, sConfig.bgRadiusInDp);
             sConfig.setBgDrawable(drawable);
-            ViewUtils.setBackground(toastLayout, drawable);
+            ViewX.setBackground(toastLayout, drawable);
         }
 
         // initView text
@@ -167,13 +163,13 @@ public class Toasty {
 
         // initView image
         if (sConfig.iconDrawable != null || sConfig.iconRes != 0) {
-            ViewUtils.setVisibility(toastIv, View.VISIBLE);
+            ViewX.setVisibility(toastIv, View.VISIBLE);
             if (sConfig.iconDrawable != null)
                 toastIv.setImageDrawable(sConfig.iconDrawable);
             else if (sConfig.iconRes != 0)
                 toastIv.setImageResource(sConfig.iconRes);
         } else {
-            ViewUtils.setVisibility(toastIv, View.GONE);
+            ViewX.setVisibility(toastIv, View.GONE);
         }
     }
 

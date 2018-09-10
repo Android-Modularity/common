@@ -17,7 +17,7 @@ import com.march.common.Common;
 public class NetUtils {
 
     public static boolean isNetworkConnected() {
-        Context context = Common.getInst().getContext();
+        Context context = Common.app();
         if(context == null){
             return false;
         }

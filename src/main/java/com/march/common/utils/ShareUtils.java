@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
+import com.march.common.extensions.LogX;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,10 +107,10 @@ public class ShareUtils {
         //type可能为的类型是 image/* | video/* | audio/* | text/* | application/*
         if (type.startsWith("text") && intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
             // 当直接选中文本分享时，会存放在EXTRA_TEXT里面，选择文本文件时，仍然存放在EXTRA_STREAM里面
-            LgUtils.e("获取到分享的文本 " + intent.getStringExtra(Intent.EXTRA_TEXT));
+            LogX.e("获取到分享的文本 " + intent.getStringExtra(Intent.EXTRA_TEXT));
         } else {
             List<String> sharePaths = getSharePaths(context, intent);
-            LgUtils.e("获取到分享的文件的路径 " + sharePaths.toString());
+            LogX.e("获取到分享的文件的路径 " + sharePaths.toString());
         }
     }
 
@@ -171,7 +173,7 @@ public class ShareUtils {
             }
         }
         if (data != null) {
-            LgUtils.e(MimeTypeMap.getFileExtensionFromUrl(data));
+            LogX.e(MimeTypeMap.getFileExtensionFromUrl(data));
         }
         return data;
     }

@@ -8,7 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.march.common.utils.DimensUtils;
+import com.march.common.extensions.SizeX;
+
 
 /**
  * CreateAt : 2018/6/15
@@ -74,8 +75,8 @@ public class DragLayout extends FrameLayout {
                 int top = getTop() + offSetY;
                 int right = getRight() + offSetX;
                 int bottom = getBottom() + offSetY;
-                if (left > 10 && top > 10 && right < DimensUtils.WIDTH - 10 && bottom < DimensUtils.HEIGHT - 10) {
-                    // LgUtils.e(left + " " + top + " " + right + " " + bottom);
+                if (left > 10 && top > 10 && right < SizeX.WIDTH - 10 && bottom < SizeX.HEIGHT - 10) {
+                    // LogX.e(left + " " + top + " " + right + " " + bottom);
                     layout(left, top, right, bottom);
                 }
                 // 重新设置坐标

@@ -1,4 +1,4 @@
-package com.march.common.utils;
+package com.march.common.extensions;
 
 import android.text.TextUtils;
 
@@ -14,15 +14,15 @@ import java.util.Map;
 
 /**
  * CreateAt : 2018/6/17
- * Describe :
+ * Describe : Json 解析转换
  *
  * @author chendong
  */
-public class JsonUtils {
+public class JsonX {
 
     public static String toJson(Object object) {
         if (object == null) return "";
-        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        JsonAdapter jsonAdapter = Common.exports.jsonParser;
         if (jsonAdapter == null) {
             return "";
         }
@@ -33,7 +33,7 @@ public class JsonUtils {
         if (TextUtils.isEmpty(json) || clazz == null) {
             return null;
         }
-        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        JsonAdapter jsonAdapter = Common.exports.jsonParser;
         if (jsonAdapter == null) {
             return null;
         }
@@ -44,7 +44,7 @@ public class JsonUtils {
         if (TextUtils.isEmpty(json) || clazz == null) {
             return null;
         }
-        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        JsonAdapter jsonAdapter = Common.exports.jsonParser;
         if (jsonAdapter == null) {
             return null;
         }
@@ -55,18 +55,18 @@ public class JsonUtils {
         if (TextUtils.isEmpty(json) || kClazz == null || vClazz == null) {
             return null;
         }
-        JsonAdapter jsonAdapter = Common.getInst().getJsonAdapter();
+        JsonAdapter jsonAdapter = Common.exports.jsonParser;
         if (jsonAdapter == null) {
             return null;
         }
         return jsonAdapter.toMap(json, kClazz, vClazz);
     }
 
-    public static String toJsonString(String json,String def){
+    public static String toJsonString(String json, String def) {
         try {
-            if(json.startsWith("[")) {
+            if (json.startsWith("[")) {
                 return new JSONArray(json).toString(2).replace("\\/", "/");
-            } else if(json.startsWith("{")){
+            } else if (json.startsWith("{")) {
                 return new JSONObject(json).toString(2).replace("\\/", "/");
             }
         } catch (JSONException e) {

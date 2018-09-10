@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
 
+import com.march.common.extensions.EmptyX;
+import com.march.common.extensions.FileX;
 import com.march.common.model.ImageInfo;
 
 import java.io.File;
@@ -121,8 +123,8 @@ public class LocalImageUtils {
         for (ImageInfo imageInfo : imageInfoList) {
 
             boolean isImageValid = imageInfo != null
-                    && !CheckUtils.isEmpty(imageInfo.getPath())
-                    && !FileUtils.isNotExist(imageInfo.getPath())
+                    && !EmptyX.isEmpty(imageInfo.getPath())
+                    && !FileX.isNotExist(imageInfo.getPath())
                     && new File(imageInfo.getPath()).getParentFile() != null;
 
             if (isImageValid) {

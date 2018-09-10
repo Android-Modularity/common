@@ -3,6 +3,8 @@ package com.march.common.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.march.common.extensions.FileX;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,7 +21,7 @@ public class BitmapUtils {
 
     public static BitmapFactory.Options getBitmapSize(String filePath) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        if (FileUtils.isImageFile(filePath)) {
+        if (FileX.isImageFile(filePath)) {
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(filePath, options);
             options.inJustDecodeBounds = false;

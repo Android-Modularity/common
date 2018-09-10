@@ -1,6 +1,7 @@
-package com.march.common.utils;
+package com.march.common.extensions;
 
 import android.text.TextUtils;
+
 
 import java.io.File;
 import java.util.Collection;
@@ -12,9 +13,9 @@ import java.util.Map;
  *
  * @author chendong
  */
-public class CheckUtils {
+public class EmptyX {
 
-    public static <T> boolean isEmpty(Collection<T> list) {
+    public static boolean isEmpty(Collection list) {
         return list == null || list.isEmpty();
     }
 
@@ -40,7 +41,7 @@ public class CheckUtils {
     }
 
     public static boolean isEmpty(File file) {
-        return FileUtils.isNotExist(file);
+        return FileX.isNotExist(file);
     }
 
     public static boolean isEmpty(Integer integer) {
@@ -52,10 +53,7 @@ public class CheckUtils {
     }
 
     public static boolean isEmpty(Map map) {
-        if (map == null) {
-            return true;
-        }
-        return isEmpty(map.keySet());
+        return map == null || isEmpty(map.keySet());
     }
 
 }
