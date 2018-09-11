@@ -1,5 +1,5 @@
 dependencies {
-    implementation libs.appcompat_v7
+    implementation support.appcompat_v7
 }
 apply plugin: 'bintray-release'
 publish {
