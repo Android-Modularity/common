@@ -1,6 +1,6 @@
 package com.march.common.utils;
 
-import com.march.common.extensions.LogX;
+import com.march.common.exts.LogX;
 
 /**
  * CreateAt : 7/13/17

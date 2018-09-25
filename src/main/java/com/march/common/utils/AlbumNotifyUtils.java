@@ -8,8 +8,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.march.common.extensions.FileX;
-import com.march.common.extensions.LogX;
+import com.march.common.exts.FileX;
 
 import java.io.File;
 

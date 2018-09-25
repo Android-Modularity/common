@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.march.common.Common;
-import com.march.common.extensions.EmptyX;
-import com.march.common.extensions.JsonX;
+import com.march.common.exts.EmptyX;
+import com.march.common.exts.JsonX;
 
 import java.util.List;
 import java.util.Map;

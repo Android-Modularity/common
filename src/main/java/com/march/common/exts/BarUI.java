@@ -1,12 +1,12 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 
-import com.march.common.extensions.barui.BottomBarHelper;
-import com.march.common.extensions.barui.QMUIStatusBarHelper;
-import com.march.common.extensions.barui.StatusBarColorHelper;
+import com.march.common.exts.barui.BottomBarHelper;
+import com.march.common.exts.barui.QMUIStatusBarHelper;
+import com.march.common.exts.barui.StatusBarColorHelper;
 
 /**
  * CreateAt : 2018/8/5

@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
-import com.march.common.extensions.LogX;
+import com.march.common.exts.LogX;
 
 import java.io.File;
 import java.util.ArrayList;

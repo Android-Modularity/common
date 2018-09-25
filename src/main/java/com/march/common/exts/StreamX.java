@@ -1,8 +1,7 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 
 import com.march.common.pool.BytesPool;
-import com.march.common.utils.RecycleUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -74,7 +73,7 @@ public class StreamX {
             LogX.e(e);
             return null;
         } finally {
-            RecycleUtils.recycle(bis, bos);
+            RecycleX.recycle(bis, bos);
         }
         return file;
     }
@@ -100,7 +99,7 @@ public class StreamX {
             LogX.e(e);
             return null;
         } finally {
-            RecycleUtils.recycle(bis, bos);
+            RecycleX.recycle(bis, bos);
         }
         return result;
     }
@@ -125,7 +124,7 @@ public class StreamX {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            RecycleUtils.recycle(br);
+            RecycleX.recycle(br);
         }
         return json;
     }

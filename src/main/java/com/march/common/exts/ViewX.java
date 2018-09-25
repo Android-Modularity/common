@@ -1,4 +1,4 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -16,6 +16,11 @@ import android.widget.TextView;
  */
 public class ViewX {
 
+    /**
+     * 如果文字不为空就设置并显示出来，否则不显示
+     * @param tv text view
+     * @param text 文字
+     */
     public static void setTextIfNotEmpty(TextView tv, String text) {
         if (EmptyX.isEmpty(text)) {
             setVisibility(tv, View.GONE);
@@ -28,6 +33,11 @@ public class ViewX {
         }
     }
 
+    /**
+     * 设置隐藏和显示
+     * @param view view
+     * @param visible v
+     */
     public static void setVisibility(View view, int visible) {
         if (view.getVisibility() != visible) {
             view.setVisibility(visible);

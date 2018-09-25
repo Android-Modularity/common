@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
 
-import com.march.common.extensions.EmptyX;
-import com.march.common.extensions.FileX;
+import com.march.common.exts.EmptyX;
+import com.march.common.exts.FileX;
 import com.march.common.model.ImageInfo;
 
 import java.io.File;

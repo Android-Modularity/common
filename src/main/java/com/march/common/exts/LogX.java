@@ -1,4 +1,4 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,8 +30,9 @@ import java.util.Map;
  */
 public class LogX {
 
+    private static String TAG = LogX.class.getSimpleName();
+
     private static boolean DEBUG = true;
-    private static String  TAG   = "common";
     private static OnLogListener sOnLogListener;
 
     public static void setDEBUG(boolean DEBUG) {
@@ -99,7 +100,6 @@ public class LogX {
         }
         e(tag, sb.toString());
     }
-
 
     // 带格式打印 json，默认使用 error 打印
     public static void json(String json) {
@@ -229,50 +229,27 @@ public class LogX {
     }
 
     private static void dispatch(int level, final String tag, final String msg) {
-        if (!DEBUG)
+        if (!DEBUG) {
             return;
-        if (sOnLogListener != null && sOnLogListener.beforeLog(level, tag, msg))
+        }
+        if (sOnLogListener != null && sOnLogListener.beforeLog(level, tag, msg)) {
             return;
+        }
         switch (level) {
             case Log.VERBOSE:
-                breakLog4K(msg, new Consumer<String>() {
-                    @Override
-                    public void accept(String s) {
-                        Log.v(tag, s);
-                    }
-                });
+                breakLog4K(msg, s -> Log.v(tag, s));
                 break;
             case Log.DEBUG:
-                breakLog4K(msg, new Consumer<String>() {
-                    @Override
-                    public void accept(String s) {
-                        Log.d(tag, s);
-                    }
-                });
+                breakLog4K(msg, s -> Log.d(tag, s));
                 break;
             case Log.INFO:
-                breakLog4K(msg, new Consumer<String>() {
-                    @Override
-                    public void accept(String s) {
-                        Log.i(tag, s);
-                    }
-                });
+                breakLog4K(msg, s -> Log.i(tag, s));
                 break;
             case Log.WARN:
-                breakLog4K(msg, new Consumer<String>() {
-                    @Override
-                    public void accept(String s) {
-                        Log.w(tag, s);
-                    }
-                });
+                breakLog4K(msg, s -> Log.w(tag, s));
                 break;
             case Log.ERROR:
-                breakLog4K(msg, new Consumer<String>() {
-                    @Override
-                    public void accept(String s) {
-                        Log.e(tag, s);
-                    }
-                });
+                breakLog4K(msg, s -> Log.e(tag, s));
                 break;
         }
     }

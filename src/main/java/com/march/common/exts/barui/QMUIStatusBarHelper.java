@@ -1,4 +1,4 @@
-package com.march.common.extensions.barui;
+package com.march.common.exts.barui;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.march.common.extensions.SizeX;
+import com.march.common.exts.SizeX;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

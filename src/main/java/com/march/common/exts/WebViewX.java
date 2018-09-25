@@ -1,17 +1,11 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-
-import com.march.common.extensions.ToastX;
 
 import java.io.File;
 
@@ -21,9 +15,10 @@ import java.io.File;
  *
  * @author chendong
  */
-public class WebViewUtils {
+public class WebViewX {
 
-    private static void initWebViewCache(WebView mWebView) {
+
+    public static void initWebViewCache(WebView mWebView) {
 
         String cachePath = new File(Environment.getExternalStorageDirectory()
                 , "webCache").getAbsolutePath();
@@ -87,14 +82,34 @@ public class WebViewUtils {
         }
     }
 
-    public static String getSdUrl(String fileUrl) {
-        return "file://" + Environment.getExternalStorageDirectory() + "/" + fileUrl;
+
+    /**
+     * 获取文件网页
+     *
+     * @param file 要加载的文件
+     * @return 返回加载的路径
+     */
+    public static String fileUrl(File file) {
+        return "file://" + file.getAbsolutePath();
     }
 
-    public static String getAssertUrl(String fileUrl) {
-        return "file:///android_asset/" + fileUrl;
+
+    /**
+     * 加载 assets 里面的网页
+     *
+     * @param filePath 资源路径
+     * @return 加载地址
+     */
+    public static String assetsUrl(String filePath) {
+        return "file:///android_asset/" + filePath;
     }
 
+    /**
+     * 回退
+     *
+     * @param webView webview
+     * @return 是否回退成功
+     */
     public static boolean goBack(WebView webView) {
         if (webView.canGoBack()) {
             webView.goBack();
@@ -105,54 +120,19 @@ public class WebViewUtils {
     }
 
 
-    public static final String ALIPAY_SCHEME = "alipays";
-    public static final String TAOBAO_SCHEME = "taobao";
-    public static final String TMALL_SCHEME = "tmall";
-
     /**
-     * 检测到不是 http 协议时，使用 intent 跳转
+     * 回收 webview 资源
      *
-     * @param context app
-     * @param url     链接
-     * @return 是否截断
+     * @param webView webview
      */
-    public static boolean shouldOverrideIntentUrl(Context context, String url) {
-        Uri uri = Uri.parse(url);
-        if (uri != null && uri.getScheme() != null && !uri.getScheme().startsWith("http")) {
-            try {
-                Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setComponent(null);
-                intent.setSelector(null);
-                context.startActivity(intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (e instanceof ActivityNotFoundException) {
-                    // 找不到客户端
-                    switch (uri.getScheme()) {
-                        case ALIPAY_SCHEME:
-                            ToastX.show("未检测到支付宝客户端");
-                            break;
-                        case TAOBAO_SCHEME:
-                            ToastX.show("未检测到淘宝客户端");
-                            break;
-                    }
-                }
-                return true;
-            }
-            return true;
-        }
-        return false;
-    }
-
-
-    public static void onDestroy(WebView webView) {
-        if (webView == null)
+    public static void destroyWebView(WebView webView) {
+        if (webView == null) {
             return;
+        }
         try {
             try {
                 ((ViewGroup) webView.getParent()).removeView(webView);
-            } catch (Exception e) {
+            } catch (Exception ignore) {
 
             }
             webView.stopLoading();

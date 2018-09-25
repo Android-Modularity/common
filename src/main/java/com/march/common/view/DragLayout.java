@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.march.common.extensions.SizeX;
+import com.march.common.exts.SizeX;
 
 
 /**

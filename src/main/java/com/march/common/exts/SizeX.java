@@ -1,4 +1,4 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import android.content.Context;
 import android.util.DisplayMetrics;

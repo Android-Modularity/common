@@ -1,4 +1,4 @@
-package com.march.common.extensions.barui;
+package com.march.common.exts.barui;
 
 import android.app.Activity;
 import android.os.Build;
@@ -10,8 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.march.common.extensions.BarUI;
-import com.march.common.extensions.LogX;
+import com.march.common.exts.BarUI;
+import com.march.common.exts.LogX;
 
 /**
  * CreateAt : 2018/2/28

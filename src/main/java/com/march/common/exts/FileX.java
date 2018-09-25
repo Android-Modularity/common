@@ -1,8 +1,6 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import android.os.Environment;
-
-import com.march.common.utils.RecycleUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -51,7 +49,7 @@ public class FileX {
         } catch (IOException e) {
             LogX.e(e);
         } finally {
-            RecycleUtils.recycle(bis, bos);
+            RecycleX.recycle(bis, bos);
         }
         return true;
     }

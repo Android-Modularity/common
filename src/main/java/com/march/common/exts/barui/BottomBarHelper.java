@@ -1,4 +1,4 @@
-package com.march.common.extensions.barui;
+package com.march.common.exts.barui;
 
 import android.app.Activity;
 import android.content.Context;

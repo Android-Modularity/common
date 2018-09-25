@@ -1,4 +1,4 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import android.app.Activity;
 import android.app.Fragment;

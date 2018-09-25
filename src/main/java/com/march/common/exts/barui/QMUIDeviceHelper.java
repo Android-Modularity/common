@@ -1,4 +1,4 @@
-package com.march.common.extensions.barui;
+package com.march.common.exts.barui;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -11,8 +11,8 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.march.common.extensions.LogX;
-import com.march.common.utils.RecycleUtils;
+import com.march.common.exts.LogX;
+import com.march.common.exts.RecycleX;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,7 +53,7 @@ public class QMUIDeviceHelper {
             } catch (Exception e) {
                 LogX.e(TAG, e);
             } finally {
-                RecycleUtils.recycle(fileInputStream);
+                RecycleX.recycle(fileInputStream);
             }
         }
 

@@ -1,4 +1,4 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import com.march.common.function.Function;
 import com.march.common.function.Predicate;

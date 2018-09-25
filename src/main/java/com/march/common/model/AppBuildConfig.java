@@ -1,6 +1,6 @@
 package com.march.common.model;
 
-import com.march.common.extensions.LogX;
+import com.march.common.exts.LogX;
 
 import java.lang.reflect.Field;
 

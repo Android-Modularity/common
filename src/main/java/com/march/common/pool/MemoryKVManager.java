@@ -28,9 +28,7 @@ public class MemoryKVManager {
         mCacheMap = new LinkedHashMap<>();
     }
 
-
     private Map<String, Object> mCacheMap;
-
 
     public void put(String key, Object value) {
         mCacheMap.put(key, value);

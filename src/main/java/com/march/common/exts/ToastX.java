@@ -1,4 +1,4 @@
-package com.march.common.extensions;
+package com.march.common.exts;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -48,6 +48,19 @@ public class ToastX {
      */
     public static void show(String msg) {
         showToast(msg, Toast.LENGTH_SHORT);
+    }
+
+
+    public static void show(String format, Object... args) {
+        String msg = null;
+        try {
+            msg = String.format(format, args);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(msg!=null) {
+            show(msg);
+        }
     }
 
 
