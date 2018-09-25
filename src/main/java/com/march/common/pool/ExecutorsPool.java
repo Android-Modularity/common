@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
  * @author chendong
  */
 public class ExecutorsPool {
-    private static ExecutorsPool sInst;
 
+    private static ExecutorsPool sInst;
 
     public static ExecutorsPool getInst() {
         if (sInst == null) {

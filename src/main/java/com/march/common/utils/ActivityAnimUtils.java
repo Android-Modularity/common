@@ -1,8 +1,6 @@
 package com.march.common.utils;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 
 import com.march.common.R;
 
@@ -12,7 +10,6 @@ import com.march.common.R;
  *
  * @author luyuan
  */
-@TargetApi(Build.VERSION_CODES.ECLAIR)
 public class ActivityAnimUtils {
 
     public static void translateStart(Activity activity) {

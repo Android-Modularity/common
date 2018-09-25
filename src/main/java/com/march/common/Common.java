@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.march.common.exts.SizeX;
 import com.march.common.exts.ToastX;
+import com.march.common.mgrs.KVMgr;
 import com.march.common.model.AppBuildConfig;
 import com.march.common.model.Exports;
 
@@ -23,6 +24,7 @@ public class Common {
         exports.appConfig = new AppBuildConfig(buildClazz);
         SizeX.init();
         ToastX.init(new ToastX.Config());
+
     }
 
     public static Context app() {

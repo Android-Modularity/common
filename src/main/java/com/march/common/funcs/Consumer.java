@@ -1,4 +1,4 @@
-package com.march.common.function;
+package com.march.common.funcs;
 
 /**
  * CreateAt : 2017/11/9

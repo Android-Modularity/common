@@ -1,4 +1,4 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -14,8 +14,11 @@ import com.march.common.Common;
  *
  * @author chendong
  */
-public class NetUtils {
+public class NetX {
 
+    /**
+     * @return 网络是否连接，包括流量和 wifi
+     */
     public static boolean isNetworkConnected() {
         Context context = Common.app();
         if(context == null){

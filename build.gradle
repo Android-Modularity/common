@@ -1,5 +1,7 @@
 dependencies {
     implementation support.appcompat_v7
+    implementation 'com.tencent:mmkv:1.0.10'
+
 }
 apply plugin: 'bintray-release'
 publish {

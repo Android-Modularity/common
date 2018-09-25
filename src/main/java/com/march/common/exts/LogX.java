@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.march.common.function.Consumer;
+import com.march.common.funcs.Consumer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
