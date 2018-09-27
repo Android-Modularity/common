@@ -34,10 +34,10 @@ public class ResourceX {
     }
 
     /**
-     * 获取 drawable
-     * @param context
-     * @param drawableRes
-     * @return
+     *
+     * @param context ctx
+     * @param drawableRes drawable 资源
+     * @return 获取 drawable
      */
     public static Drawable getDrawable(Context context, int drawableRes) {
         return context.getResources().getDrawable(drawableRes);

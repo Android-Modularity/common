@@ -27,20 +27,20 @@
 //import java.lang.reflect.Method;
 //import java.util.Locale;
 //
-///**
+///*
 // * @author cginechen
 // * @date 2016-03-17
 // */
 //public class QMUIDisplayHelper {
 //
-//    /**
+//    /*
 //     * 屏幕密度,系统源码注释不推荐使用
 //     */
 //    public static final float DENSITY = Resources.getSystem()
 //            .getDisplayMetrics().density;
 //    private static final String TAG = "QMUIDisplayHelper";
 //
-//    /**
+//    /*
 //     * 是否有摄像头
 //     */
 //    private static Boolean sHasCamera = null;
@@ -48,7 +48,7 @@
 //    private static int[] sPortraitRealSizeCache = null;
 //    private static int[] sLandscapeRealSizeCache = null;
 //
-//    /**
+//    /*
 //     * 获取 DisplayMetrics
 //     *
 //     * @return
@@ -60,7 +60,7 @@
 //        return displayMetrics;
 //    }
 //
-//    /**
+//    /*
 //     * 把以 dp 为单位的值，转化为以 px 为单位的值
 //     *
 //     * @param dpValue 以 dp 为单位的值
@@ -70,7 +70,7 @@
 //        return (int) (dpValue * DENSITY + 0.5f);
 //    }
 //
-//    /**
+//    /*
 //     * 把以 px 为单位的值，转化为以 dp 为单位的值
 //     *
 //     * @param pxValue 以 px 为单位的值
@@ -88,7 +88,7 @@
 //        return context.getResources().getDisplayMetrics().scaledDensity;
 //    }
 //
-//    /**
+//    /*
 //     * 获取屏幕宽度
 //     *
 //     * @return
@@ -97,7 +97,7 @@
 //        return getDisplayMetrics(context).widthPixels;
 //    }
 //
-//    /**
+//    /*
 //     * 获取屏幕高度
 //     *
 //     * @return
@@ -106,7 +106,7 @@
 //        return getDisplayMetrics(context).heightPixels;
 //    }
 //
-//    /**
+//    /*
 //     * 获取屏幕的真实宽高
 //     *
 //     * @param context
@@ -167,7 +167,7 @@
 //        return size;
 //    }
 //
-//    /**
+//    /*
 //     * 剔除挖孔屏等导致的不可用区域后的 width
 //     *
 //     * @param activity
@@ -212,7 +212,7 @@
 //        return result;
 //    }
 //
-//    /**
+//    /*
 //     * 剔除挖孔屏等导致的不可用区域后的 height
 //     *
 //     * @param activity
@@ -263,7 +263,7 @@
 //        return false;
 //    }
 //
-//    /**
+//    /*
 //     * 单位转换: dp -> px
 //     *
 //     * @param dp
@@ -273,7 +273,7 @@
 //        return (int) (getDensity(context) * dp + 0.5);
 //    }
 //
-//    /**
+//    /*
 //     * 单位转换: sp -> px
 //     *
 //     * @param sp
@@ -283,7 +283,7 @@
 //        return (int) (getFontDensity(context) * sp + 0.5);
 //    }
 //
-//    /**
+//    /*
 //     * 单位转换:px -> dp
 //     *
 //     * @param px
@@ -293,7 +293,7 @@
 //        return (int) (px / getDensity(context) + 0.5);
 //    }
 //
-//    /**
+//    /*
 //     * 单位转换:px -> sp
 //     *
 //     * @param px
@@ -303,7 +303,7 @@
 //        return (int) (px / getFontDensity(context) + 0.5);
 //    }
 //
-//    /**
+//    /*
 //     * 判断是否有状态栏
 //     *
 //     * @param context
@@ -318,7 +318,7 @@
 //        return true;
 //    }
 //
-//    /**
+//    /*
 //     * 获取ActionBar高度
 //     *
 //     * @param context
@@ -334,7 +334,7 @@
 //        return actionBarHeight;
 //    }
 //
-//    /**
+//    /*
 //     * 获取状态栏高度
 //     *
 //     * @param context
@@ -358,7 +358,7 @@
 //        return 0;
 //    }
 //
-//    /**
+//    /*
 //     * 获取虚拟菜单的高度,若无则返回0
 //     *
 //     * @param context
@@ -391,7 +391,7 @@
 //        return sHasCamera;
 //    }
 //
-//    /**
+//    /*
 //     * 是否有硬件menu
 //     *
 //     * @param context
@@ -409,7 +409,7 @@
 //        return flag;
 //    }
 //
-//    /**
+//    /*
 //     * 是否有网络功能
 //     *
 //     * @param context
@@ -421,7 +421,7 @@
 //        return cm.getActiveNetworkInfo() != null;
 //    }
 //
-//    /**
+//    /*
 //     * 判断是否存在pckName包
 //     *
 //     * @param pckName
@@ -438,7 +438,7 @@
 //        return false;
 //    }
 //
-//    /**
+//    /*
 //     * 判断 SD Card 是否 ready
 //     *
 //     * @return
@@ -448,7 +448,7 @@
 //                .getExternalStorageState());
 //    }
 //
-//    /**
+//    /*
 //     * 获取当前国家的语言
 //     *
 //     * @param context
@@ -468,7 +468,7 @@
 //                + sysLocale.getCountry();
 //    }
 //
-//    /**
+//    /*
 //     * 判断是否为中文环境
 //     *
 //     * @param context
@@ -487,7 +487,7 @@
 //        return lang.equalsIgnoreCase("CN");
 //    }
 //
-//    /**
+//    /*
 //     * 设置全屏
 //     *
 //     * @param activity
@@ -499,7 +499,7 @@
 //
 //    }
 //
-//    /**
+//    /*
 //     * 取消全屏
 //     *
 //     * @param activity
@@ -510,7 +510,7 @@
 //        window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 //    }
 //
-//    /**
+//    /*
 //     * 判断是否全屏
 //     *
 //     * @param activity
@@ -537,7 +537,7 @@
 //        return true;
 //    }
 //
-//    /**
+//    /*
 //     * 判断设备是否存在NavigationBar
 //     *
 //     * @return true 存在, false 不存在
@@ -569,7 +569,7 @@
 //    private static final String VIVO_NAVIGATION_GESTURE = "navigation_gesture_on";
 //    private static final String HUAWAI_DISPLAY_NOTCH_STATUS = "display_notch_status";
 //
-//    /**
+//    /*
 //     * 获取vivo手机设置中的"navigation_gesture_on"值，判断当前系统是使用导航键还是手势导航操作
 //     *
 //     * @param context app Context

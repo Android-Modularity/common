@@ -418,7 +418,7 @@
 //        return QMUIDisplayHelper.dp2px(context, 27);
 //    }
 //
-//    /**
+//    /*
 //     * this method is private, because we do not need to handle tablet
 //     *
 //     * @param context

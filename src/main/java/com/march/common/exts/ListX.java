@@ -1,5 +1,6 @@
 package com.march.common.exts;
 
+import com.march.common.funcs.Consumer;
 import com.march.common.funcs.Function;
 import com.march.common.funcs.Predicate;
 
@@ -15,7 +16,28 @@ import java.util.List;
  */
 public class ListX {
 
-    // 过滤新的列表
+
+    /**
+     * 对列表中的每一项执行操作
+     *
+     * @param srcList  数据源
+     * @param consumer 操作
+     * @param <T>      范型
+     */
+    public static <T> void foreach(List<T> srcList, Consumer<T> consumer) {
+        for (T t : srcList) {
+            consumer.accept(t);
+        }
+    }
+
+    /**
+     * 过滤新的列表
+     *
+     * @param srcList   原始数据
+     * @param predicate 规则函数
+     * @param <T>       范型
+     * @return 过滤后的列表
+     */
     public static <T> List<T> filter(List<T> srcList, Predicate<T> predicate) {
         List<T> result = new ArrayList<>();
         for (T t : srcList) {
@@ -26,7 +48,13 @@ public class ListX {
         return result;
     }
 
-    // 根据规则生成新的列表
+    /**
+     * @param srcList  原始数据
+     * @param function 转换函数
+     * @param <T>      原始类型
+     * @param <R>      目标类型
+     * @return 转换数据类型生成新的列表
+     */
     public static <T, R> List<R> map(List<T> srcList, Function<T, R> function) {
         List<R> result = new ArrayList<>();
         R r;
@@ -39,12 +67,22 @@ public class ListX {
         return result;
     }
 
-    // 生成列表
+    /**
+     * @param ts  原数据
+     * @param <T> 范型
+     * @return 生成列表
+     */
     public static <T> List<T> listOf(T... ts) {
+        if (ts == null || ts.length == 0) {
+            return new ArrayList<>();
+        }
         return Arrays.asList(ts);
     }
 
-    // 生成 int 类型列表
+    /**
+     * @param ts 原数据
+     * @return 生成 int 类型列表
+     */
     public static  List<Integer> intListOf(int... ts) {
         List<Integer> integers = new ArrayList<>();
         for (int t : ts) {
@@ -54,7 +92,12 @@ public class ListX {
     }
 
 
-    // 根据数字队列生成列表
+    /**
+     * @param count 元素个数
+     * @param map   转换函数
+     * @param <T>   范型
+     * @return 根据数字队列生成列表
+     */
     public static <T> List<T> range(int count, Function<Integer, T> map) {
         List<T> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -66,7 +109,13 @@ public class ListX {
         return list;
     }
 
-    // 存在删除，不存在添加
+    /**
+     * 存在删除，不存在添加
+     *
+     * @param list 列表
+     * @param data 数据
+     * @param <T>  范型
+     */
     public static <T> void toggleItem(List<T> list, T data) {
         if (list.contains(data)) {
             list.remove(data);
@@ -75,7 +124,12 @@ public class ListX {
         }
     }
 
-    // 全部满足要求，返回 true，否则 false
+    /**
+     * @param list      列表
+     * @param predicate 检测函数
+     * @param <T>       范型
+     * @return 全部满足要求，返回 true，否则 false
+     */
     public static <T> boolean all(List<T> list, Predicate<T> predicate) {
         for (T t : list) {
             if(!predicate.test(t)) {
@@ -85,7 +139,12 @@ public class ListX {
         return true;
     }
 
-    // 任何一个满足要求，返回 true，否则 false
+    /**
+     * @param list 数据源
+     * @param predicate 检测函数
+     * @param <T> 范型
+     * @return 任何一个满足要求，返回 true，否则 false
+     */
     public static <T> boolean any(List<T> list, Predicate<T> predicate) {
         for (T t : list) {
             if(predicate.test(t)) {
@@ -95,6 +154,12 @@ public class ListX {
         return false;
     }
 
+    /**
+     * @param list 数据源
+     * @param sign 间隔符
+     * @param <T> 范型
+     * @return 列表调用 toString 拼接成字符串
+     */
     public static <T> String join2String(List<T> list, String sign) {
         StringBuilder builder = new StringBuilder();
         int size = list.size();
