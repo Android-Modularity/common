@@ -19,15 +19,14 @@ public class BytesPool {
     // 512 KB.
     private static final int MAX_SIZE = 2 * 1048 * 1024;
     private static final int MAX_BYTE_ARRAY_COUNT = MAX_SIZE / TEMP_BYTES_SIZE;
-
-    private final Queue<byte[]> tempQueue = new ArrayDeque<>(0);
     private static final BytesPool BYTE_ARRAY_POOL = new BytesPool();
+    private final Queue<byte[]> tempQueue = new ArrayDeque<>(0);
+
+    private BytesPool() {
+    }
 
     public static BytesPool get() {
         return BYTE_ARRAY_POOL;
-    }
-
-    private BytesPool() {
     }
 
     public void clear() {

@@ -83,7 +83,7 @@ public class ListX {
      * @param ts 原数据
      * @return 生成 int 类型列表
      */
-    public static  List<Integer> intListOf(int... ts) {
+    public static List<Integer> intListOf(int... ts) {
         List<Integer> integers = new ArrayList<>();
         for (int t : ts) {
             integers.add(t);
@@ -132,7 +132,7 @@ public class ListX {
      */
     public static <T> boolean all(List<T> list, Predicate<T> predicate) {
         for (T t : list) {
-            if(!predicate.test(t)) {
+            if (!predicate.test(t)) {
                 return false;
             }
         }
@@ -140,14 +140,14 @@ public class ListX {
     }
 
     /**
-     * @param list 数据源
+     * @param list      数据源
      * @param predicate 检测函数
-     * @param <T> 范型
+     * @param <T>       范型
      * @return 任何一个满足要求，返回 true，否则 false
      */
     public static <T> boolean any(List<T> list, Predicate<T> predicate) {
         for (T t : list) {
-            if(predicate.test(t)) {
+            if (predicate.test(t)) {
                 return true;
             }
         }
@@ -157,7 +157,7 @@ public class ListX {
     /**
      * @param list 数据源
      * @param sign 间隔符
-     * @param <T> 范型
+     * @param <T>  范型
      * @return 列表调用 toString 拼接成字符串
      */
     public static <T> String join2String(List<T> list, String sign) {

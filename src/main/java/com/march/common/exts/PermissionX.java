@@ -18,13 +18,13 @@ public class PermissionX {
     public static boolean requestPermissions(
             AppUIMixin mixin,
             int requestCode,
-            String...permissions) {
+            String... permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
         List<String> needReqPermissions = new ArrayList<>();
         for (String per : permissions) {
-            if(!hasPermission(mixin.getActivity(),per)) {
+            if (!hasPermission(mixin.getActivity(), per)) {
                 needReqPermissions.add(per);
             }
         }
@@ -35,7 +35,7 @@ public class PermissionX {
         return false;
     }
 
-    public static boolean hasPermission(Activity activity,String... permissions) {
+    public static boolean hasPermission(Activity activity, String... permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
@@ -43,9 +43,9 @@ public class PermissionX {
         return ListX.all(strings, per -> activity.checkSelfPermission(per) == PackageManager.PERMISSION_GRANTED);
     }
 
-    public static boolean hasAllPermission(String[] permissions, int[] grantResults){
+    public static boolean hasAllPermission(String[] permissions, int[] grantResults) {
         List<Integer> integers = ListX.intListOf(grantResults);
-        return ListX.all(integers,result -> result == PackageManager.PERMISSION_GRANTED);
+        return ListX.all(integers, result -> result == PackageManager.PERMISSION_GRANTED);
     }
 
 }

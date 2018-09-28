@@ -20,13 +20,6 @@ import java.util.HashMap;
  */
 public class VideoUtils {
 
-    public static class MetaData {
-        int width;
-        int height;
-        long duration;
-        String thumbPath;
-    }
-
     public static MetaData parseVideoMetaData(String videoPath) {
         if (TextUtils.isEmpty(videoPath))
             return null;
@@ -85,5 +78,12 @@ public class VideoUtils {
             }
         }
         return null;
+    }
+
+    public static class MetaData {
+        int width;
+        int height;
+        long duration;
+        String thumbPath;
     }
 }

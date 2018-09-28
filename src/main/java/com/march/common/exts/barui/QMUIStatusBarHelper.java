@@ -64,6 +64,7 @@ public class QMUIStatusBarHelper {
         }
         return true;
     }
+
     /*
      * 沉浸式状态栏。
      * 支持 4.4 以上版本的 MIUI 和 Flyme，以及 5.0 以上版本的其他 Android。
@@ -273,7 +274,7 @@ public class QMUIStatusBarHelper {
      * 见小米开发文档说明：https://dev.mi.com/console/doc/detail?pId=1159
      */
     private static boolean isMIUICustomStatusBarLightModeImpl() {
-        if (QMUIDeviceHelper.isMIUIV9() && Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+        if (QMUIDeviceHelper.isMIUIV9() && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
         return QMUIDeviceHelper.isMIUIV5() || QMUIDeviceHelper.isMIUIV6() ||

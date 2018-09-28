@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.march.common.exts.SizeX;
 import com.march.common.exts.ToastX;
-import com.march.common.mgrs.KVMgr;
 import com.march.common.model.AppBuildConfig;
 import com.march.common.model.Exports;
 

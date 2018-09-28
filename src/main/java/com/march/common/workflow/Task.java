@@ -15,32 +15,9 @@ import java.util.concurrent.Executors;
  */
 public class Task<TResult> {
 
-    public static final int UI        = 0;
-    public static final int BG        = 1;
+    public static final int UI = 0;
+    public static final int BG = 1;
     public static final int IMMEDIATE = 2;
-
-    // 任务是否已经执行
-    private boolean     alreadyCall;
-    // 任务名称
-    private int         taskIndex;
-    // 上一个任务节点
-    private Task        preNode;
-    // 下一个任务节点
-    private Task        nextNode;
-    // 当前任务节点
-    private Task        curNode;
-    // 当前节点的任务内容
-    private TaskAction  taskAction;
-    // 错误处理
-    private ErrorAction errorAction;
-    // 线程模式
-    private int threadMode = UI;
-
-    // 是否 UI 线程
-    private static boolean isUI() {
-        return Looper.myLooper() == Looper.getMainLooper();
-    }
-
     // UI 线程处理者
     private static Poster uiPoster = new Poster() {
         Handler handler = new Handler(Looper.getMainLooper());
@@ -54,7 +31,6 @@ public class Task<TResult> {
             }
         }
     };
-
     // 子线程处理者
     private static Poster bgPoster = new Poster() {
         ExecutorService service = Executors.newCachedThreadPool();
@@ -68,18 +44,26 @@ public class Task<TResult> {
             }
         }
     };
+    // 任务是否已经执行
+    private boolean alreadyCall;
+    // 任务名称
+    private int taskIndex;
+    // 上一个任务节点
+    private Task preNode;
+    // 下一个任务节点
+    private Task nextNode;
+    // 当前任务节点
+    private Task curNode;
+    // 当前节点的任务内容
+    private TaskAction taskAction;
+    // 错误处理
+    private ErrorAction errorAction;
+    // 线程模式
+    private int threadMode = UI;
 
-    // 初始化参数
-    private void init(int threadMode, Task preNode, Task curNode) {
-        if (preNode == null) {
-            this.taskIndex = 0;
-        } else {
-            this.taskIndex = preNode.taskIndex + 1;
-        }
-        this.threadMode = threadMode;
-        this.preNode = preNode;
-        this.curNode = curNode;
-        this.nextNode = null;
+    // 是否 UI 线程
+    private static boolean isUI() {
+        return Looper.myLooper() == Looper.getMainLooper();
     }
 
     // 在当前线程启动任务链
@@ -98,6 +82,19 @@ public class Task<TResult> {
             }
         };
         return taskNode;
+    }
+
+    // 初始化参数
+    private void init(int threadMode, Task preNode, Task curNode) {
+        if (preNode == null) {
+            this.taskIndex = 0;
+        } else {
+            this.taskIndex = preNode.taskIndex + 1;
+        }
+        this.threadMode = threadMode;
+        this.preNode = preNode;
+        this.curNode = curNode;
+        this.nextNode = null;
     }
 
     // 在当前线程追加一个任务
@@ -199,10 +196,6 @@ public class Task<TResult> {
         return sb.toString();
     }
 
-    interface Poster {
-        void post(Runnable runnable);
-    }
-
     private Task findFirstTaskNode() {
         Task node = curNode;
         while (node.preNode != null) {
@@ -217,5 +210,9 @@ public class Task<TResult> {
             node = node.nextNode;
         }
         return node;
+    }
+
+    interface Poster {
+        void post(Runnable runnable);
     }
 }

@@ -22,6 +22,9 @@ import com.march.common.exts.LogX;
 public class StatusBarColorHelper {
 
 
+    static final String TAG_FAKE_STATUS_BAR_VIEW = "TAG_FAKE_STATUS_BAR_VIEW";
+    static final String TAG_MARGIN_ADDED = "TAG_MARGIN_ADDED";
+
     public static boolean setStatusBarColor(Activity activity, int color) {
         if (activity == null) {
             return false;
@@ -38,9 +41,6 @@ public class StatusBarColorHelper {
             return false;
         }
     }
-
-    static final String TAG_FAKE_STATUS_BAR_VIEW = "TAG_FAKE_STATUS_BAR_VIEW";
-    static final String TAG_MARGIN_ADDED         = "TAG_MARGIN_ADDED";
 
     static void setStatusBarColorBelow21(Activity activity, int statusColor) {
         Window window = activity.getWindow();

@@ -55,10 +55,10 @@ public class ToastX {
         String msg = null;
         try {
             msg = String.format(format, args);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if(msg!=null) {
+        if (msg != null) {
             show(msg);
         }
     }

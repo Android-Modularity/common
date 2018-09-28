@@ -21,8 +21,9 @@ public class ResourceX {
 
     /**
      * 解析颜色
+     *
      * @param color '#345678'
-     * @param def 失败后默认颜色
+     * @param def   失败后默认颜色
      * @return color
      */
     public static int parseColor(String color, int def) {
@@ -34,8 +35,7 @@ public class ResourceX {
     }
 
     /**
-     *
-     * @param context ctx
+     * @param context     ctx
      * @param drawableRes drawable 资源
      * @return 获取 drawable
      */
@@ -45,10 +45,11 @@ public class ResourceX {
 
     /**
      * 生成横纵平铺的图片
-     * @param context ctx
-     * @param bitmap 位图
-     * @param width 容器宽度
-     * @param widthScale 平铺图片占据容器的宽度
+     *
+     * @param context     ctx
+     * @param bitmap      位图
+     * @param width       容器宽度
+     * @param widthScale  平铺图片占据容器的宽度
      * @param aspectRatio 平铺图片的宽高比
      * @return drawable
      */

@@ -110,7 +110,7 @@ public class KeyBoardX {
      * @return 键盘是否显示
      */
     public static boolean isSoftInputVisible(final Activity activity,
-            final int minHeightOfSoftInput) {
+                                             final int minHeightOfSoftInput) {
         return getContentViewInvisibleHeight(activity) >= minHeightOfSoftInput;
     }
 
@@ -123,7 +123,7 @@ public class KeyBoardX {
      * @param hideConsumer 隐藏返回 true, 显示返回 false
      */
     public static void watchKeyBoardChanged(View tokenView, int height,
-            Predicate<Void> isWatching, Consumer<Boolean> hideConsumer) {
+                                            Predicate<Void> isWatching, Consumer<Boolean> hideConsumer) {
         tokenView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             if (isWatching != null && !isWatching.test(null)) {
                 return;

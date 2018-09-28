@@ -14,9 +14,9 @@ import com.march.common.Common;
  */
 public class SizeX {
 
-    public static int   WIDTH          = 0;
-    public static int   HEIGHT         = 0;
-    public static float DENSITY        = 0;
+    public static int WIDTH = 0;
+    public static int HEIGHT = 0;
+    public static float DENSITY = 0;
     public static float SCALED_DENSITY = 0;
 
     public static void init() {

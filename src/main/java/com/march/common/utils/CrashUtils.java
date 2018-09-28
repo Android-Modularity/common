@@ -10,10 +10,6 @@ import com.march.common.exts.LogX;
  */
 public class CrashUtils {
 
-    public interface OnCrashListener {
-        void onCrash(Thread t, Throwable e);
-    }
-
     public static void init(final OnCrashListener listener) {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
@@ -24,5 +20,9 @@ public class CrashUtils {
                 }
             }
         });
+    }
+
+    public interface OnCrashListener {
+        void onCrash(Thread t, Throwable e);
     }
 }

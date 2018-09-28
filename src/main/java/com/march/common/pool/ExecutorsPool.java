@@ -15,6 +15,12 @@ import java.util.concurrent.Executors;
 public class ExecutorsPool {
 
     private static ExecutorsPool sInst;
+    ExecutorService mCacheExecutor;
+    ExecutorService mSingleExecutor;
+    Handler mHandler;
+    private ExecutorsPool() {
+
+    }
 
     public static ExecutorsPool getInst() {
         if (sInst == null) {
@@ -26,15 +32,6 @@ public class ExecutorsPool {
         }
         return sInst;
     }
-
-
-    private ExecutorsPool() {
-
-    }
-
-    ExecutorService mCacheExecutor;
-    ExecutorService mSingleExecutor;
-    Handler         mHandler;
 
     public ExecutorService cache() {
         if (mCacheExecutor == null) {

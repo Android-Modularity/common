@@ -12,6 +12,18 @@ import android.os.Parcelable;
 
 public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
 
+    public static final Creator<ImageInfo> CREATOR = new Creator<ImageInfo>() {
+        @Override
+        public ImageInfo createFromParcel(Parcel source) {
+            return new ImageInfo(source);
+        }
+
+        @Override
+        public ImageInfo[] newArray(int size) {
+            return new ImageInfo[size];
+        }
+    };
+    public boolean test;
     // 设置id为自增长的组件
     private Integer id;
     // 文件地址
@@ -27,8 +39,20 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
     private int fileId;
     private boolean select;
 
-    public boolean test;
+    public ImageInfo() {
+    }
 
+    protected ImageInfo(Parcel in) {
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.path = in.readString();
+        this.status = in.readInt();
+        this.name = in.readString();
+        this.date = in.readString();
+        this.width = in.readInt();
+        this.height = in.readInt();
+        this.fileId = in.readInt();
+        this.select = in.readByte() != 0;
+    }
 
     public String getPath() {
         return path;
@@ -132,10 +156,6 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
         }
     }
 
-
-    public ImageInfo() {
-    }
-
     @Override
     public String toString() {
         return "ImageInfo{" +
@@ -163,28 +183,4 @@ public class ImageInfo implements Comparable<ImageInfo>, Parcelable {
         dest.writeInt(this.fileId);
         dest.writeByte(this.select ? (byte) 1 : (byte) 0);
     }
-
-    protected ImageInfo(Parcel in) {
-        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.path = in.readString();
-        this.status = in.readInt();
-        this.name = in.readString();
-        this.date = in.readString();
-        this.width = in.readInt();
-        this.height = in.readInt();
-        this.fileId = in.readInt();
-        this.select = in.readByte() != 0;
-    }
-
-    public static final Creator<ImageInfo> CREATOR = new Creator<ImageInfo>() {
-        @Override
-        public ImageInfo createFromParcel(Parcel source) {
-            return new ImageInfo(source);
-        }
-
-        @Override
-        public ImageInfo[] newArray(int size) {
-            return new ImageInfo[size];
-        }
-    };
 }

@@ -21,7 +21,7 @@ public class NetX {
      */
     public static boolean isNetworkConnected() {
         Context context = Common.app();
-        if(context == null){
+        if (context == null) {
             return false;
         }
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);

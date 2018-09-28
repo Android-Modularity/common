@@ -16,9 +16,9 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class AppUIMixin {
 
-    private Activity                        appActivity;
-    private AppCompatActivity               supportActivity;
-    private Fragment                        appFragment;
+    private Activity appActivity;
+    private AppCompatActivity supportActivity;
+    private Fragment appFragment;
     private android.support.v4.app.Fragment supportFragment;
 
     public static AppUIMixin from(AppCompatActivity supportActivity) {
@@ -74,7 +74,7 @@ public class AppUIMixin {
             if (supportFragment != null) {
                 supportFragment.startActivityForResult(intent, requestCode);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -84,7 +84,7 @@ public class AppUIMixin {
             return appActivity;
         }
         if (supportActivity != null) {
-            return  supportActivity;
+            return supportActivity;
         }
         if (appFragment != null) {
             return appFragment.getActivity();
@@ -100,19 +100,19 @@ public class AppUIMixin {
             return appActivity.getApplicationContext();
         }
         if (supportActivity != null) {
-            return  supportActivity.getApplicationContext();
+            return supportActivity.getApplicationContext();
         }
         if (appFragment != null && appFragment.getActivity() != null) {
             return appFragment.getActivity().getApplicationContext();
         }
-        if (supportFragment != null && supportFragment.getActivity()!=null) {
+        if (supportFragment != null && supportFragment.getActivity() != null) {
             return supportFragment.getActivity().getApplicationContext();
         }
         return null;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void requestPermissions(int requestCode,String ... permissions) {
+    public void requestPermissions(int requestCode, String... permissions) {
         if (appActivity != null) {
             appActivity.requestPermissions(permissions, requestCode);
         }
@@ -122,8 +122,8 @@ public class AppUIMixin {
         if (appFragment != null && appFragment.getActivity() != null) {
             appFragment.requestPermissions(permissions, requestCode);
         }
-        if (supportFragment != null && supportFragment.getActivity()!=null) {
-            supportFragment.requestPermissions(permissions,requestCode);
+        if (supportFragment != null && supportFragment.getActivity() != null) {
+            supportFragment.requestPermissions(permissions, requestCode);
         }
     }
 }

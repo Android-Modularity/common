@@ -2,7 +2,6 @@ package com.march.common.exts;
 
 import android.text.TextUtils;
 
-
 import java.io.File;
 import java.util.Collection;
 import java.util.Map;

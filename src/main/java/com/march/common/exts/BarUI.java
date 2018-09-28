@@ -3,10 +3,14 @@ package com.march.common.exts;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.RequiresPermission;
 
 import com.march.common.exts.barui.BottomBarHelper;
+import com.march.common.exts.barui.NotificationBarHelper;
 import com.march.common.exts.barui.QMUIStatusBarHelper;
 import com.march.common.exts.barui.StatusBarColorHelper;
+
+import static android.Manifest.permission.EXPAND_STATUS_BAR;
 
 /**
  * CreateAt : 2018/8/5
@@ -64,4 +68,11 @@ public class BarUI {
             activity.getWindow().setNavigationBarColor(color);
         }
     }
+
+
+    @RequiresPermission(EXPAND_STATUS_BAR)
+    public static void toggleNotificationBar(final boolean isVisible) {
+        NotificationBarHelper.toggleNotificationBar(isVisible);
+    }
+
 }

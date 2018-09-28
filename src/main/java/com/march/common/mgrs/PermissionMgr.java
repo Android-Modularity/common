@@ -22,20 +22,12 @@ import java.util.Map;
  */
 public class PermissionMgr implements IMgr {
 
-    public interface PermissionCallback {
-        /**
-         * @param allGrant            全部获得权限
-         * @param permissionResultMap 权限-对应权限的结果 map
-         */
-        void onResult(boolean allGrant, Map<String, Boolean> permissionResultMap);
-    }
+    private int mReqCode = 0x76;
+    private SparseArray<PermissionCallback> mConsumerSparseArray;
 
     public PermissionMgr() {
         mConsumerSparseArray = new SparseArray<>();
     }
-
-    private int mReqCode = 0x76;
-    private SparseArray<PermissionCallback> mConsumerSparseArray;
 
     /**
      * 处理请求权限的结果
@@ -58,8 +50,8 @@ public class PermissionMgr implements IMgr {
             result.put(permissions[i], grantResults[i] == PackageManager.PERMISSION_GRANTED);
         }
         permissionCallback.onResult(!hasDenied, result);
+        mConsumerSparseArray.remove(requestCode);
     }
-
 
     /**
      * @param mixin       UI Mixin
@@ -68,32 +60,35 @@ public class PermissionMgr implements IMgr {
      * @return 是否获得全部权限
      */
     public boolean requestPermissions(AppUIMixin mixin, PermissionCallback consumer, String... permissions) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        List<String> needReqPermissions = new ArrayList<>();
-        for (String per : permissions) {
-            if (!hasPermission(mixin.getActivity(), per)) {
-                needReqPermissions.add(per);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> needReqPermissions = new ArrayList<>();
+            for (String per : permissions) {
+                if (!hasPermission(mixin.getActivity(), per)) {
+                    needReqPermissions.add(per);
+                }
             }
-        }
-        if (needReqPermissions.isEmpty()) {
+            if (needReqPermissions.isEmpty()) {
+                consumer.onResult(true, new HashMap<>());
+                return true;
+            }
+            mixin.requestPermissions(mReqCode, needReqPermissions.toArray(new String[needReqPermissions.size()]));
+            // save callback
+            mConsumerSparseArray.append(mReqCode, consumer);
+            mReqCode++;
+        } else {
+            consumer.onResult(true, new HashMap<>());
             return true;
         }
-        mixin.requestPermissions(mReqCode, needReqPermissions.toArray(new String[needReqPermissions.size()]));
-        // save callback
-        mConsumerSparseArray.append(mReqCode, consumer);
-        mReqCode++;
+
         return false;
     }
-
 
     /**
      * @param activity    act
      * @param permissions 权限
      * @return 是否有这些权限
      */
-    public static boolean hasPermission(Activity activity, String... permissions) {
+    public boolean hasPermission(Activity activity, String... permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
@@ -110,5 +105,13 @@ public class PermissionMgr implements IMgr {
     @Override
     public boolean isRecycled() {
         return false;
+    }
+
+    public interface PermissionCallback {
+        /**
+         * @param allGrant            全部获得权限
+         * @param permissionResultMap 权限-对应权限的结果 map
+         */
+        void onResult(boolean allGrant, Map<String, Boolean> permissionResultMap);
     }
 }

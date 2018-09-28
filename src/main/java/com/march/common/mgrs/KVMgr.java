@@ -25,12 +25,11 @@ public class KVMgr implements IMgr {
     public static final int STRATEGY_MMKV = 0;
     public static final int STRATEGY_SP = 1;
     public static final int STRATEGY_MEMORY = 2;
+    private static SparseArray<IKV> sIKVMap = new SparseArray<>();
 
     private KVMgr() {
 
     }
-
-    private static SparseArray<IKV> sIKVMap = new SparseArray<>();
 
     /**
      * 获取一个 key-value 操作类

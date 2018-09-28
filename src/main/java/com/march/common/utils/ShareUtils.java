@@ -96,6 +96,7 @@ public class ShareUtils {
 
     /**
      * 处理分享页面发来的intent
+     *
      * @param context context
      */
     public static void handleIntent(Activity context) {

@@ -1,7 +1,6 @@
 package com.march.common.utils;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
 
 import java.io.BufferedReader;

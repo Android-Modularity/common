@@ -47,10 +47,6 @@ public class LogX {
         sOnLogListener = onLogListener;
     }
 
-    public interface OnLogListener {
-        boolean beforeLog(int level, String tag, String msg);
-    }
-
     public static void myThread() {
         dispatch(Log.ERROR, findTag(), Thread.currentThread().getName());
     }
@@ -138,7 +134,6 @@ public class LogX {
         }
         e(tag, sb.toString());
     }
-
 
     // 拼接打印所有 obj
     public static void all(Object... objs) {
@@ -254,7 +249,6 @@ public class LogX {
         }
     }
 
-
     private static void breakLog4K(String msg, Consumer<String> consumer) {
         if (msg.length() < 3800) {
             consumer.accept(msg);
@@ -274,5 +268,10 @@ public class LogX {
             index = max;
             max += 3800;
         }
+    }
+
+
+    public interface OnLogListener {
+        boolean beforeLog(int level, String tag, String msg);
     }
 }

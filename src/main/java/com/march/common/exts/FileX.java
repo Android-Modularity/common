@@ -115,7 +115,7 @@ public class FileX {
         return file == null || !file.exists() || file.length() == 0;
     }
 
-    public static boolean isImageFile(String filePath){
+    public static boolean isImageFile(String filePath) {
         return !FileX.isNotExist(filePath) && (filePath.toLowerCase().endsWith("jpg") || filePath.toLowerCase().endsWith("png") || filePath.toLowerCase().endsWith("gif"));
     }
 

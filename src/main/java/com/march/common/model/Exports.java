@@ -14,9 +14,9 @@ import com.march.common.mgrs.KVMgr;
  */
 public class Exports {
 
-    public Application    app;
+    public Application app;
     public ImgLoadAdapter imageLoader;
-    public JsonAdapter    jsonParser;
+    public JsonAdapter jsonParser;
     public AppBuildConfig appConfig;
 
     public int kvStrategy = KVMgr.STRATEGY_MMKV;
