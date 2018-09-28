@@ -1,15 +1,12 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.webkit.MimeTypeMap;
 
 import com.march.common.exts.LogX;
+import com.march.common.exts.UriX;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,15 +14,14 @@ import java.util.List;
 
 /**
  * CreateAt : 16/8/13
- * Describe : 唤醒系统分享
+ * Describe : 唤醒系统 intent
  *
  * @author chendong
  */
-public class ShareUtils {
-
+public class IntentX {
 
     /**
-     * 分享文字
+     * 查看文字
      *
      * @param context 上下文
      * @param title   文字标题
@@ -130,7 +126,7 @@ public class ShareUtils {
         if (Intent.ACTION_SEND.equals(action)) {
             Uri imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
             if (imageUri != null) {
-                String realPathFromURI = getRealPathFromURI(context, imageUri);
+                String realPathFromURI = UriX.getPathFromURI(context, imageUri);
                 if (realPathFromURI != null)
                     paths.add(realPathFromURI);
             }
@@ -140,42 +136,11 @@ public class ShareUtils {
             ArrayList<Uri> imageUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
             if (imageUris != null) {
                 for (Uri uri : imageUris) {
-                    paths.add(getRealPathFromURI(context, uri));
+                    paths.add(UriX.getPathFromURI(context, uri));
                 }
             }
         }
         return paths;
     }
 
-
-    /**
-     * 从uri获取path
-     *
-     * @param uri uri
-     * @return path
-     */
-    private static String getRealPathFromURI(Context context, Uri uri) {
-        final String scheme = uri.getScheme();
-        String data = null;
-        if (ContentResolver.SCHEME_FILE.equals(scheme)) {
-            data = uri.getPath();
-        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
-            Cursor cursor = context.getContentResolver()
-                    .query(uri, new String[]{MediaStore.Images.ImageColumns.DATA}
-                            , null, null, null);
-            if (null != cursor) {
-                if (cursor.moveToFirst()) {
-                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                    if (index > -1) {
-                        data = cursor.getString(index);
-                    }
-                }
-                cursor.close();
-            }
-        }
-        if (data != null) {
-            LogX.e(MimeTypeMap.getFileExtensionFromUrl(data));
-        }
-        return data;
-    }
 }

@@ -1,14 +1,12 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
-import android.os.Environment;
 import android.text.TextUtils;
 
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -18,22 +16,28 @@ import java.util.HashMap;
  *
  * @author chendong
  */
-public class VideoUtils {
+public class VideoX {
 
+    /**
+     * 获取视频的信息
+     *
+     * @param videoPath
+     * @return
+     */
     public static MetaData parseVideoMetaData(String videoPath) {
-        if (TextUtils.isEmpty(videoPath))
+        if (TextUtils.isEmpty(videoPath)) {
             return null;
+        }
         MediaMetadataRetriever mmr = null;
         MetaData metaData = new MetaData();
         int width = 0;
         int height = 0;
         int duration = 0;
-        String thumbImgPath = null;
         try {
             mmr = new MediaMetadataRetriever();
             if (videoPath.startsWith("http")) {
                 // decode from net
-                mmr.setDataSource(videoPath, new HashMap<String, String>());
+                mmr.setDataSource(videoPath, new HashMap<>());
             } else {
                 File videoFile = new File(videoPath);
                 if (!videoFile.exists()) {
@@ -51,11 +55,6 @@ public class VideoUtils {
             String heightStr = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
             // 缩略图, OPTION_NEXT_SYNC
             Bitmap frameAtTime = mmr.getFrameAtTime();
-            if (frameAtTime != null) {
-                File file = new File(Environment.getExternalStorageDirectory(), String.valueOf(System.currentTimeMillis() + ".jpg"));
-                frameAtTime.compress(Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(file));
-                thumbImgPath = file.getAbsolutePath();
-            }
             if (durationStr != null) {
                 duration = Integer.parseInt(durationStr);
             }
@@ -69,7 +68,7 @@ public class VideoUtils {
             metaData.width = width;
             metaData.height = height;
             metaData.duration = duration;
-            metaData.thumbPath = thumbImgPath;
+            metaData.thumb = frameAtTime;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -84,6 +83,6 @@ public class VideoUtils {
         int width;
         int height;
         long duration;
-        String thumbPath;
+        Bitmap thumb;
     }
 }

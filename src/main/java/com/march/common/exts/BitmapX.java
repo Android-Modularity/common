@@ -1,9 +1,10 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.march.common.exts.FileX;
+import com.march.common.exts.RecycleX;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -17,7 +18,7 @@ import java.io.IOException;
  *
  * @author chendong
  */
-public class BitmapUtils {
+public class BitmapX {
 
     public static BitmapFactory.Options getBitmapSize(String filePath) {
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -47,8 +48,9 @@ public class BitmapUtils {
             bmp.compress(format, quality, bos);
             bos.flush();
             bos.close();
-            if (isRecycle)
-                recycleBitmaps(bmp);
+            if (isRecycle) {
+                RecycleX.recycle(bmp);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,7 +75,7 @@ public class BitmapUtils {
         if (tempBitmap != null && (tempBitmap.getWidth() > destWidth || tempBitmap.getHeight() > destHeight)) {
             // 如果是放大图片，filter决定是否平滑，如果是缩小图片，filter无影响
             Bitmap bitmap = Bitmap.createScaledBitmap(tempBitmap, destWidth, destHeight, true);
-            recycleBitmaps(tempBitmap);
+            RecycleX.recycle(tempBitmap);
             return bitmap;
         } else {
             return tempBitmap; // 如果没有缩放，那么不回收

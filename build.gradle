@@ -1,5 +1,6 @@
 dependencies {
     implementation support.appcompat_v7
+    implementation support.recyclerView_v7
     implementation 'com.tencent:mmkv:1.0.10'
 
 }

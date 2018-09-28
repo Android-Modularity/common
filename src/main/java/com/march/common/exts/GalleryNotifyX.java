@@ -1,4 +1,4 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,22 +8,23 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.march.common.exts.FileX;
-
 import java.io.File;
 
 
 /**
  * CreateAt : 2017/5/24
- * Describe : 相册更新通知帮助类
+ * Describe :
+ *
+ * 用来解决存入相册后无法立刻刷新到的问题
+ * 相册更新通知帮助类
  * 创建时间单位ms
  * 视频时长单位ms
  *
  * @author chendong
  */
-public class AlbumNotifyUtils {
+public class GalleryNotifyX {
 
-    public static final String TAG = AlbumNotifyUtils.class.getSimpleName();
+    public static final String TAG = GalleryNotifyX.class.getSimpleName();
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -96,7 +97,7 @@ public class AlbumNotifyUtils {
      * @param width      宽度
      * @param height     高度
      */
-    public static void insertImageToMediaStore(Context context, String filePath, long createTime, int width, int height) {
+    private static void insertImageToMediaStore(Context context, String filePath, long createTime, int width, int height) {
         if (!checkFile(filePath))
             return;
         createTime = getTimeWrap(createTime);
@@ -124,7 +125,7 @@ public class AlbumNotifyUtils {
      * @param width      宽度
      * @param height     高度
      */
-    public static void insertVideoToMediaStore(Context context, String filePath, long createTime, int width, int height, long duration) {
+    private static void insertVideoToMediaStore(Context context, String filePath, long createTime, int width, int height, long duration) {
         if (!checkFile(filePath))
             return;
         createTime = getTimeWrap(createTime);

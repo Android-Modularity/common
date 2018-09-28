@@ -1,12 +1,16 @@
 package com.march.common.exts;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
+import android.webkit.MimeTypeMap;
 
 import com.march.common.Common;
 
@@ -38,5 +42,38 @@ public class UriX {
                 context.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
         }
+    }
+
+
+    /**
+     * 从 uri 中获取 文件 路径
+     *
+     * @param context 上下文
+     * @param uri     uri
+     * @return 路径
+     */
+    public static String getPathFromURI(Context context, Uri uri) {
+        final String scheme = uri.getScheme();
+        String data = null;
+        if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+            data = uri.getPath();
+        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
+            Cursor cursor = context.getContentResolver()
+                    .query(uri, new String[]{MediaStore.Images.ImageColumns.DATA}
+                            , null, null, null);
+            if (null != cursor) {
+                if (cursor.moveToFirst()) {
+                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                    if (index > -1) {
+                        data = cursor.getString(index);
+                    }
+                }
+                cursor.close();
+            }
+        }
+        if (data != null) {
+            LogX.e(MimeTypeMap.getFileExtensionFromUrl(data));
+        }
+        return data;
     }
 }

@@ -1,4 +1,4 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.app.Activity;
 
@@ -10,7 +10,7 @@ import com.march.common.R;
  *
  * @author luyuan
  */
-public class ActivityAnimUtils {
+public class ActivityAnimX {
 
     public static void translateStart(Activity activity) {
         activity.overridePendingTransition(R.anim.act_translate_in, R.anim.act_no_anim);

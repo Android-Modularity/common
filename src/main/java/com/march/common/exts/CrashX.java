@@ -1,6 +1,4 @@
-package com.march.common.utils;
-
-import com.march.common.exts.LogX;
+package com.march.common.exts;
 
 /**
  * CreateAt : 7/13/17
@@ -8,7 +6,7 @@ import com.march.common.exts.LogX;
  *
  * @author chendong
  */
-public class CrashUtils {
+public class CrashX {
 
     public static void init(final OnCrashListener listener) {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {

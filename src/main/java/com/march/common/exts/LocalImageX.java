@@ -1,12 +1,10 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
 
-import com.march.common.exts.EmptyX;
-import com.march.common.exts.FileX;
 import com.march.common.model.ImageInfo;
 
 import java.io.File;
@@ -22,9 +20,7 @@ import java.util.Map;
  *
  * @author chendong
  */
-public class LocalImageUtils {
-
-    public static final String ALL_IMAGE_KEY = "全部图片";
+public class LocalImageX {
 
     /**
      * 获取全部照片信息
@@ -69,7 +65,7 @@ public class LocalImageUtils {
                             height = imageCursor.getInt(heightColumnIndex);
                     }
                     if (width == 0 || height == 0) {
-                        BitmapFactory.Options bitmapSize = BitmapUtils.getBitmapSize(path);
+                        BitmapFactory.Options bitmapSize = BitmapX.getBitmapSize(path);
                         width = bitmapSize.outWidth;
                         height = bitmapSize.outHeight;
                     }
@@ -103,23 +99,23 @@ public class LocalImageUtils {
      * @param context 上下文
      * @return map(目录名称 目录下的所有照片)
      */
-    public static Map<String, List<ImageInfo>> formatImages4EachDir(Context context) {
-        return formatImages4EachDir(getImagesByMediaStore(context));
+    public static Map<String, List<ImageInfo>> formatImages4EachDir(Context context, String allName) {
+        return formatImages4EachDir(allName, getImagesByMediaStore(context));
     }
-
 
     /**
      * 目录名称 + 目录下的照片列表
      *
+     * @param allName 全部图片的 key
      * @param imageInfoList 全部的照片信息
      * @return map(目录名称 目录下的所有照片)
      */
-    public static Map<String, List<ImageInfo>> formatImages4EachDir(List<ImageInfo> imageInfoList) {
+    public static Map<String, List<ImageInfo>> formatImages4EachDir(String allName, List<ImageInfo> imageInfoList) {
         Map<String, List<ImageInfo>> map = new HashMap<>();
-        List<ImageInfo> imageInfoAll = new ArrayList<>();
-        imageInfoAll.addAll(imageInfoList);
-        map.put(ALL_IMAGE_KEY, imageInfoAll);
-
+        List<ImageInfo> imageInfoAll = new ArrayList<>(imageInfoList);
+        if (!EmptyX.isEmpty(allName)) {
+            map.put(allName, imageInfoAll);
+        }
         for (ImageInfo imageInfo : imageInfoList) {
 
             boolean isImageValid = imageInfo != null

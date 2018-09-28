@@ -1,4 +1,4 @@
-package com.march.common.utils;
+package com.march.common.exts;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -6,13 +6,15 @@ import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.view.View;
 
+import com.march.common.exts.RecycleX;
+
 /**
  * CreateAt : 7/13/17
  * Describe :
  *
  * @author chendong
  */
-public class DrawUtils {
+public class DrawX {
 
     /**
      * 创建一个画板
@@ -73,7 +75,7 @@ public class DrawUtils {
             scaledBitmap = drawingCache;
         canvas.drawBitmap(scaledBitmap, 0, 0, paint);
         view.setDrawingCacheEnabled(false);
-        BitmapUtils.recycleBitmaps(drawingCache, scaledBitmap);
+        RecycleX.recycle(drawingCache, scaledBitmap);
     }
 
 
@@ -82,7 +84,7 @@ public class DrawUtils {
         Bitmap drawingCache = view.getDrawingCache();
         canvas.drawBitmap(drawingCache, 0, 0, paint);
         view.setDrawingCacheEnabled(false);
-        BitmapUtils.recycleBitmaps(drawingCache);
+        RecycleX.recycle(drawingCache);
     }
 
 
