@@ -21,20 +21,28 @@ public class AppUIMixin {
     private Fragment                        appFragment;
     private android.support.v4.app.Fragment supportFragment;
 
-    public AppUIMixin(AppCompatActivity supportActivity) {
-        this.supportActivity = supportActivity;
+    public static AppUIMixin from(AppCompatActivity supportActivity) {
+        AppUIMixin appUIMixin = new AppUIMixin();
+        appUIMixin.supportActivity = supportActivity;
+        return appUIMixin;
     }
 
-    public AppUIMixin(Activity appActivity) {
-        this.appActivity = appActivity;
+    public static AppUIMixin from(Activity appActivity) {
+        AppUIMixin appUIMixin = new AppUIMixin();
+        appUIMixin.appActivity = appActivity;
+        return appUIMixin;
     }
 
-    public AppUIMixin(Fragment appFragment) {
-        this.appFragment = appFragment;
+    public static AppUIMixin from(Fragment appFragment) {
+        AppUIMixin appUIMixin = new AppUIMixin();
+        appUIMixin.appFragment = appFragment;
+        return appUIMixin;
     }
 
-    public AppUIMixin(android.support.v4.app.Fragment supportFragment) {
-        this.supportFragment = supportFragment;
+    public static AppUIMixin from(android.support.v4.app.Fragment supportFragment) {
+        AppUIMixin appUIMixin = new AppUIMixin();
+        appUIMixin.supportFragment = supportFragment;
+        return appUIMixin;
     }
 
     public void startActivity(Intent intent) {
