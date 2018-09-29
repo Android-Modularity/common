@@ -27,4 +27,12 @@ public class ActivityAnimX {
     public static void fadeFinish(Activity activity) {
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
+
+    public static void bottomTranslateStart(Activity activity){
+        activity.overridePendingTransition(R.anim.act_bottom_in, R.anim.act_no_anim);
+    }
+
+    public static void bottomTranslateFinish(Activity activity){
+        activity.overridePendingTransition(R.anim.act_no_anim, R.anim.act_bottom_out);
+    }
 }
