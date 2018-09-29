@@ -289,9 +289,13 @@ public class LogX {
     }
 
     public static void printTrace(String tag, String content, Object... args) {
-        for (int i = OFFSET; i < OFFSET + LIMIT; i++) {
-            String realContent = getContent(content, i, args);
-            Log.e(tag, realContent);
+        try {
+            for (int i = OFFSET; i < OFFSET + LIMIT; i++) {
+                String realContent = getContent(content, i, args);
+                Log.e(tag, realContent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
