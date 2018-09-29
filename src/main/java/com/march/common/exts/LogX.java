@@ -230,8 +230,7 @@ public class LogX {
         if (sOnLogListener != null && sOnLogListener.beforeLog(level, tag, msg)) {
             return;
         }
-        Log.e(tag, "✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️");
-        printTrace(tag, "点击跳转指定位置");
+        printTrace("Position ➡️", "⬅️️ 点击跳转指定位置");
         breakLog4K(msg, s -> {
             switch (level) {
                 case Log.VERBOSE:
@@ -251,7 +250,6 @@ public class LogX {
                     break;
             }
         });
-        Log.e(tag, "✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️️");
     }
 
     private static void breakLog4K(String msg, Consumer<String> consumer) {
