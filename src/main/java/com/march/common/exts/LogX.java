@@ -230,23 +230,28 @@ public class LogX {
         if (sOnLogListener != null && sOnLogListener.beforeLog(level, tag, msg)) {
             return;
         }
-        switch (level) {
-            case Log.VERBOSE:
-                breakLog4K(msg, s -> Log.v(tag, s));
-                break;
-            case Log.DEBUG:
-                breakLog4K(msg, s -> Log.d(tag, s));
-                break;
-            case Log.INFO:
-                breakLog4K(msg, s -> Log.i(tag, s));
-                break;
-            case Log.WARN:
-                breakLog4K(msg, s -> Log.w(tag, s));
-                break;
-            case Log.ERROR:
-                breakLog4K(msg, s -> Log.e(tag, s));
-                break;
-        }
+        Log.e(tag, "✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️");
+        printTrace(tag, "点击跳转指定位置");
+        breakLog4K(msg, s -> {
+            switch (level) {
+                case Log.VERBOSE:
+                    Log.v(tag, s);
+                    break;
+                case Log.DEBUG:
+                    Log.d(tag, s);
+                    break;
+                case Log.INFO:
+                    Log.i(tag, s);
+                    break;
+                case Log.WARN:
+                    Log.w(tag, s);
+                    break;
+                case Log.ERROR:
+                    Log.e(tag, s);
+                    break;
+            }
+        });
+        Log.e(tag, "✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️✈️️");
     }
 
     private static void breakLog4K(String msg, Consumer<String> consumer) {
@@ -270,8 +275,45 @@ public class LogX {
         }
     }
 
+    // 3
+    // getContent()
+    // printTrace
+    // breakLog4K
+    // dispatch
+    // Log.X
+    public static final int OFFSET = 6;
+    public static final int LIMIT  = 1;
 
     public interface OnLogListener {
         boolean beforeLog(int level, String tag, String msg);
     }
+
+    public static void printTrace(String tag, String content, Object... args) {
+        for (int i = OFFSET; i < OFFSET + LIMIT; i++) {
+            String realContent = getContent(content, i, args);
+            Log.e(tag, realContent);
+        }
+    }
+
+
+    private static String getNameFromTrace(StackTraceElement[] traceElements, int place) {
+        StringBuilder taskName = new StringBuilder();
+        if (traceElements != null && traceElements.length > place) {
+            StackTraceElement traceElement = traceElements[place];
+            taskName.append(traceElement.getMethodName());
+            taskName.append("(").append(traceElement.getFileName()).append(":").append(traceElement.getLineNumber()).append(")");
+        }
+        return taskName.toString();
+    }
+
+    private static String getContent(String msg, int place, Object... args) {
+        try {
+            String sourceLinks = getNameFromTrace(Thread.currentThread().getStackTrace(), place);
+            return sourceLinks + String.format(msg, args);
+        } catch (Throwable throwable) {
+            return msg;
+        }
+    }
+
+
 }
