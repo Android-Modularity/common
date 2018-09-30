@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -205,6 +206,11 @@ public class LogX {
 
     public static void e(String tag, String msg) {
         dispatch(Log.ERROR, tag, msg);
+    }
+
+    public static void template(String template, Object... args) {
+        String format = String.format(Locale.getDefault(), template, args);
+        dispatch(Log.ERROR, findTag(), format);
     }
 
     private static String findTag() {
