@@ -23,7 +23,6 @@ public class Common {
         exports.appConfig = new AppBuildConfig(buildClazz);
         SizeX.init();
         ToastX.init(new ToastX.Config());
-
     }
 
     public static Context app() {
