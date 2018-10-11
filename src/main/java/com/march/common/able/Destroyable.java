@@ -7,5 +7,5 @@ package com.march.common.able;
  * @author chendong
  */
 public interface Destroyable {
-    void destroy();
+    void onDestroy();
 }

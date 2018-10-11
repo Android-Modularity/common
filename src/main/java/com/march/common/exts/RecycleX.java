@@ -76,7 +76,7 @@ public class RecycleX {
     public static boolean recycle(Destroyable... destroyables) {
         for (Destroyable destroyable : destroyables) {
             if (destroyable != null) {
-                destroyable.destroy();
+                destroyable.onDestroy();
             }
         }
         return true;
