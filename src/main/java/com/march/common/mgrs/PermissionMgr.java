@@ -98,8 +98,10 @@ public class PermissionMgr implements IMgr {
 
     @Override
     public void recycle() {
-        mConsumerSparseArray.clear();
-        mConsumerSparseArray = null;
+        if (mConsumerSparseArray != null) {
+            mConsumerSparseArray.clear();
+            mConsumerSparseArray = null;
+        }
     }
 
     @Override
