@@ -1,6 +1,7 @@
 package com.march.common.exts;
 
 import android.os.Environment;
+import android.text.TextUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -119,5 +120,31 @@ public class FileX {
         return !FileX.isNotExist(filePath) && (filePath.toLowerCase().endsWith("jpg") || filePath.toLowerCase().endsWith("png") || filePath.toLowerCase().endsWith("gif"));
     }
 
+
+    /**
+     * 文件后缀
+     *
+     * @param path 路径
+     * @return 后缀名
+     */
+    public static String getSuffix(String path, String def) {
+        if (!TextUtils.isEmpty(path)) {
+            int lineIndex = path.lastIndexOf("/");
+            if (lineIndex != -1) {
+                String fileName = path.substring(lineIndex, path.length());
+                if (!TextUtils.isEmpty(fileName)) {
+                    int pointIndex = fileName.lastIndexOf(".");
+                    if (pointIndex != -1) {
+                        String suffix = fileName.substring(pointIndex, fileName.length());
+                        if (!TextUtils.isEmpty(suffix)) {
+                            return suffix;
+                        }
+                    }
+
+                }
+            }
+        }
+        return def;
+    }
 
 }

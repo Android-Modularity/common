@@ -3,6 +3,7 @@ package com.march.common;
 import android.app.Application;
 import android.content.Context;
 
+import com.march.common.exts.PathX;
 import com.march.common.exts.SizeX;
 import com.march.common.exts.ToastX;
 import com.march.common.model.AppBuildConfig;
@@ -23,6 +24,7 @@ public class Common {
         exports.appConfig = new AppBuildConfig(buildClazz);
         SizeX.init();
         ToastX.init(new ToastX.Config());
+        PathX.init(app);
     }
 
     public static Context app() {

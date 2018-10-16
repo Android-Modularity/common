@@ -22,6 +22,8 @@ public class BytesPool {
     private static final BytesPool BYTE_ARRAY_POOL = new BytesPool();
     private final Queue<byte[]> tempQueue = new ArrayDeque<>(0);
 
+
+
     private BytesPool() {
     }
 
@@ -50,6 +52,9 @@ public class BytesPool {
     }
 
     public boolean releaseBytes(byte[] bytes) {
+        if (bytes == null) {
+            return false;
+        }
         if (bytes.length != TEMP_BYTES_SIZE) {
             return false;
         }
@@ -62,5 +67,9 @@ public class BytesPool {
             }
         }
         return accepted;
+    }
+
+    public int size() {
+        return tempQueue.size();
     }
 }
