@@ -41,6 +41,9 @@ public class ViewX {
      * @param visible v
      */
     public static void setVisibility(View view, int visible) {
+        if (view == null) {
+            return;
+        }
         if (view.getVisibility() != visible) {
             view.setVisibility(visible);
         }
