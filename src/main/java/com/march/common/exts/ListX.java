@@ -154,6 +154,43 @@ public class ListX {
         return false;
     }
 
+
+    /**
+     * 查找符合规则的一项
+     *
+     * @param list      数据源
+     * @param predicate 测试
+     * @param <T>       范型
+     * @return 查找到的
+     */
+    public static <T> T find(List<T> list, Predicate<T> predicate) {
+        for (T t : list) {
+            if (predicate.test(t)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * 从后面查找符合规则的一项
+     *
+     * @param list      数据源
+     * @param predicate 测试
+     * @param <T>       范型
+     * @return 查找到的
+     */
+    public static <T> T findLast(List<T> list, Predicate<T> predicate) {
+        int start = list.size() - 1;
+        for (int i = start; i >= 0; i--) {
+            if (predicate.test(list.get(i))) {
+                return list.get(i);
+            }
+        }
+        return null;
+    }
+
     /**
      * @param list 数据源
      * @param sign 间隔符
@@ -165,6 +202,24 @@ public class ListX {
         int size = list.size();
         for (int i = 0; i < size; i++) {
             builder.append(list.get(i).toString());
+            if (i != size - 1) {
+                builder.append(sign);
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
+     * @param list 数据源
+     * @param sign 间隔符
+     * @param <T>  范型
+     * @return 列表调用 toString 拼接成字符串
+     */
+    public static <T> String join2String(List<T> list, String sign, Function<T, String> mapper) {
+        StringBuilder builder = new StringBuilder();
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            builder.append(mapper.apply(list.get(i)));
             if (i != size - 1) {
                 builder.append(sign);
             }
