@@ -25,6 +25,9 @@ public class ListX {
      * @param <T>      范型
      */
     public static <T> void foreach(List<T> srcList, Consumer<T> consumer) {
+        if (EmptyX.isEmpty(srcList)) {
+            return;
+        }
         for (T t : srcList) {
             consumer.accept(t);
         }
