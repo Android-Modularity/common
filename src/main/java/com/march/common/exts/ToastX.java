@@ -24,9 +24,9 @@ import com.march.common.R;
 public class ToastX {
 
     private static Handler sHandler;
-    private static Config sConfig;
+    private static Config  sConfig;
     private static boolean sNoToast;
-    private static Toast sToast;
+    private static Toast   sToast;
 
     public static void setNoToast(boolean noToast) {
         sNoToast = noToast;
@@ -193,7 +193,7 @@ public class ToastX {
     public static class Config {
 
         // 文字相关
-        int textColor = Color.WHITE; // 文字颜色
+        int textColor    = Color.WHITE; // 文字颜色
         int textSizeInSp = 16; // 文字大小
 
         // toast 位置信息
@@ -204,12 +204,12 @@ public class ToastX {
 
         // 背景颜色
         Drawable bgDrawable;
-        int bgRes;
-        int bgColor = Color.BLACK;
+        int      bgRes;
+        int bgColor      = Color.BLACK;
         int bgRadiusInDp = 5;
 
         // 图片资源
-        int iconRes;
+        int      iconRes;
         Drawable iconDrawable;
 
 

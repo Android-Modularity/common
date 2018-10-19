@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.march.common.exts.LogX;
-import com.march.common.exts.UriX;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

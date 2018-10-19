@@ -16,9 +16,9 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class AppUIMixin {
 
-    private Activity appActivity;
-    private AppCompatActivity supportActivity;
-    private Fragment appFragment;
+    private Activity                        appActivity;
+    private AppCompatActivity               supportActivity;
+    private Fragment                        appFragment;
     private android.support.v4.app.Fragment supportFragment;
 
     public static AppUIMixin from(AppCompatActivity supportActivity) {

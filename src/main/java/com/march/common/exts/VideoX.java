@@ -80,9 +80,9 @@ public class VideoX {
     }
 
     public static class MetaData {
-        int width;
-        int height;
-        long duration;
+        int    width;
+        int    height;
+        long   duration;
         Bitmap thumb;
     }
 }

@@ -22,10 +22,10 @@ import java.util.Set;
  */
 public class KVMgr implements IMgr {
 
-    public static final int STRATEGY_MMKV = 0;
-    public static final int STRATEGY_SP = 1;
-    public static final int STRATEGY_MEMORY = 2;
-    private static SparseArray<IKV> sIKVMap = new SparseArray<>();
+    public static final int              STRATEGY_MMKV   = 0;
+    public static final int              STRATEGY_SP     = 1;
+    public static final int              STRATEGY_MEMORY = 2;
+    private static      SparseArray<IKV> sIKVMap         = new SparseArray<>();
 
     private KVMgr() {
 

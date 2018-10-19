@@ -17,7 +17,8 @@ public class ExecutorsPool {
     private static ExecutorsPool sInst;
     ExecutorService mCacheExecutor;
     ExecutorService mSingleExecutor;
-    Handler mHandler;
+    Handler         mHandler;
+
     private ExecutorsPool() {
 
     }
@@ -31,6 +32,26 @@ public class ExecutorsPool {
             }
         }
         return sInst;
+    }
+
+    public static void bg(Runnable runnable) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            runnable.run();
+        } else {
+            getInst().cache().execute(runnable);
+        }
+    }
+
+    public static void ui(Runnable runnable) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            getInst().ui().post(runnable);
+        } else {
+            runnable.run();
+        }
+    }
+
+    public static void ui(Runnable runnable, long delay) {
+        getInst().ui().postDelayed(runnable, delay);
     }
 
     public ExecutorService cache() {
@@ -52,26 +73,6 @@ public class ExecutorsPool {
             mHandler = new Handler(Looper.getMainLooper());
         }
         return mHandler;
-    }
-
-    public static void bg(Runnable runnable) {
-        if (Looper.myLooper() != Looper.getMainLooper()) {
-            runnable.run();
-        } else {
-            getInst().cache().execute(runnable);
-        }
-    }
-
-    public static void ui(Runnable runnable) {
-        if (Looper.myLooper() != Looper.getMainLooper()) {
-            getInst().ui().post(runnable);
-        } else {
-            runnable.run();
-        }
-    }
-
-    public static void ui(Runnable runnable, long delay) {
-        getInst().ui().postDelayed(runnable, delay);
     }
 
 }

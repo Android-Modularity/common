@@ -14,7 +14,7 @@ import java.io.File;
 /**
  * CreateAt : 2017/5/24
  * Describe :
- *
+ * <p>
  * 用来解决存入相册后无法立刻刷新到的问题
  * 相册更新通知帮助类
  * 创建时间单位ms

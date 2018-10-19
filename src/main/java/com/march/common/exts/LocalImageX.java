@@ -106,7 +106,7 @@ public class LocalImageX {
     /**
      * 目录名称 + 目录下的照片列表
      *
-     * @param allName 全部图片的 key
+     * @param allName       全部图片的 key
      * @param imageInfoList 全部的照片信息
      * @return map(目录名称 目录下的所有照片)
      */

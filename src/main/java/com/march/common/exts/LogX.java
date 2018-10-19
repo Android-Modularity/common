@@ -31,8 +31,15 @@ import java.util.Map;
  */
 public class LogX {
 
+    // 3
+    // getContent()
+    // printTrace
+    // breakLog4K
+    // dispatch
+    // Log.X
+    public static final int OFFSET = 6;
+    public static final int LIMIT  = 1;
     private static String TAG = LogX.class.getSimpleName();
-
     private static boolean DEBUG = true;
     private static OnLogListener sOnLogListener;
 
@@ -279,19 +286,6 @@ public class LogX {
         }
     }
 
-    // 3
-    // getContent()
-    // printTrace
-    // breakLog4K
-    // dispatch
-    // Log.X
-    public static final int OFFSET = 6;
-    public static final int LIMIT  = 1;
-
-    public interface OnLogListener {
-        boolean beforeLog(int level, String tag, String msg);
-    }
-
     public static void printTrace(String tag, String content, Object... args) {
         try {
             for (int i = OFFSET; i < OFFSET + LIMIT; i++) {
@@ -302,7 +296,6 @@ public class LogX {
             e.printStackTrace();
         }
     }
-
 
     private static String getNameFromTrace(StackTraceElement[] traceElements, int place) {
         StringBuilder taskName = new StringBuilder();
@@ -321,6 +314,10 @@ public class LogX {
         } catch (Throwable throwable) {
             return msg;
         }
+    }
+
+    public interface OnLogListener {
+        boolean beforeLog(int level, String tag, String msg);
     }
 
 

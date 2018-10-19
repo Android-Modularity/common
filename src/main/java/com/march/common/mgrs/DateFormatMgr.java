@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class DateFormatMgr implements IMgr {
 
-    public static final String PATTERN_yyyyMMdd = "yyyy-MM-dd";
-    public static final String PATTERN_HHmmss = "HH:mm:ss";
+    public static final String PATTERN_yyyyMMdd       = "yyyy-MM-dd";
+    public static final String PATTERN_HHmmss         = "HH:mm:ss";
     public static final String PATTERN_yyyyMMddHHmmss = "yyyy-MM-dd:HH:mm:ss";
 
     private Map<String, ThreadLocal<SimpleDateFormat>> mDateFmtThreadLocalMap;

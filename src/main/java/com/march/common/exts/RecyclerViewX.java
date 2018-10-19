@@ -13,8 +13,9 @@ public class RecyclerViewX {
 
     /**
      * 滑动到顶部
+     *
      * @param recyclerView rv
-     * @param pos pos
+     * @param pos          pos
      */
     public static void smoothScrollPositionTop(RecyclerView recyclerView, final int pos) {
         LinearSmoothScroller smoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
@@ -34,8 +35,9 @@ public class RecyclerViewX {
 
     /**
      * 滑动到底部
+     *
      * @param recyclerView rv
-     * @param pos pos
+     * @param pos          pos
      */
     public static void smoothScrollPositionBottom(RecyclerView recyclerView, final int pos) {
         LinearSmoothScroller smoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {

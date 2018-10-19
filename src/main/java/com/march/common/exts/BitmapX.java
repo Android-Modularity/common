@@ -3,9 +3,6 @@ package com.march.common.exts;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.march.common.exts.FileX;
-import com.march.common.exts.RecycleX;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;

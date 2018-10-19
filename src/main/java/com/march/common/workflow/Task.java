@@ -15,11 +15,11 @@ import java.util.concurrent.Executors;
  */
 public class Task<TResult> {
 
-    public static final int UI = 0;
-    public static final int BG = 1;
-    public static final int IMMEDIATE = 2;
+    public static final int    UI        = 0;
+    public static final int    BG        = 1;
+    public static final int    IMMEDIATE = 2;
     // UI 线程处理者
-    private static Poster uiPoster = new Poster() {
+    private static      Poster uiPoster  = new Poster() {
         Handler handler = new Handler(Looper.getMainLooper());
 
         @Override
@@ -32,7 +32,7 @@ public class Task<TResult> {
         }
     };
     // 子线程处理者
-    private static Poster bgPoster = new Poster() {
+    private static      Poster bgPoster  = new Poster() {
         ExecutorService service = Executors.newCachedThreadPool();
 
         @Override
@@ -45,17 +45,17 @@ public class Task<TResult> {
         }
     };
     // 任务是否已经执行
-    private boolean alreadyCall;
+    private boolean     alreadyCall;
     // 任务名称
-    private int taskIndex;
+    private int         taskIndex;
     // 上一个任务节点
-    private Task preNode;
+    private Task        preNode;
     // 下一个任务节点
-    private Task nextNode;
+    private Task        nextNode;
     // 当前任务节点
-    private Task curNode;
+    private Task        curNode;
     // 当前节点的任务内容
-    private TaskAction taskAction;
+    private TaskAction  taskAction;
     // 错误处理
     private ErrorAction errorAction;
     // 线程模式

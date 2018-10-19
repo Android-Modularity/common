@@ -79,6 +79,7 @@ public class NetX {
 
     /**
      * wifi网络是否连接
+     *
      * @return 是否连接
      */
     @RequiresPermission(ACCESS_WIFI_STATE)

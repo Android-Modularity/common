@@ -14,11 +14,11 @@ import java.lang.reflect.Field;
 public class AppBuildConfig {
 
     public boolean DEBUG;
-    public String APPLICATION_ID;
-    public String BUILD_TYPE;
-    public String FLAVOR;
-    public int VERSION_CODE;
-    public String VERSION_NAME;
+    public String  APPLICATION_ID;
+    public String  BUILD_TYPE;
+    public String  FLAVOR;
+    public int     VERSION_CODE;
+    public String  VERSION_NAME;
 
     public AppBuildConfig(Class clazz) {
         Field[] declaredFields = clazz.getDeclaredFields();

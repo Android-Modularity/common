@@ -6,8 +6,6 @@ import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.view.View;
 
-import com.march.common.exts.RecycleX;
-
 /**
  * CreateAt : 7/13/17
  * Describe :
