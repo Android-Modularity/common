@@ -229,4 +229,21 @@ public class ListX {
         }
         return builder.toString();
     }
+
+
+    /**
+     * @param list      数据源
+     * @param predicate 规则
+     * @param <T>       范型
+     * @return 符合条件的元素个数
+     */
+    public static <T> int count(List<T> list, Predicate<T> predicate) {
+        int count = 0;
+        for (T t : list) {
+            if (predicate.test(t)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
