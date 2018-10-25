@@ -40,7 +40,7 @@ public class EmptyX {
     }
 
     public static boolean isEmpty(File file) {
-        return FileX.isNotExist(file);
+        return file == null || FileX.isNotExist(file);
     }
 
     public static boolean isEmpty(Integer integer) {

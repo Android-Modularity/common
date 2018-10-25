@@ -21,6 +21,20 @@ public class AppUIMixin {
     private Fragment                        appFragment;
     private android.support.v4.app.Fragment supportFragment;
 
+    public static AppUIMixin from(Object object) {
+        if (object instanceof AppCompatActivity) {
+            return from(((AppCompatActivity) object));
+        } else if (object instanceof Activity) {
+            return from(((Activity) object));
+        } else if (object instanceof Fragment) {
+            return from(((Fragment) object));
+        } else if (object instanceof android.support.v4.app.Fragment) {
+            return from(((android.support.v4.app.Fragment) object));
+        }
+        return new AppUIMixin();
+    }
+
+
     public static AppUIMixin from(AppCompatActivity supportActivity) {
         AppUIMixin appUIMixin = new AppUIMixin();
         appUIMixin.supportActivity = supportActivity;

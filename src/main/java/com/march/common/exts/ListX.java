@@ -43,6 +43,9 @@ public class ListX {
      */
     public static <T> List<T> filter(List<T> srcList, Predicate<T> predicate) {
         List<T> result = new ArrayList<>();
+        if (EmptyX.isEmpty(srcList)) {
+            return result;
+        }
         for (T t : srcList) {
             if (predicate.test(t)) {
                 result.add(t);

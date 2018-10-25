@@ -62,8 +62,9 @@ public class FileX {
      * @return 正确删除
      */
     public static boolean delete(File delFile) {
-        if (isNotExist(delFile))
+        if (EmptyX.isEmpty(delFile)) {
             return false;
+        }
         if (delFile.isFile()) {
             return delFile.delete();
         } else if (delFile.isDirectory()) {
