@@ -159,6 +159,23 @@ public class ListX {
 
 
     /**
+     * 根据表达式查找坐标
+     *
+     * @param list      数据集合
+     * @param predicate
+     * @param <T>
+     * @return
+     */
+    public static <T> int indexOf(List<T> list, Predicate<T> predicate) {
+        for (int i = 0; i < list.size(); i++) {
+            if (predicate.test(list.get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * 查找符合规则的一项
      *
      * @param list      数据源
