@@ -21,7 +21,7 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
+/*
  * @author cginechen
  * @date 2016-08-11
  */
@@ -75,7 +75,7 @@ public class QMUIDeviceHelper {
                 Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
-    /**
+    /*
      * 判断是否为平板设备
      */
     public static boolean isTablet(Context context) {
@@ -87,14 +87,14 @@ public class QMUIDeviceHelper {
         return sIsTabletValue;
     }
 
-    /**
+    /*
      * 判断是否是flyme系统
      */
     public static boolean isFlyme() {
         return !TextUtils.isEmpty(sFlymeVersionName) && sFlymeVersionName.contains(FLYME);
     }
 
-    /**
+    /*
      * 判断是否是MIUI系统
      */
     public static boolean isMIUI() {
@@ -161,7 +161,7 @@ public class QMUIDeviceHelper {
         return isPhone(MEIZUBOARD) || isFlyme();
     }
 
-    /**
+    /*
      * 判断是否为小米
      * https://dev.mi.com/doc/?p=254
      */
@@ -186,7 +186,7 @@ public class QMUIDeviceHelper {
     }
 
 
-    /**
+    /*
      * 判断是否为 ZUK Z1 和 ZTK C2016。
      * 两台设备的系统虽然为 android 6.0，但不支持状态栏icon颜色改变，因此经常需要对它们进行额外判断。
      */
@@ -213,7 +213,7 @@ public class QMUIDeviceHelper {
         return false;
     }
 
-    /**
+    /*
      * 判断悬浮窗权限（目前主要用户魅族与小米的检测）。
      */
     public static boolean isFloatWindowOpAllowed(Context context) {
