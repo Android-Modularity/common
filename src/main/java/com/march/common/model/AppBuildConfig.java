@@ -1,6 +1,6 @@
 package com.march.common.model;
 
-import com.march.common.utils.LgUtils;
+import com.march.common.exts.LogX;
 
 import java.lang.reflect.Field;
 
@@ -46,7 +46,7 @@ public class AppBuildConfig {
                         break;
                 }
             } catch (IllegalAccessException e) {
-                LgUtils.e(e);
+                LogX.e(e);
             }
         }
     }

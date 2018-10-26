@@ -15,10 +15,35 @@ import java.util.concurrent.Executors;
  */
 public class Task<TResult> {
 
-    public static final int UI        = 0;
-    public static final int BG        = 1;
-    public static final int IMMEDIATE = 2;
+    public static final int    UI        = 0;
+    public static final int    BG        = 1;
+    public static final int    IMMEDIATE = 2;
+    // UI 线程处理者
+    private static      Poster uiPoster  = new Poster() {
+        Handler handler = new Handler(Looper.getMainLooper());
 
+        @Override
+        public void post(Runnable runnable) {
+            if (isUI()) {
+                runnable.run();
+            } else {
+                handler.post(runnable);
+            }
+        }
+    };
+    // 子线程处理者
+    private static      Poster bgPoster  = new Poster() {
+        ExecutorService service = Executors.newCachedThreadPool();
+
+        @Override
+        public void post(Runnable runnable) {
+            if (isUI()) {
+                service.execute(runnable);
+            } else {
+                runnable.run();
+            }
+        }
+    };
     // 任务是否已经执行
     private boolean     alreadyCall;
     // 任务名称
@@ -41,47 +66,6 @@ public class Task<TResult> {
         return Looper.myLooper() == Looper.getMainLooper();
     }
 
-    // UI 线程处理者
-    private static Poster uiPoster = new Poster() {
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        @Override
-        public void post(Runnable runnable) {
-            if (isUI()) {
-                runnable.run();
-            } else {
-                handler.post(runnable);
-            }
-        }
-    };
-
-    // 子线程处理者
-    private static Poster bgPoster = new Poster() {
-        ExecutorService service = Executors.newCachedThreadPool();
-
-        @Override
-        public void post(Runnable runnable) {
-            if (isUI()) {
-                service.execute(runnable);
-            } else {
-                runnable.run();
-            }
-        }
-    };
-
-    // 初始化参数
-    private void init(int threadMode, Task preNode, Task curNode) {
-        if (preNode == null) {
-            this.taskIndex = 0;
-        } else {
-            this.taskIndex = preNode.taskIndex + 1;
-        }
-        this.threadMode = threadMode;
-        this.preNode = preNode;
-        this.curNode = curNode;
-        this.nextNode = null;
-    }
-
     // 在当前线程启动任务链
     public static <TResult> Task<TResult> call(@NonNull CallAction<TResult> action) {
         return call(IMMEDIATE, action);
@@ -98,6 +82,19 @@ public class Task<TResult> {
             }
         };
         return taskNode;
+    }
+
+    // 初始化参数
+    private void init(int threadMode, Task preNode, Task curNode) {
+        if (preNode == null) {
+            this.taskIndex = 0;
+        } else {
+            this.taskIndex = preNode.taskIndex + 1;
+        }
+        this.threadMode = threadMode;
+        this.preNode = preNode;
+        this.curNode = curNode;
+        this.nextNode = null;
     }
 
     // 在当前线程追加一个任务
@@ -199,10 +196,6 @@ public class Task<TResult> {
         return sb.toString();
     }
 
-    interface Poster {
-        void post(Runnable runnable);
-    }
-
     private Task findFirstTaskNode() {
         Task node = curNode;
         while (node.preNode != null) {
@@ -217,5 +210,9 @@ public class Task<TResult> {
             node = node.nextNode;
         }
         return node;
+    }
+
+    interface Poster {
+        void post(Runnable runnable);
     }
 }

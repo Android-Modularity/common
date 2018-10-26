@@ -3,14 +3,11 @@ package com.march.common;
 import android.app.Application;
 import android.content.Context;
 
-import com.march.common.adapter.ImgLoadAdapter;
-import com.march.common.adapter.JsonAdapter;
-import com.march.common.extensions.SizeX;
+import com.march.common.exts.PathX;
+import com.march.common.exts.SizeX;
+import com.march.common.exts.ToastX;
 import com.march.common.model.AppBuildConfig;
-import com.march.common.model.WeakContext;
-import com.march.common.utils.DimensUtils;
-import com.march.common.utils.PathUtils;
-import com.march.common.utils.ToastUtils;
+import com.march.common.model.Exports;
 
 /**
  * CreateAt : 2017/12/6
@@ -20,58 +17,27 @@ import com.march.common.utils.ToastUtils;
  */
 public class Common {
 
-    private static Common sInst;
+    public static Exports exports = new Exports();
 
-    public static Common getInst() {
-        if (sInst == null) {
-            synchronized (Common.class) {
-                if (sInst == null) {
-                    sInst = new Common();
-                }
-            }
-        }
-        return sInst;
-    }
-
-    private Common() {
-
-    }
-
-    private WeakContext    mWeakContext;
-    private ImgLoadAdapter mImgLoadAdapter;
-    private JsonAdapter    mJsonAdapter;
-    private AppBuildConfig mAppBuildConfig;
-
-    public static void init(Application app, Class buildCls) {
-        getInst().mWeakContext = new WeakContext(app);
-        getInst().mAppBuildConfig = new AppBuildConfig(buildCls);
-        DimensUtils.init();
+    public static void init(Application app, Class buildClazz) {
+        exports.app = app;
+        exports.appConfig = new AppBuildConfig(buildClazz);
         SizeX.init();
-        ToastUtils.init(new ToastUtils.Config());
-        PathUtils.init(app, getInst().mAppBuildConfig.APPLICATION_ID);
+        ToastX.init(new ToastX.Config().setOneToast(true));
+        PathX.init(app);
+    }
+
+    public static Context app() {
+        return exports.app;
+    }
+
+    public static AppBuildConfig appConfig() {
+        return exports.appConfig;
     }
 
     public Context getContext() {
-        return mWeakContext.get();
+        return exports.app;
     }
 
-    public AppBuildConfig getBuildConfig() {
-        return mAppBuildConfig;
-    }
 
-    public ImgLoadAdapter getImgLoadAdapter() {
-        return mImgLoadAdapter;
-    }
-
-    public void setImgLoadAdapter(ImgLoadAdapter imgLoadAdapter) {
-        mImgLoadAdapter = imgLoadAdapter;
-    }
-
-    public JsonAdapter getJsonAdapter() {
-        return mJsonAdapter;
-    }
-
-    public void setJsonAdapter(JsonAdapter jsonAdapter) {
-        mJsonAdapter = jsonAdapter;
-    }
 }

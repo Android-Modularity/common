@@ -13,8 +13,15 @@ import java.util.concurrent.Executors;
  * @author chendong
  */
 public class ExecutorsPool {
-    private static ExecutorsPool sInst;
 
+    private static ExecutorsPool sInst;
+    ExecutorService mCacheExecutor;
+    ExecutorService mSingleExecutor;
+    Handler         mHandler;
+
+    private ExecutorsPool() {
+
+    }
 
     public static ExecutorsPool getInst() {
         if (sInst == null) {
@@ -27,14 +34,25 @@ public class ExecutorsPool {
         return sInst;
     }
 
-
-    private ExecutorsPool() {
-
+    public static void bg(Runnable runnable) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            runnable.run();
+        } else {
+            getInst().cache().execute(runnable);
+        }
     }
 
-    ExecutorService mCacheExecutor;
-    ExecutorService mSingleExecutor;
-    Handler         mHandler;
+    public static void ui(Runnable runnable) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            getInst().ui().post(runnable);
+        } else {
+            runnable.run();
+        }
+    }
+
+    public static void ui(Runnable runnable, long delay) {
+        getInst().ui().postDelayed(runnable, delay);
+    }
 
     public ExecutorService cache() {
         if (mCacheExecutor == null) {
@@ -57,19 +75,4 @@ public class ExecutorsPool {
         return mHandler;
     }
 
-    public void execute(Runnable runnable) {
-        cache().execute(runnable);
-    }
-
-    public void executeOnBg(Runnable runnable) {
-        cache().execute(runnable);
-    }
-
-    public void executeOnUI(Runnable runnable) {
-        ui().post(runnable);
-    }
-
-    public void executeOnUI(Runnable runnable, long delay) {
-        ui().postDelayed(runnable, delay);
-    }
 }

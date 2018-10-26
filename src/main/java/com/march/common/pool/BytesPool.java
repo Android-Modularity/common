@@ -13,21 +13,21 @@ import java.util.Queue;
  */
 public class BytesPool {
 
-    private static final String TAG = "ByteArrayPool";
+    private static final String        TAG                  = "ByteArrayPool";
     // 64 KB.
-    private static final int TEMP_BYTES_SIZE = 64 * 1024;
+    private static final int           TEMP_BYTES_SIZE      = 64 * 1024;
     // 512 KB.
-    private static final int MAX_SIZE = 2 * 1048 * 1024;
-    private static final int MAX_BYTE_ARRAY_COUNT = MAX_SIZE / TEMP_BYTES_SIZE;
+    private static final int           MAX_SIZE             = 2 * 1048 * 1024;
+    private static final int           MAX_BYTE_ARRAY_COUNT = MAX_SIZE / TEMP_BYTES_SIZE;
+    private static final BytesPool     BYTE_ARRAY_POOL      = new BytesPool();
+    private final        Queue<byte[]> tempQueue            = new ArrayDeque<>(0);
 
-    private final Queue<byte[]> tempQueue = new ArrayDeque<>(0);
-    private static final BytesPool BYTE_ARRAY_POOL = new BytesPool();
+
+    private BytesPool() {
+    }
 
     public static BytesPool get() {
         return BYTE_ARRAY_POOL;
-    }
-
-    private BytesPool() {
     }
 
     public void clear() {
@@ -51,6 +51,9 @@ public class BytesPool {
     }
 
     public boolean releaseBytes(byte[] bytes) {
+        if (bytes == null) {
+            return false;
+        }
         if (bytes.length != TEMP_BYTES_SIZE) {
             return false;
         }
@@ -63,5 +66,9 @@ public class BytesPool {
             }
         }
         return accepted;
+    }
+
+    public int size() {
+        return tempQueue.size();
     }
 }
