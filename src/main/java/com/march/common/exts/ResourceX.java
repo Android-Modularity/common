@@ -10,6 +10,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 
+import com.march.common.Common;
+
 
 /**
  * CreateAt : 7/11/17
@@ -41,6 +43,20 @@ public class ResourceX {
      */
     public static Drawable getDrawable(Context context, int drawableRes) {
         return context.getResources().getDrawable(drawableRes);
+    }
+
+
+    public static int getColor(int colorRes) {
+        return Common.app().getResources().getColor(colorRes);
+    }
+
+    public static int getColor(String color) {
+        try {
+            return Color.parseColor(color);
+        } catch (Exception e) {
+            return Color.WHITE;
+        }
+
     }
 
     /**

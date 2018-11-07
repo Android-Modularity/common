@@ -1,5 +1,7 @@
 package com.march.common.exts;
 
+import java.util.Locale;
+
 /**
  * CreateAt : 2018/10/25
  * Describe :
@@ -17,5 +19,9 @@ public class StringX {
         } else {
             return source.substring(0, length) + ending;
         }
+    }
+
+    public static String format(String template, Object... args) {
+        return String.format(Locale.getDefault(), template, args);
     }
 }

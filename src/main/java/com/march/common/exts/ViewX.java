@@ -49,6 +49,12 @@ public class ViewX {
         }
     }
 
+    public static void setVisibility(int visible, View... views) {
+        for (View view : views) {
+            ViewX.setVisibility(view, visible);
+        }
+    }
+
     /**
      * 为 View 设置背景
      *
