@@ -82,7 +82,7 @@ public class ListX {
         if (ts == null || ts.length == 0) {
             return new ArrayList<>();
         }
-        return Arrays.asList(ts);
+        return new ArrayList<>(Arrays.asList(ts));
     }
 
     /**
