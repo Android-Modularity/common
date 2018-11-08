@@ -118,6 +118,7 @@ public class KeyBoardX {
     /**
      * 检测键盘改变
      *
+     * @param height 键盘高度
      * @param tokenView    容器的 View
      * @param isWatching   是否在观察
      * @param hideConsumer 隐藏返回 true, 显示返回 false

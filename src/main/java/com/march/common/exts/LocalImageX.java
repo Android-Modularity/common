@@ -97,6 +97,7 @@ public class LocalImageX {
      * 获取全部照片并且按照文件夹分离排序
      *
      * @param context 上下文
+     *                @param allName 全部图片目录
      * @return map(目录名称 目录下的所有照片)
      */
     public static Map<String, List<ImageInfo>> formatImages4EachDir(Context context, String allName) {

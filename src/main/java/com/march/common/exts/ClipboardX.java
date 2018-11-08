@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-/**
+/*
  * CreateAt : 2018/9/30
  * Describe :
  *
@@ -21,8 +21,9 @@ public class ClipboardX {
         return (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
     }
 
-    /**
-     * 复制 -> 类型一: text
+    /*
+     * 复制  类型一: text
+     * 
      */
     public static void copy(Context context, String text) {
         ClipboardManager clipboard = getManager(context);
@@ -32,8 +33,8 @@ public class ClipboardX {
         }
     }
 
-    /**
-     * 粘贴 -> 类型一: text
+    /*
+     * 粘贴  类型一: text
      */
     public static CharSequence pasteText(Context context) {
         ClipboardManager clipboard = getManager(context);
@@ -46,8 +47,8 @@ public class ClipboardX {
         return null;
     }
 
-    /**
-     * 复制 -> 类型二: Uri
+    /*
+     * 复制  类型二: Uri
      */
     public static void copy(Context context, Uri uri) {
         ClipboardManager clipboard = getManager(context);
@@ -57,8 +58,8 @@ public class ClipboardX {
         }
     }
 
-    /**
-     * 粘贴 -> 类型二: Uri
+    /*
+     * 粘贴  类型二: Uri
      */
     public static Uri pasteUri(Context context) {
         ClipboardManager clipboard = getManager(context);
@@ -71,8 +72,8 @@ public class ClipboardX {
         return null;
     }
 
-    /**
-     * 复制 -> 类型三: Intent
+    /*
+     * 复制  类型三: Intent
      */
     public static void copy(Context context, Intent intent) {
         ClipboardManager clipboard = getManager(context);
@@ -82,8 +83,8 @@ public class ClipboardX {
         }
     }
 
-    /**
-     * 粘贴 -> 类型三: Intent
+    /*
+     * 粘贴  类型三: Intent
      */
     public static Intent pasteIntent(Context context) {
         ClipboardManager clipboard = getManager(context);

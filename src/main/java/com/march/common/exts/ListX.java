@@ -165,9 +165,9 @@ public class ListX {
      * 根据表达式查找坐标
      *
      * @param list      数据集合
-     * @param predicate
-     * @param <T>
-     * @return
+     * @param predicate 条件
+     * @param <T> 范型
+     * @return 符合规则元素的 index
      */
     public static <T> int indexOf(List<T> list, Predicate<T> predicate) {
         for (int i = 0; i < list.size(); i++) {
@@ -236,6 +236,7 @@ public class ListX {
      * @param list 数据源
      * @param sign 间隔符
      * @param <T>  范型
+     * @param mapper 对象转 string
      * @return 列表调用 toString 拼接成字符串
      */
     public static <T> String join2String(List<T> list, String sign, Function<T, String> mapper) {

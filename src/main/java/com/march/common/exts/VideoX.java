@@ -21,8 +21,8 @@ public class VideoX {
     /**
      * 获取视频的信息
      *
-     * @param videoPath
-     * @return
+     * @param videoPath path
+     * @return meta data
      */
     public static MetaData parseVideoMetaData(String videoPath) {
         if (TextUtils.isEmpty(videoPath)) {
