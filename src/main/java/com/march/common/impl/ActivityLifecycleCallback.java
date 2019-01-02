@@ -14,36 +14,36 @@ public class ActivityLifecycleCallback implements Application.ActivityLifecycleC
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+        //onActivityCreated
     }
 
     @Override
     public void onActivityStarted(Activity activity) {
-
+        //onActivityStarted
     }
 
     @Override
     public void onActivityResumed(Activity activity) {
-
+        //onActivityResumed
     }
 
     @Override
     public void onActivityPaused(Activity activity) {
-
+        //onActivityPaused
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
-
+        //onActivityStopped
     }
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+        //onActivitySaveInstanceState
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-
+        //onActivityDestroyed
     }
 }

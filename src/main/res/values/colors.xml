@@ -2,7 +2,6 @@
 <resources>
 
     <color name="transparent">#0000</color>
-    <color name="statusBarColor">#06A790</color>
     <color name="bg_color">#f9f7ec</color>
 
 </resources>

@@ -9,5 +9,4 @@ import com.march.common.able.Recyclable;
  * @author chendong
  */
 public interface IMgr extends Recyclable {
-
 }

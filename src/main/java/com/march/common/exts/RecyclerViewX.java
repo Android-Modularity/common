@@ -17,7 +17,7 @@ public class RecyclerViewX {
      * @param recyclerView rv
      * @param pos          pos
      */
-    public static void smoothScrollPositionTop(RecyclerView recyclerView, final int pos) {
+    public static void smoothScrollPositionStart(RecyclerView recyclerView, final int pos) {
         LinearSmoothScroller smoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
             @Override
             protected int getVerticalSnapPreference() {
@@ -39,7 +39,7 @@ public class RecyclerViewX {
      * @param recyclerView rv
      * @param pos          pos
      */
-    public static void smoothScrollPositionBottom(RecyclerView recyclerView, final int pos) {
+    public static void smoothScrollPositionEnd(RecyclerView recyclerView, final int pos) {
         LinearSmoothScroller smoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
             @Override
             protected int getVerticalSnapPreference() {

@@ -1,5 +1,6 @@
 package com.march.common.exts;
 
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
@@ -106,5 +107,22 @@ public class ViewX {
             view.setLayoutParams(layoutParams);
             view.postInvalidate();
         }
+    }
+
+
+    public static void setScale(View view, float scale) {
+        view.setScaleX(scale);
+        view.setScaleY(scale);
+    }
+
+    public static void getViewGlobalRect(View view, Rect rect) {
+        view.getGlobalVisibleRect(rect);
+    }
+
+    public static boolean isInViewArea(Rect rect, float x, float y, int offset) {
+        if (x > rect.left - offset && x < rect.right + offset && y > rect.top - offset && y < rect.bottom + offset) {
+            return true;
+        }
+        return false;
     }
 }

@@ -93,6 +93,13 @@ public class ToastX {
     }
 
 
+    private static Toast getToast() {
+        if (sToast == null) {
+            sToast = new Toast(getContext());
+        }
+        return sToast;
+    }
+
     /**
      * 显示toast公共方法
      *
@@ -117,28 +124,24 @@ public class ToastX {
             public void run() {
                 try {
 
-                    if (sToast == null) {
-                        sToast = new Toast(getContext());
-                    }
-
                     // 位置
-                    sToast.setDuration(duration);
+                    getToast().setDuration(duration);
 
                     if (sConfig.gravity != 0) {
-                        sToast.setGravity(sConfig.gravity, sConfig.xOffset, sConfig.yOffset);
+                        getToast().setGravity(sConfig.gravity, sConfig.xOffset, sConfig.yOffset);
                     }
 
-                    View toastLayout = sToast.getView();
+                    View toastLayout = getToast().getView();
 
                     if (toastLayout == null) {
                         toastLayout = LayoutInflater.from(getContext()).inflate(R.layout.view_toast, null, false);
                     }
 
-                    sToast.setView(toastLayout);
+                    getToast().setView(toastLayout);
 
                     initToastView(toastLayout, msg);
 
-                    sToast.show();
+                    getToast().show();
 
                 } catch (Exception e) {
                     LogX.e(e);

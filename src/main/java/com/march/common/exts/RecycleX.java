@@ -1,6 +1,8 @@
 package com.march.common.exts;
 
+import android.animation.Animator;
 import android.graphics.Bitmap;
+import android.os.Handler;
 
 import com.march.common.able.Destroyable;
 import com.march.common.able.Recyclable;
@@ -62,7 +64,12 @@ public class RecycleX {
         return true;
     }
 
-    // 回收资源
+    /**
+     * 回收资源
+     *
+     * @param recyclables releasable
+     * @return 是否回收成功
+     */
     public static boolean recycle(Releasable... recyclables) {
         for (Releasable recyclable : recyclables) {
             if (recyclable != null) {
@@ -72,7 +79,12 @@ public class RecycleX {
         return true;
     }
 
-    // 回收资源
+    /**
+     * 回收资源
+     *
+     * @param destroyables Destroyable
+     * @return 是否回收成功
+     */
     public static boolean recycle(Destroyable... destroyables) {
         for (Destroyable destroyable : destroyables) {
             if (destroyable != null) {
@@ -81,4 +93,29 @@ public class RecycleX {
         }
         return true;
     }
+
+
+    /**
+     * 取消 Handler 事件
+     * @param handler handler
+     */
+    public static void recycle(Handler handler) {
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+    }
+
+
+    /**
+     * 取消动画播放
+     *
+     * @param animator handler
+     */
+    public static void recycle(Animator animator) {
+        if (animator != null && animator.isRunning()) {
+            animator.cancel();
+        }
+    }
+
+
 }

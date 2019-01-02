@@ -1,5 +1,6 @@
 package com.march.common.model;
 
+import com.march.common.Common;
 import com.march.common.exts.LogX;
 
 import java.lang.reflect.Field;
@@ -13,12 +14,23 @@ import java.lang.reflect.Field;
  */
 public class AppBuildConfig {
 
+    public static final String DEV_CHANNEL = "dev";
+
     public boolean DEBUG;
     public String  APPLICATION_ID;
     public String  BUILD_TYPE;
     public String  FLAVOR;
     public int     VERSION_CODE;
     public String  VERSION_NAME;
+    public String  CHANNEL;
+
+    public boolean isDev() {
+        return Common.appConfig().DEBUG || DEV_CHANNEL.equals(Common.appConfig().CHANNEL);
+    }
+
+    public boolean isDebug() {
+        return Common.appConfig().DEBUG;
+    }
 
     public AppBuildConfig(Class clazz) {
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -50,4 +62,5 @@ public class AppBuildConfig {
             }
         }
     }
+
 }

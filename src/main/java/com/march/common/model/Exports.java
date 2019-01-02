@@ -14,6 +14,8 @@ import com.march.common.mgrs.KVMgr;
  */
 public class Exports {
 
+    public boolean        init;
+
     public Application    app;
     public ImgLoadAdapter imageLoader;
     public JsonAdapter    jsonParser;

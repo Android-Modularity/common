@@ -19,7 +19,6 @@ public class WebViewX {
 
 
     public static void initWebViewCache(WebView mWebView) {
-
         String cachePath = new File(Environment.getExternalStorageDirectory()
                 , "webCache").getAbsolutePath();
 

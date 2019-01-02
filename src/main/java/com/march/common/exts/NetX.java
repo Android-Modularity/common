@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 
+import com.blankj.utilcode.util.Utils;
 import com.march.common.Common;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
@@ -24,7 +25,7 @@ public class NetX {
      * 开启 wifi 设置页面
      */
     public static void openWirelessSettings() {
-        Common.app().startActivity(
+        Utils.getApp().startActivity(
                 new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         );
@@ -84,9 +85,11 @@ public class NetX {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static boolean isWifiConnected() {
         ConnectivityManager cm = getConnectivityManager(Common.app());
-        return cm != null
-                && cm.getActiveNetworkInfo() != null
-                && cm.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+        if (cm != null) {
+            NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI;
+        }
+        return false;
     }
 
 

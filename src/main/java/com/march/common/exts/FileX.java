@@ -1,7 +1,11 @@
 package com.march.common.exts;
 
 import android.os.Environment;
+import android.os.StatFs;
 import android.text.TextUtils;
+import android.text.format.Formatter;
+
+import com.march.common.Common;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -126,7 +130,6 @@ public class FileX {
      * 文件后缀
      *
      * @param path 路径
-     * @param def 默认值
      * @return 后缀名
      */
     public static String getSuffix(String path, String def) {
@@ -148,5 +151,28 @@ public class FileX {
         }
         return def;
     }
+
+    /**
+     * @return 获得SD卡总大小
+     */
+    public static String getSDTotalSize() {
+        File path = Environment.getExternalStorageDirectory();
+        StatFs stat = new StatFs(path.getPath());
+        long blockSize = stat.getBlockSize();
+        long totalBlocks = stat.getBlockCount();
+        return Formatter.formatFileSize(Common.app(), blockSize * totalBlocks);
+    }
+
+    /**
+     * @return 获得sd卡剩余容量，即可用大小
+     */
+    public static String getSDAvailableSize() {
+        File path = Environment.getExternalStorageDirectory();
+        StatFs stat = new StatFs(path.getPath());
+        long blockSize = stat.getBlockSize();
+        long availableBlocks = stat.getAvailableBlocks();
+        return Formatter.formatFileSize(Common.app(), blockSize * availableBlocks);
+    }
+
 
 }

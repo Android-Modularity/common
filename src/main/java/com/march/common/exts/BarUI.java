@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresPermission;
 
+import com.march.common.Common;
 import com.march.common.exts.barui.BottomBarHelper;
 import com.march.common.exts.barui.NotificationBarHelper;
 import com.march.common.exts.barui.QMUIStatusBarHelper;
@@ -45,8 +46,8 @@ public class BarUI {
      * 设置状态栏文字为黑色
      * @param activity act
      */
-    public static void setStatusBarLightMode(Activity activity) {
-        QMUIStatusBarHelper.setStatusBarLightMode(activity);
+    public static boolean setStatusBarLightMode(Activity activity) {
+        return QMUIStatusBarHelper.setStatusBarLightMode(activity);
     }
 
     /**
@@ -62,8 +63,8 @@ public class BarUI {
      * @param activity act
      * @param color 颜色
      */
-    public static void setStatusBarColor(Activity activity, int color) {
-        StatusBarColorHelper.setStatusBarColor(activity, color);
+    public static boolean setStatusBarColor(Activity activity, int color) {
+        return StatusBarColorHelper.setStatusBarColor(activity, color);
     }
 
     /**
@@ -82,6 +83,18 @@ public class BarUI {
      */
     public static boolean hasBottomBar(Context context) {
         return BottomBarHelper.hasNavBar(context);
+    }
+
+    /**
+     * 获取底部虚拟按键高度
+     *
+     * @return 虚拟按键高度
+     */
+    public static int getBottomBarHeight() {
+        if (hasBottomBar(Common.app())) {
+            return BottomBarHelper.getBottomBarHeight(Common.app());
+        }
+        return 0;
     }
 
     /**
