@@ -7,7 +7,6 @@ import android.net.NetworkInfo;
 import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 
-import com.blankj.utilcode.util.Utils;
 import com.march.common.Common;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
@@ -25,7 +24,7 @@ public class NetX {
      * 开启 wifi 设置页面
      */
     public static void openWirelessSettings() {
-        Utils.getApp().startActivity(
+        Common.app().startActivity(
                 new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         );

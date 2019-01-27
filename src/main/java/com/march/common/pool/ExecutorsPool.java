@@ -15,9 +15,10 @@ import java.util.concurrent.Executors;
 public class ExecutorsPool {
 
     private static volatile ExecutorsPool sInst;
-    ExecutorService mCacheExecutor;
-    ExecutorService mSingleExecutor;
-    Handler         mHandler;
+
+    private ExecutorService mCacheExecutor;
+    private ExecutorService mSingleExecutor;
+    private Handler         mHandler;
 
     private ExecutorsPool() {
 
