@@ -3,10 +3,11 @@ package com.march.common;
 import android.app.Application;
 import android.content.Context;
 
-import com.march.common.exts.SizeX;
-import com.march.common.exts.ToastX;
+import com.march.common.x.SizeX;
+import com.march.common.x.ToastX;
 import com.march.common.model.AppBuildConfig;
 import com.march.common.model.Exports;
+import com.tencent.mmkv.MMKV;
 
 /**
  * CreateAt : 2017/12/6
@@ -25,6 +26,7 @@ public class Common {
         exports.appConfig = new AppBuildConfig(buildClazz);
         SizeX.init();
         ToastX.init(new ToastX.Config().setOneToast(true));
+        MMKV.initialize(app);
     }
 
     public static Context app() {

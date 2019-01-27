@@ -6,7 +6,7 @@ import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.march.common.exts.EmptyX;
+import com.march.common.x.EmptyX;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;

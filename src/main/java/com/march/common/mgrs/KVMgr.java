@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.util.SparseArray;
 
 import com.march.common.Common;
-import com.march.common.exts.JsonX;
+import com.march.common.x.JsonX;
 import com.tencent.mmkv.MMKV;
 
 import java.util.HashMap;
