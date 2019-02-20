@@ -2,11 +2,13 @@ package com.march.common.x;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.CheckResult;
 import android.support.annotation.Nullable;
 
 import com.march.common.Common;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,35 +19,69 @@ import java.util.Set;
  *
  * @author chendong
  */
-public class SharePreferenceX {
+public class SharedPreferencesX {
 
     public static final int MMKV   = 0;
     public static final int SP     = 1;
     public static final int MEMORY = 2;
 
-    public static SharedPreferences get(Context context, int strategy) {
+    @CheckResult
+    public static SharedPreferences get(int strategy) {
         switch (strategy) {
             case MMKV:
                 return com.tencent.mmkv.MMKV.defaultMMKV();
             case SP:
-                return context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+                return Common.app().getSharedPreferences(Common.app().getPackageName(), Context.MODE_PRIVATE);
             case MEMORY:
                 return new MemorySharePreference();
         }
-        return null;
+        throw new IllegalStateException("无法获取 SharedPreferences");
     }
 
-    public static SharedPreferences get(Context context) {
+    @CheckResult
+    public static SharedPreferences get() {
         switch (Common.exports.spMode) {
             case MMKV:
                 return com.tencent.mmkv.MMKV.defaultMMKV();
             case SP:
-                return context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+                return Common.app().getSharedPreferences(Common.app().getPackageName(), Context.MODE_PRIVATE);
             case MEMORY:
                 break;
         }
-        return null;
+        throw new IllegalStateException("无法获取 SharedPreferences");
     }
+
+    public static <T> T getObj(SharedPreferences sp, String key, Class<T> clazz) {
+        String data = sp.getString(key, "");
+        if (EmptyX.isEmpty(data)) {
+            return null;
+        }
+        return Common.exports.jsonParser.toObj(data, clazz);
+    }
+
+    public static void putObj(SharedPreferences sp, String key, Object value) {
+        String json = Common.exports.jsonParser.toJson(value);
+        sp.edit().putString(key, json).apply();
+    }
+
+    public static <T> List<T> getList(SharedPreferences sp, String key, Class<T> clazz) {
+        String data = sp.getString(key, "");
+        if (EmptyX.isEmpty(data)) {
+            return null;
+        }
+        return Common.exports.jsonParser.toList(data, clazz);
+
+    }
+
+    public static <K, V> Map<K, V> getMap(SharedPreferences sp, String key, Class<K> kClazz, Class<V> vClazz) {
+        String data = sp.getString(key, "");
+        if (EmptyX.isEmpty(data)) {
+            return null;
+        }
+        return Common.exports.jsonParser.toMap(data, kClazz, vClazz);
+    }
+
+
 
     public static class MemorySharePreference implements SharedPreferences {
 

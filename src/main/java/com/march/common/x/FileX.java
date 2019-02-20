@@ -130,6 +130,7 @@ public class FileX {
      * 文件后缀
      *
      * @param path 路径
+     * @param def 默认
      * @return 后缀名
      */
     public static String getSuffix(String path, String def) {

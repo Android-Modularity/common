@@ -53,15 +53,17 @@ public class BarUI {
     /**
      * 设置状态栏文字为白色
      * @param activity act
+     * @return 设置是否成功
      */
-    public static void setStatusBarDarkMode(Activity activity) {
-        QMUIStatusBarHelper.setStatusBarDarkMode(activity);
+    public static boolean setStatusBarDarkMode(Activity activity) {
+       return QMUIStatusBarHelper.setStatusBarDarkMode(activity);
     }
 
     /**
      * 设置状态栏颜色
      * @param activity act
      * @param color 颜色
+     * @return 设置是否成功
      */
     public static boolean setStatusBarColor(Activity activity, int color) {
         return StatusBarColorHelper.setStatusBarColor(activity, color);

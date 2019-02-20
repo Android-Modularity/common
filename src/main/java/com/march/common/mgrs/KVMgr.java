@@ -36,6 +36,7 @@ public class KVMgr implements IMgr {
      *
      * @return IKV
      */
+    @Deprecated
     public static IKV getInst() {
         return getInst(Common.exports.kvStrategy);
     }
@@ -46,6 +47,7 @@ public class KVMgr implements IMgr {
      * @param strategy 策略
      * @return IKV
      */
+    @Deprecated
     public static IKV getInst(int strategy) {
         IKV ikv = sIKVMap.get(strategy);
         if (ikv != null) {
@@ -250,46 +252,45 @@ public class KVMgr implements IMgr {
 
         @Override
         public IKV putInt(String key, int value) {
-            kv().putInt(key, value);
+            kv().putInt(key, value).apply();
             return this;
         }
 
         @Override
         public IKV putFloat(String key, float value) {
-            kv().putFloat(key, value);
+            kv().putFloat(key, value).apply();
             return this;
         }
 
         @Override
         public IKV putLong(String key, long value) {
-            kv().putLong(key, value);
+            kv().putLong(key, value).apply();
             return this;
         }
 
         @Override
         public IKV putBool(String key, boolean value) {
-            kv().putBoolean(key, value);
+            kv().putBoolean(key, value).apply();
             return this;
         }
 
         @Override
         public IKV putString(String key, String value) {
-            kv().putString(key, value);
+            kv().putString(key, value).apply();
             return this;
         }
 
         @Override
         public IKV putStringSets(String key, Set<String> value) {
-            kv().putStringSet(key, value);
+            kv().putStringSet(key, value).apply();
             return this;
         }
 
         @Override
         public IKV putObj(String key, Object value) {
-            kv().putString(key, JsonX.toJson(value));
+            kv().putString(key, JsonX.toJson(value)).apply();
             return this;
         }
-
     }
 
     // 基于 SharePreference 实现
